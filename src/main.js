@@ -31,7 +31,7 @@ game.registry.set({
     
     // arbitrary engine start strength
     INITIAL_PLANET_OBJECT: new Planet('startplanet'),
-    INITIAL_SHIP_MAX_FUEL: 200,
+    INITIAL_SHIP_MAX_FUEL: 100,
     INITIAL_ENGINE_OUTPUT: 40,
     INITIAL_ENGINE_EFFICIENCY: 8,
     
