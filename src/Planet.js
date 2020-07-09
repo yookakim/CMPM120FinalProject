@@ -1,8 +1,8 @@
 class Planet {
 
-    constructor() {
+    constructor(planetName) {
 
-        // the distance of the planet is hard coded for now
+        // the distance of the planet is hard coded for now (in main.js)
 
         /*         
             depending on the mechanic we choose to implement (depending on scope)
@@ -27,6 +27,8 @@ class Planet {
 
             etc.
         */
+
+        this.name = planetName;
     }
 
     get planetDistance() {

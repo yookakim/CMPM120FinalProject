@@ -1,15 +1,20 @@
 class Engine {
-    constructor() {
+    constructor(game) {
+        this.game = game;
+
         // the starting strength of our engine; should not be touched at runtime.
-        this.initialEngineOutput = game.registry.get('INITIAL_ENGINE_OUTPUT');
+        this.initialEngineOutput = this.game.registry.get('INITIAL_ENGINE_OUTPUT');
 
+        // set engine power (speed) when constructed
+        this._engineOutput = this.initialEngineOutput;
 
-        // when constructed, set a data entry in the registry for its properties
-        this._engineOutput = game.registry.set('engineOutput', this.initialEngineOutput);
+        // engineEfficiency = the number of distance units travelled per one unit of fuel
+        this.engineEfficiency = this.game.registry.get('INITIAL_ENGINE_EFFICIENCY');
+
     }
 
     get engineOutput() {
         // and then get it with a getter and the registry.get method
-        return game.registry.get('engineOutput');
+        return this._engineOutput;
     }
 }

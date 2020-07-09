@@ -4,16 +4,44 @@
 class PlanetMenu extends Phaser.Scene {
     constructor() {
         super('planetmenu');
-        this.ship;
+        this.ship = ship;
+
+        // initialize planet property so we can add the tempPlanet stored in registry in create()
+        this.planet;
+    }
+
+    preload() {
+        this.load.image('shiptinkerbutton', './assets/ship_tinker_button.png');
     }
 
     create() {
+
         // ui like text and buttons will probably be managed by a separate Scene overlayed on top later
-        this.add.text(10, 10, 'planet view: what actions to take on this planet?');
-        this.ship = new Ship
-        this.nextPlanetButton = this.add.text(10, 400, 'click me to choose next planet')
+        this.planet = this.registry.get('tempPlanet');
+        this.loadUI();
+
+    }
+
+    loadUI() {
+        // welcome player and get planet name
+        this.add.text(10, 10, 'You just landed on \'' + this.planet.name + '\'.');
+        this.add.text(10, 30, 'what actions do u take on this planet?');
+
+        this.tinkerShipButton = this.add.sprite(300, 200, 'shiptinkerbutton')
             .setInteractive()
-            .on('pointerdown', this.loadPlanetSelection, this);
+            .on('pointerdown', this.increaseShipMaxFuel, this);
+
+        this.maxFuelText = this.add.text(300, 295, 'current max fuel: ' + this.ship.maxFuelAmount);
+
+        this.nextPlanetButton = this.add.text(10, 400, 'click me to lift off and choose next destination')
+            .setInteractive()
+            .on('pointerdown', this.loadPlanetSelection, this);        
+    }
+    
+    // placeholder test method for giving free increases to max fuel
+    increaseShipMaxFuel() {
+        this.ship.maxFuelAmount += 20;
+        this.maxFuelText.text = 'current max fuel: ' + this.ship.maxFuelAmount;
     }
 
     loadPlanetSelection() {
