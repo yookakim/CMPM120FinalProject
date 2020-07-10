@@ -72,14 +72,20 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
 
     setupChildText() {
 
-        this.planetDistanceText = this.scene.add.text(
+
+        this.planetNameText = this.scene.add.text(
             this.x - 75,
-            this.y + 80,
-            'planet: ' + this.planet.name + '\n' + 
-            'distance: ' + this.planet.planetDistance + '\n' + 
-            'time: ' + Phaser.Math.Snap.Ceil((this.planet.planetDistance / this.scene.ship.engine.engineOutput), 1) + '\n' +
-            'fuel needed: ' + this.planet.planetDistance / this.scene.ship.engine.engineEfficiency,
+            this.y - 90,
+            'planet: ' + this.planet.name + '\n',
             this.textConfig
         );
+
+        this.planetInfoText = this.scene.add.text(
+            this.x - 75,
+            this.y + 80,
+            'distance: ' + this.planet.planetDistance + '\n' + 
+            'time: ' + Phaser.Math.Snap.Ceil((this.planet.planetDistance / this.scene.ship.engine.engineOutput), 1) + '\n',
+            this.textConfig
+        );        
     }
 }

@@ -13,9 +13,10 @@ class Ship {
         this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');
         this.maxFuelAmount = this.game.registry.get('INITIAL_SHIP_MAX_FUEL');
         this.totalDaysTravelled = 0;
+        this.lastTravelTime = 0;
 
         // start with max fuel
-        this._fuelAmount = this.maxFuelAmount
+        this._fuelAmount = this.maxFuelAmount;
         
         // set initial max travel distanec
         this._maxTravelDistance = this._fuelAmount * this.engine.engineEfficiency;
@@ -40,6 +41,7 @@ class Ship {
     travel(planet) {
         this.currentPlanet = planet;
         this._fuelAmount = this._fuelAmount - (planet.planetDistance / this.engine.engineEfficiency);
-        this.totalDaysTravelled = this.totalDaysTravelled + Phaser.Math.Snap.Ceil((planet.planetDistance / this.engine.engineOutput), 1);
+        this.lastTravelTime = Phaser.Math.Snap.Ceil((planet.planetDistance / this.engine.engineOutput), 1);
+        this.totalDaysTravelled = this.totalDaysTravelled + this.lastTravelTime;
     }
 }

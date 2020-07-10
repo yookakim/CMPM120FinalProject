@@ -3,8 +3,8 @@
 // define game config
 let config = {
     type: Phaser.Canvas,
-    width: 640,
-    height: 480,
+    width: 1024,
+    height: 768,
     fps: {
         // smoothStep: true,
         target: 30,

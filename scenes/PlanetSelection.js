@@ -56,16 +56,15 @@ class PlanetSelection extends Phaser.Scene {
 
             probably set up a different scene altogether overlayed on top for UI
          */
-        this.add.text(10, 10, 'You are on day ' + (this.ship.totalDaysTravelled + 1));
-        this.add.text(10, 50, 'Select Next Planet (you are currently at \'' + this.ship.currentPlanet.name + '\')');
-        this.add.text(10, 90, 'You may only travel to a planet if you have');
-        this.add.text(10, 110, 'enough fuel!');
-        this.add.text(10, 150, 'Ship engine efficiency (distance per fuel): ' + this.ship.engine.engineEfficiency);
-        this.fuelAmountText = this.add.text(10, 190, 'Ship fuel amount: ' + this.ship.fuelAmount  + ', max fuel: ' + this.ship.maxFuelAmount);
+        this.add.text(400, 10, 'Day ' + (this.ship.totalDaysTravelled + 1) + ': ' + this.ship.currentPlanet.name);
+        this.add.text(10, 70, 'You may only travel to a planet if you have');
+        this.add.text(10, 90, 'enough fuel!');
+        this.add.text(10, 130, 'Ship engine efficiency (distance per fuel): ' + this.ship.engine.engineEfficiency);
+        this.fuelAmountText = this.add.text(10, 170, 'Ship fuel amount: ' + this.ship.fuelAmount  + ', max fuel: ' + this.ship.maxFuelAmount);
 
         // temporary button for giving free fuel (for prototype testing)
         // we dont want to give free fuel in end version
-        this.freeFuelButton = this.add.sprite(435, 295, 'fuelbutton');
+        this.freeFuelButton = this.add.sprite(636, 395, 'fuelbutton');
         this.freeFuelButton
             .setInteractive()
             .on('pointerdown', this.giveFreeFuel, this);
@@ -75,9 +74,9 @@ class PlanetSelection extends Phaser.Scene {
             changes to the button depending on the attributes of the planet
             (we pass in the planet the button is representing as the planet objects we made in create())
         */
-        this.planetButton = new PlanetButtonObject(this, 95, 295, 'planetbutton', 0, this.planet);
+        this.planetButton = new PlanetButtonObject(this, 295, 395, 'planetbutton', 0, this.planet);
         // hard code in the second planet for now:
-        this.planetButton2 = new PlanetButtonObject(this, 265, 295, 'planetbutton', 0, this.planet2);
+        this.planetButton2 = new PlanetButtonObject(this, 465, 395, 'planetbutton', 0, this.planet2);
     }
 
     loadPlanetMenu(planet) {
@@ -85,10 +84,11 @@ class PlanetSelection extends Phaser.Scene {
         // later on, the UI would know the info about the planet, and display it accordingly
         
         /* 
-            set the planet connected to this button as the temporary planet in the global registry;
-            when it loads the next scene, it will know which planet we ended up traveling to
+            set the game to "remember" current state of the planet
          */
         this.registry.set('tempPlanet', planet);
+
+        // start next scene (we can add the intermediary scene between this one and planetmenu later)
         this.scene.start('planetmenu');
 
         this.ship.travel(planet);
