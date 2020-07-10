@@ -29,20 +29,15 @@ class PlanetMenu extends Phaser.Scene {
         this.add.text(10, 10, 'You arrived at \'' + this.planet.name + '\' after ' + this.ship.lastTravelTime + ' days.');
         this.add.text(10, 30, 'what actions do u take on this planet?');
 
-        this.tinkerShipButton = this.add.sprite(300, 200, 'shiptinkerbutton')
-            .setInteractive()
-            .on('pointerdown', this.increaseShipMaxFuel, this);
-
-        this.settlementButton = this.add.sprite(470, 200, 'settlementbutton')
+        this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
+            .setOrigin(0, 0)
             .setInteractive()
             .on('pointerdown', this.loadTradingMenu, this);
-
-        this.maxFuelText = this.add.text(10, 150, 'current max fuel: ' + this.ship.maxFuelAmount);
 
         this.nextPlanetButton = this.add.sprite(game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
             .setOrigin(0, 0)
             .setInteractive()
-            .on('pointerdown', this.loadPlanetSelection, this);        
+            .on('pointerdown', this.loadPlanetSelection, this);
     }
     
     // placeholder test method for giving free increases to max fuel

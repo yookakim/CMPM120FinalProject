@@ -3,7 +3,7 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
     // create a separate class for a UI sprite that reflects what the planet looks like in the UI
     // based on what kind of planet was passed in (we can set this up later)
     
-    constructor(scene, x, y, texture, frame, planet) {
+    constructor(scene, x, y, texture, frame, planetData) {
         // call parent constructor 
         super(scene, x, y, texture, frame);
 
@@ -11,7 +11,10 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
         this.scene = scene;
         this.x = x;
         this.y = y;
-        this.planet = planet;
+
+        // we unload the data from the object passed in, but i wonder if there's a better way to do it idk lol
+        this.planet = planetData.planet;
+        this.travelTime = planetData.travelTime;
 
         // later we could make a standardized global textConfig object
         this.textConfig = {
@@ -84,7 +87,7 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
             this.x - 75,
             this.y + 80,
             'distance: ' + this.planet.planetDistance + '\n' + 
-            'time: ' + Phaser.Math.Snap.Ceil((this.planet.planetDistance / this.scene.ship.engine.engineOutput), 1) + '\n',
+            'time: ' + this.travelTime + '\n',
             this.textConfig
         );        
     }
