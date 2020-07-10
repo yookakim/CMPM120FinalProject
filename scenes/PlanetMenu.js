@@ -11,9 +11,10 @@ class PlanetMenu extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('shiptinkerbutton', './assets/ship_tinker_button.png');
-        this.load.image('settlementbutton', './assets/visit_settlement_button.png');
-        this.load.image('nextplanetbutton', './assets/next_planet_button.png');
+        this.load.image('planetstats', './assets/UI/planetmenu_stats_placeholder.png');
+        this.load.image('shiptinkerbutton', './assets/UI/buttons/ship_tinker_button.png');
+        this.load.image('settlementbutton', './assets/UI/buttons/visit_settlement_button.png');
+        this.load.image('nextplanetbutton', './assets/UI/buttons/next_planet_button.png');
     }
 
     create() {
@@ -29,6 +30,9 @@ class PlanetMenu extends Phaser.Scene {
         this.add.text(10, 10, 'You arrived at \'' + this.planet.name + '\' after ' + this.ship.lastTravelTime + ' days.');
         this.add.text(10, 30, 'what actions do u take on this planet?');
 
+        this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
+            .setOrigin(0, 0);
+
         this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
             .setOrigin(0, 0)
             .setInteractive()
@@ -38,6 +42,7 @@ class PlanetMenu extends Phaser.Scene {
             .setOrigin(0, 0)
             .setInteractive()
             .on('pointerdown', this.loadPlanetSelection, this);
+        this.zonePlanetStats = this.add.sprite()
     }
     
     // placeholder test method for giving free increases to max fuel

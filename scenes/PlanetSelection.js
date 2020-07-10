@@ -11,7 +11,7 @@ class PlanetSelection extends Phaser.Scene {
     preload() {
 
         this.load.image('planetbutton', './assets/temp_planet.png');
-        this.load.image('fuelbutton', './assets/fuel_button.png');
+        this.load.image('fuelbutton', './assets/UI/buttons/fuel_button.png');
     }
 
     create() {
