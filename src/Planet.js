@@ -2,6 +2,8 @@ class Planet {
 
     constructor(planetName) {
 
+
+        this.name = planetName;
         // the distance of the planet is hard coded for now (in main.js)
 
         /*         
@@ -14,7 +16,7 @@ class Planet {
         */
 
         this._planetDistance = game.registry.get('PLACEHOLDER_PLANET_DISTANCE');
-
+        
         /* 
             Since a Planet object could be home to a number of other things, 
             like a town, inhabitants, resources, materials, etc.
@@ -27,8 +29,10 @@ class Planet {
 
             etc.
         */
+        this.planetMass;
 
-        this.name = planetName;
+        this.inhabitants;
+        this.atmosphere;
     }
 
     get planetDistance() {
@@ -36,6 +40,8 @@ class Planet {
         return this._planetDistance;
     }
 
+    // delete this later, nothing outside this class has no business changing its distance
+    // here for testing and debugging before random generation
     set planetDistance(distance) {
         this._planetDistance = distance;
     }

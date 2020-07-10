@@ -13,33 +13,25 @@ class Ship {
         this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');
         this.maxFuelAmount = this.game.registry.get('INITIAL_SHIP_MAX_FUEL');
         this.totalDaysTravelled = 0;
-
-        // start with max fuel
-        this._fuelAmount = this.maxFuelAmount
+        this.lastTravelTime = 0;
         
         // set initial max travel distanec
-        this._maxTravelDistance = this._fuelAmount * this.engine.engineEfficiency;
+        this._maxTravelDistance = this.engine.engineOutput * this.engine.engineEfficiency;
     }
-    
-    get fuelAmount() {
-        return this._fuelAmount;
-    }
-    set fuelAmount(value) {
-        if (value <= this.maxFuelAmount) {
-            this._fuelAmount = value;
-        }
-        this._maxTravelDistance = this.fuelAmount * this.engine.engineEfficiency;
-    }
+
 
     get maxTravelDistance() {
         // ship.maxTravelDistance
         // returns the product of fuel left and engine's efficiency
-        return this._fuelAmount * this.engine.engineEfficiency;
+        return this.engine.engineOutput * this.engine.engineEfficiency;
     }
 
     travel(planet) {
         this.currentPlanet = planet;
-        this._fuelAmount = this._fuelAmount - (planet.planetDistance / this.engine.engineEfficiency);
-        this.totalDaysTravelled = this.totalDaysTravelled + Phaser.Math.Snap.Ceil((planet.planetDistance / this.engine.engineOutput), 1);
+
+        // my temporary travel time calculation: (planet distance / (engine's output + (engine's effiency * 3)))
+        // the Ceil method rounds up so that we dont have decimal number days
+        this.lastTravelTime = Phaser.Math.Snap.Ceil((planet.planetDistance / (this.engine.engineOutput + (this.engine.engineEfficiency * 3))), 1);
+        this.totalDaysTravelled = this.totalDaysTravelled + this.lastTravelTime;
     }
 }

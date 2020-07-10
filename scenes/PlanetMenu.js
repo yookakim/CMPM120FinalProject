@@ -11,31 +11,38 @@ class PlanetMenu extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('shiptinkerbutton', './assets/ship_tinker_button.png');
+        this.load.image('planetstats', './assets/UI/planetmenu_stats_placeholder.png');
+        this.load.image('shiptinkerbutton', './assets/UI/buttons/ship_tinker_button.png');
+        this.load.image('settlementbutton', './assets/UI/buttons/visit_settlement_button.png');
+        this.load.image('nextplanetbutton', './assets/UI/buttons/next_planet_button.png');
     }
 
     create() {
+        this.planet = game.registry.get('tempPlanet');
 
         // ui like text and buttons will probably be managed by a separate Scene overlayed on top later
-        this.planet = this.registry.get('tempPlanet');
         this.loadUI();
 
     }
 
     loadUI() {
         // welcome player and get planet name
-        this.add.text(10, 10, 'You just landed on \'' + this.planet.name + '\'.');
+        this.add.text(10, 10, 'You arrived at \'' + this.planet.name + '\' after ' + this.ship.lastTravelTime + ' days.');
         this.add.text(10, 30, 'what actions do u take on this planet?');
 
-        this.tinkerShipButton = this.add.sprite(300, 200, 'shiptinkerbutton')
-            .setInteractive()
-            .on('pointerdown', this.increaseShipMaxFuel, this);
+        this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
+            .setOrigin(0, 0);
 
-        this.maxFuelText = this.add.text(300, 295, 'current max fuel: ' + this.ship.maxFuelAmount);
-
-        this.nextPlanetButton = this.add.text(10, 400, 'click me to lift off and choose next destination')
+        this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
+            .setOrigin(0, 0)
             .setInteractive()
-            .on('pointerdown', this.loadPlanetSelection, this);        
+            .on('pointerdown', this.loadTradingMenu, this);
+
+        this.nextPlanetButton = this.add.sprite(game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
+            .setOrigin(0, 0)
+            .setInteractive()
+            .on('pointerdown', this.loadPlanetSelection, this);
+        this.zonePlanetStats = this.add.sprite()
     }
     
     // placeholder test method for giving free increases to max fuel
@@ -47,4 +54,17 @@ class PlanetMenu extends Phaser.Scene {
     loadPlanetSelection() {
         this.scene.start('planetselection');
     }
+    
+    
+    loadTradingMenu() {
+        // go into trading district
+        // with 
+        this.scene.switch('tradingmenu');
+    }
+    /* 
+    // preemptively setting up scene loading methods
+    loadResourcesMenu() {
+        this.scene.start('resourcesmenu');
+    }
+    */
 }

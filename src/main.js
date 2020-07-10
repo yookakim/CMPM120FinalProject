@@ -3,8 +3,8 @@
 // define game config
 let config = {
     type: Phaser.Canvas,
-    width: 640,
-    height: 480,
+    width: 1024,
+    height: 768,
     fps: {
         // smoothStep: true,
         target: 30,
@@ -19,7 +19,7 @@ let config = {
             fps: 140,
         },
     },
-    scene: [ PlanetSelection , PlanetMenu ],
+    scene: [ PlanetSelection , PlanetMenu , TradingMenu ],
 }
 
 
@@ -32,8 +32,8 @@ game.registry.set({
     // arbitrary engine start strength
     INITIAL_PLANET_OBJECT: new Planet('startplanet'),
     INITIAL_SHIP_MAX_FUEL: 100,
-    INITIAL_ENGINE_OUTPUT: 40,
-    INITIAL_ENGINE_EFFICIENCY: 8,
+    INITIAL_ENGINE_OUTPUT: 100,
+    INITIAL_ENGINE_EFFICIENCY: 11,
     
     // arbitrary placeholder initial planet distance
     PLACEHOLDER_PLANET_DISTANCE: 1000,

@@ -11,7 +11,7 @@ class PlanetSelection extends Phaser.Scene {
     preload() {
 
         this.load.image('planetbutton', './assets/temp_planet.png');
-        this.load.image('fuelbutton', './assets/fuel_button.png');
+        this.load.image('fuelbutton', './assets/UI/buttons/fuel_button.png');
     }
 
     create() {
@@ -31,6 +31,7 @@ class PlanetSelection extends Phaser.Scene {
 
         this.planet = new Planet('earth');
         this.planet2 = new Planet('moocury');
+
         // and then we hard code the values for now 
         this.planet.planetDistance = 360;
         this.planet2.planetDistance = 1050;
@@ -38,6 +39,27 @@ class PlanetSelection extends Phaser.Scene {
         // later we might automatically generate them somehow
         // probably using a factory class of some kind
 
+        // i hardcode everything for now!! easy on brain
+
+        // we make planet data objects that we pass into the UI so it knows what to draw (automate later)
+
+        this.planetData = {
+            planet: this.planet,
+            travelTime: Phaser.Math.Snap.Ceil(
+                this.planet.planetDistance / (this.ship.engine.engineOutput + (this.ship.engine.engineEfficiency * 3)), 1),
+        };
+
+        this.planetData2 = {
+            planet: this.planet2,
+            travelTime: Phaser.Math.Snap.Ceil(
+                this.planet2.planetDistance / (this.ship.engine.engineOutput + (this.ship.engine.engineEfficiency * 3)), 1),
+        };
+
+        // let planetArray = [this.planet, this.planet2];
+
+
+        // in the future, planet generation, planet data loading, loading UI for respective planets, will all 
+        // happen in one clean function here hopefully
         this.loadUI();
         this.inputSetup();        
     }
@@ -54,30 +76,27 @@ class PlanetSelection extends Phaser.Scene {
             if there are variable number of planets to choose from later, it would be difficult 
             to get coordinates for each button position. 
 
-            probably set up a different scene altogether overlayed on top for UI
+            iterate along however many planets were generated (unless we are settling on fixed planets per turn)
+            inside the array of planets we defined in create()
+
          */
-        this.add.text(10, 10, 'You are on day ' + (this.ship.totalDaysTravelled + 1));
-        this.add.text(10, 50, 'Select Next Planet (you are currently at \'' + this.ship.currentPlanet.name + '\')');
-        this.add.text(10, 90, 'You may only travel to a planet if you have');
-        this.add.text(10, 110, 'enough fuel!');
-        this.add.text(10, 150, 'Ship engine efficiency (distance per fuel): ' + this.ship.engine.engineEfficiency);
-        this.fuelAmountText = this.add.text(10, 190, 'Ship fuel amount: ' + this.ship.fuelAmount  + ', max fuel: ' + this.ship.maxFuelAmount);
+        this.add.text(400, 10, 'Day ' + (this.ship.totalDaysTravelled + 1) + ': ' + this.ship.currentPlanet.name);
+        this.add.text(10, 70, 'You may only travel to a planet if your engine is');
+        this.add.text(10, 90, 'powerful or efficient enough!');
+        this.add.text(10, 130, 'Ship engine efficiency (distance per unit of engine output): ' + this.ship.engine.engineEfficiency);
+        
 
         // temporary button for giving free fuel (for prototype testing)
-        // we dont want to give free fuel in end version
-        this.freeFuelButton = this.add.sprite(435, 295, 'fuelbutton');
-        this.freeFuelButton
-            .setInteractive()
-            .on('pointerdown', this.giveFreeFuel, this);
+
 
         /*
             i made a separate class for a button object, so that we can apply graphical
             changes to the button depending on the attributes of the planet
             (we pass in the planet the button is representing as the planet objects we made in create())
         */
-        this.planetButton = new PlanetButtonObject(this, 95, 295, 'planetbutton', 0, this.planet);
+        this.planetButton = new PlanetButtonObject(this, 295, 395, 'planetbutton', 0, this.planetData);
         // hard code in the second planet for now:
-        this.planetButton2 = new PlanetButtonObject(this, 265, 295, 'planetbutton', 0, this.planet2);
+        this.planetButton2 = new PlanetButtonObject(this, 465, 395, 'planetbutton', 0, this.planetData2);
     }
 
     loadPlanetMenu(planet) {
@@ -85,10 +104,11 @@ class PlanetSelection extends Phaser.Scene {
         // later on, the UI would know the info about the planet, and display it accordingly
         
         /* 
-            set the planet connected to this button as the temporary planet in the global registry;
-            when it loads the next scene, it will know which planet we ended up traveling to
+            set the game to "remember" current state of the planet
          */
-        this.registry.set('tempPlanet', planet);
+        game.registry.set('tempPlanet', planet);
+
+        // start next scene (we can add the intermediary scene between this one and planetmenu later)
         this.scene.start('planetmenu');
 
         this.ship.travel(planet);
