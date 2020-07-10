@@ -19,7 +19,7 @@ let config = {
             fps: 140,
         },
     },
-    scene: [ PlanetSelection , PlanetMenu ],
+    scene: [ PlanetSelection , PlanetMenu , TradingMenu ],
 }
 
 

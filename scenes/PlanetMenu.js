@@ -12,11 +12,12 @@ class PlanetMenu extends Phaser.Scene {
 
     preload() {
         this.load.image('shiptinkerbutton', './assets/ship_tinker_button.png');
+        this.load.image('settlementbutton', './assets/visit_settlement_button.png');
         this.load.image('nextplanetbutton', './assets/next_planet_button.png');
     }
 
     create() {
-        this.planet = this.registry.get('tempPlanet');
+        this.planet = game.registry.get('tempPlanet');
 
         // ui like text and buttons will probably be managed by a separate Scene overlayed on top later
         this.loadUI();
@@ -32,9 +33,14 @@ class PlanetMenu extends Phaser.Scene {
             .setInteractive()
             .on('pointerdown', this.increaseShipMaxFuel, this);
 
-        this.maxFuelText = this.add.text(300, 295, 'current max fuel: ' + this.ship.maxFuelAmount);
+        this.settlementButton = this.add.sprite(470, 200, 'settlementbutton')
+            .setInteractive()
+            .on('pointerdown', this.loadTradingMenu, this);
 
-        this.nextPlanetButton = this.add.sprite(550, 400, 'nextplanetbutton')
+        this.maxFuelText = this.add.text(10, 150, 'current max fuel: ' + this.ship.maxFuelAmount);
+
+        this.nextPlanetButton = this.add.sprite(game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
+            .setOrigin(0, 0)
             .setInteractive()
             .on('pointerdown', this.loadPlanetSelection, this);        
     }
@@ -49,14 +55,14 @@ class PlanetMenu extends Phaser.Scene {
         this.scene.start('planetselection');
     }
     
-    /* 
-    // preemptively setting up scene loading methods
-
+    
     loadTradingMenu() {
         // go into trading district
         // with 
-        this.scene.start('tradingmenu');
+        this.scene.switch('tradingmenu');
     }
+    /* 
+    // preemptively setting up scene loading methods
     loadResourcesMenu() {
         this.scene.start('resourcesmenu');
     }

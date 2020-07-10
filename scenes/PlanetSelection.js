@@ -86,7 +86,7 @@ class PlanetSelection extends Phaser.Scene {
         /* 
             set the game to "remember" current state of the planet
          */
-        this.registry.set('tempPlanet', planet);
+        game.registry.set('tempPlanet', planet);
 
         // start next scene (we can add the intermediary scene between this one and planetmenu later)
         this.scene.start('planetmenu');
