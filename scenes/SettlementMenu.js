@@ -1,14 +1,14 @@
-class TradingMenu extends Phaser.Scene {
+class SettlementMenu extends Phaser.Scene {
     constructor() {
-        super('tradingmenu');
+        super('settlementmenu');
     }
     
     preload() {
-        this.load.image('returnshipbutton', './assets/returnship_button.png');
+        this.load.image('returnshipbutton', './assets/UI/buttons/returnship_button.png');
     }
 
     create() {
-        this.add.text(40, 40, 'this is the scene where you barter and exchange');
+        this.add.text(40, 40, 'This is the settlement of the planet (if it exists)');
 
         // again, later on, we can have a ubiquitous scene that handles UI for us
         // (maybe make child objects of a base Scene.UIScene class?)

@@ -6,10 +6,12 @@ class PlanetSelection extends Phaser.Scene {
         super('planetselection');
         this.ship = ship;
         this.maxTravelDistance;
+        
     }
 
     preload() {
 
+        this.cameras.main.setBackgroundColor('#2e2f3b');
         this.load.image('planetbutton', './assets/temp_planet.png');
         this.load.image('fuelbutton', './assets/UI/buttons/fuel_button.png');
     }
@@ -108,8 +110,8 @@ class PlanetSelection extends Phaser.Scene {
          */
         game.registry.set('tempPlanet', planet);
 
-        // start next scene (we can add the intermediary scene between this one and planetmenu later)
-        this.scene.start('planetmenu');
+        // start next scene (we can add the intermediary scene between this one and planetscene later)
+        this.scene.start('planetscene');
 
         this.ship.travel(planet);
     }

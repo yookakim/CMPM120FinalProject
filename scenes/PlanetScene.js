@@ -1,9 +1,9 @@
 // scene class for the planet view after selecting destination.
 
 'use strict';
-class PlanetMenu extends Phaser.Scene {
+class PlanetScene extends Phaser.Scene {
     constructor() {
-        super('planetmenu');
+        super('planetscene');
         this.ship = ship;
 
         // initialize planet property so we can add the tempPlanet stored in registry in create()
@@ -33,16 +33,16 @@ class PlanetMenu extends Phaser.Scene {
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
 
-        this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
-            .setOrigin(0, 0)
-            .setInteractive()
-            .on('pointerdown', this.loadTradingMenu, this);
+        // this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
+        //     .setOrigin(0, 0)
+        //     .setInteractive()
+        //     .on('pointerdown', this.loadTradingMenu, this);
 
-        this.nextPlanetButton = this.add.sprite(game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
-            .setOrigin(0, 0)
-            .setInteractive()
+        this.settlementButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 250, 'settlementbutton')
+            .on('pointerdown', this.loadSettlement, this);
+
+        this.nextPlanetButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
             .on('pointerdown', this.loadPlanetSelection, this);
-        this.zonePlanetStats = this.add.sprite()
     }
     
     // placeholder test method for giving free increases to max fuel
@@ -56,7 +56,7 @@ class PlanetMenu extends Phaser.Scene {
     }
     
     
-    loadTradingMenu() {
+    loadSettlement() {
         // go into trading district
         // with 
         this.scene.switch('tradingmenu');
