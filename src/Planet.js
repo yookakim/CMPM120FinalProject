@@ -32,6 +32,10 @@ class Planet {
         this.planetMass;
 
         // new settlement object
+        /* 
+        in the future how would we do this dynamically (for example, if a planet is desolate)
+        would we just leave this.inhabitants as null?
+        */
         this.inhabitants;
         this.atmosphere;
     }

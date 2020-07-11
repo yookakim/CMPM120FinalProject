@@ -18,8 +18,9 @@ class PlanetScene extends Phaser.Scene {
     }
 
     create() {
-        this.planet = game.registry.get('tempPlanet');
-
+        // this.planet = game.registry.get('tempPlanet');
+        this.planet = this.scene.settings.data;
+        
         // ui like text and buttons will probably be managed by a separate Scene overlayed on top later
         this.loadUI();
 
@@ -38,17 +39,12 @@ class PlanetScene extends Phaser.Scene {
         //     .setInteractive()
         //     .on('pointerdown', this.loadTradingMenu, this);
 
+        
         this.settlementButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 250, 'settlementbutton')
             .on('pointerdown', this.loadSettlement, this);
 
         this.nextPlanetButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
             .on('pointerdown', this.loadPlanetSelection, this);
-    }
-    
-    // placeholder test method for giving free increases to max fuel
-    increaseShipMaxFuel() {
-        this.ship.maxFuelAmount += 20;
-        this.maxFuelText.text = 'current max fuel: ' + this.ship.maxFuelAmount;
     }
 
     loadPlanetSelection() {
@@ -59,7 +55,7 @@ class PlanetScene extends Phaser.Scene {
     loadSettlement() {
         // go into trading district
         // with 
-        this.scene.switch('settlementmenu');
+        this.scene.start('settlementmenu', this.planet);
     }
     /* 
     // preemptively setting up scene loading methods

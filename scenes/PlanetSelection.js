@@ -1,4 +1,5 @@
 'use strict';
+
 class PlanetSelection extends Phaser.Scene {
     
     constructor() {
@@ -17,7 +18,7 @@ class PlanetSelection extends Phaser.Scene {
     }
 
     create() {
-        
+        this.scene.launch('sceneui');
         // calculating the current max travel distance possible:
         // for now, let's just make the ship travel 8 units of distance per one unit of fuel
         // to keep things simple
@@ -38,6 +39,11 @@ class PlanetSelection extends Phaser.Scene {
         this.planet.planetDistance = 360;
         this.planet2.planetDistance = 1050;
         
+        this.planet.inhabitants = new Settlement('testmoneylandearth');
+        this.planet2.inhabitants = new Settlement('testmoneylandmoocury');
+
+        this.planet2.inhabitants.civilians = [ new Civilian('hardcodedbob', 21, 100) ];
+
         // later we might automatically generate them somehow
         // probably using a factory class of some kind
 
@@ -104,17 +110,9 @@ class PlanetSelection extends Phaser.Scene {
     loadPlanetMenu(planet) {
         // the callback function for the 'pointerdown' listener on the planet button
         // later on, the UI would know the info about the planet, and display it accordingly
-        
-        /* 
-            set the game to "remember" current state of the planet
-
-            this method sort of sketches me out for some reason idk lol
-            one global data entry keeping track of the current planet's staet, idk
-         */
-        game.registry.set('tempPlanet', planet);
 
         // start next scene (we can add the intermediary scene between this one and planetscene later)
-        this.scene.start('planetscene');
+        this.scene.start('planetscene', planet);
 
         this.ship.travel(planet);
     }

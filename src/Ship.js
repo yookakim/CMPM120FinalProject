@@ -9,11 +9,14 @@ class Ship {
         // create a new Engine component and attach
         this.engine = new Engine(game);
 
-
+        // ship stats
         this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');
         this.maxFuelAmount = this.game.registry.get('INITIAL_SHIP_MAX_FUEL');
         this.totalDaysTravelled = 0;
         this.lastTravelTime = 0;
+
+        // player money:
+        this.treasury = 0;
         
         // set initial max travel distanec
         this._maxTravelDistance = this.engine.engineOutput * this.engine.engineEfficiency;

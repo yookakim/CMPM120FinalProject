@@ -25,7 +25,18 @@ How will we display this information in SettlementMenu scene?
 
 
 class Settlement {
-    constructor() {
-        
+    constructor(name) {
+        // tbh it might be a lot of work making ALL of this including civilians and stuff random gen LOL
+        // but idk
+        this.settlementName = name;
+
+        // probably going to be an array of people later
+        this.civilians;
+        this.traders;
     }
+
+    // let's do a simple thing where talking to a civilian gives you free money
+    // treasury is stored globally as ship.treasury (is it even ok to store it globally like thsi? idk)
+
+    
 }

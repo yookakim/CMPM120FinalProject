@@ -1,4 +1,5 @@
 'use strict';
+
 class PlanetButtonObject extends Phaser.GameObjects.Sprite {
     // create a separate class for a UI sprite that reflects what the planet looks like in the UI
     // based on what kind of planet was passed in (we can set this up later)
