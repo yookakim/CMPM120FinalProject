@@ -23,7 +23,7 @@ class SettlementMenu extends Phaser.Scene {
     }
 
     returnToShip() {
-        this.scene.switch('planetmenu');
+        this.scene.switch('planetscene');
     }
 
 }

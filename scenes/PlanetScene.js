@@ -59,7 +59,7 @@ class PlanetScene extends Phaser.Scene {
     loadSettlement() {
         // go into trading district
         // with 
-        this.scene.switch('tradingmenu');
+        this.scene.switch('settlementmenu');
     }
     /* 
     // preemptively setting up scene loading methods
