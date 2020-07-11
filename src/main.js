@@ -19,7 +19,7 @@ let config = {
             fps: 140,
         },
     },
-    scene: [ PlanetSelection , PlanetScene , SettlementMenu ],
+    scene: [ TitleScreen , SceneUI , PlanetSelection , PlanetScene , SettlementMenu ],
 }
 
 

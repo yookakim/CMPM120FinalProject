@@ -107,6 +107,9 @@ class PlanetSelection extends Phaser.Scene {
         
         /* 
             set the game to "remember" current state of the planet
+
+            this method sort of sketches me out for some reason idk lol
+            one global data entry keeping track of the current planet's staet, idk
          */
         game.registry.set('tempPlanet', planet);
 

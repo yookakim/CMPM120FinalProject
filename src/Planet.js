@@ -31,6 +31,7 @@ class Planet {
         */
         this.planetMass;
 
+        // new settlement object
         this.inhabitants;
         this.atmosphere;
     }
@@ -40,7 +41,7 @@ class Planet {
         return this._planetDistance;
     }
 
-    // delete this later, nothing outside this class has no business changing its distance
+    // delete this later, nothing outside this class has no business changing the distance
     // here for testing and debugging before random generation
     set planetDistance(distance) {
         this._planetDistance = distance;
