@@ -1,3 +1,10 @@
+/* 
+    Base planet class that holds objects such as settlements and data such 
+    as planet name and distance
+*/
+
+'use strict';
+
 class Planet {
 
     constructor(planetName) {

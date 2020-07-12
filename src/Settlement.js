@@ -30,7 +30,7 @@ class Settlement {
         // but idk
         this.settlementName = name;
 
-        // probably going to be an array of people later
+        // array of civilians
         this.civilians;
         this.traders;
     }

@@ -1,5 +1,9 @@
 'use strict';
 
+/* 
+    Scene for selecting the destination planet
+*/
+
 class PlanetSelection extends Phaser.Scene {
     
     constructor() {
@@ -12,8 +16,10 @@ class PlanetSelection extends Phaser.Scene {
 
     preload() {
 
-        this.cameras.main.setBackgroundColor('#2e2f3b');
+        this.cameras.main.setBackgroundColor(' ');
         this.load.image('planetbutton', './assets/temp_planet.png');
+        this.load.image('selectdestinationbanner', './assets/UI/select_destination_banner.png');
+        this.load.image('statszone', './assets/UI/planetselection_stats_zone.png');
         this.load.image('fuelbutton', './assets/UI/buttons/fuel_button.png');
     }
 
@@ -25,9 +31,9 @@ class PlanetSelection extends Phaser.Scene {
         
 
         /* 
-            here we manually create the two planets for testing reasons, but
-            ideally in the future we would be randomly given to us a bunch of planets
-            to choose from and they would all be represented in the UI
+            planet stuff is hard coded for easy testing for now, but
+            ideally in the future we would be given to us a bunch of random planets
+            with random settlements and things and sizes and atmosphers to choose from
          */
 
         this.maxTravelDistance = this.ship.maxTravelDistance;
@@ -39,10 +45,14 @@ class PlanetSelection extends Phaser.Scene {
         this.planet.planetDistance = 360;
         this.planet2.planetDistance = 1050;
         
-        this.planet.inhabitants = new Settlement('testmoneylandearth');
-        this.planet2.inhabitants = new Settlement('testmoneylandmoocury');
+        this.planet.inhabitants = new Settlement('united states of america');
+        this.planet2.inhabitants = new Settlement('cowland');
 
-        this.planet2.inhabitants.civilians = [ new Civilian('hardcodedbob', 21, 100) ];
+        this.planet2.inhabitants.civilians = [
+            new Civilian('hardcodedbob', 21, 100),
+            new Civilian('hardcodedtom', 10, 4),
+            new Civilian('elderjim', 104, 50),
+        ];
 
         // later we might automatically generate them somehow
         // probably using a factory class of some kind
@@ -88,10 +98,12 @@ class PlanetSelection extends Phaser.Scene {
             inside the array of planets we defined in create()
 
          */
-        this.add.text(400, 10, 'Day ' + (this.ship.totalDaysTravelled + 1) + ': ' + this.ship.currentPlanet.name);
-        this.add.text(10, 70, 'You may only travel to a planet if your engine is');
-        this.add.text(10, 90, 'powerful or efficient enough!');
-        this.add.text(10, 130, 'Ship engine efficiency (distance per unit of engine output): ' + this.ship.engine.engineEfficiency);
+        this.add.sprite(game.config.width / 2, game.config.height / 8, 'selectdestinationbanner')
+        this.add.sprite(game.config.width / 5, 9 * game.config.height / 16, 'statszone')
+        this.add.text(400, 2 * game.config.height / 8, 'Day ' + (this.ship.totalDaysTravelled + 1) + ': ' + this.ship.currentPlanet.name);
+        this.add.text(395, 2.5 * game.config.height / 8, 'You may only travel to a planet if your engine is');
+        this.add.text(395, 3 * game.config.height / 8, 'powerful or efficient enough!');
+        this.add.text(395, 3.5 * game.config.height / 8, 'Ship engine efficiency (distance per unit of engine output): ' + this.ship.engine.engineEfficiency);
         
 
         // temporary button for giving free fuel (for prototype testing)
@@ -102,9 +114,9 @@ class PlanetSelection extends Phaser.Scene {
             changes to the button depending on the attributes of the planet
             (we pass in the planet the button is representing as the planet objects we made in create())
         */
-        this.planetButton = new PlanetButtonObject(this, 295, 395, 'planetbutton', 0, this.planetData);
+        this.planetButton = new PlanetButtonObject(this, 395, 455, 'planetbutton', 0, this.planetData);
         // hard code in the second planet for now:
-        this.planetButton2 = new PlanetButtonObject(this, 465, 395, 'planetbutton', 0, this.planetData2);
+        this.planetButton2 = new PlanetButtonObject(this, 565, 455, 'planetbutton', 0, this.planetData2);
     }
 
     loadPlanetMenu(planet) {

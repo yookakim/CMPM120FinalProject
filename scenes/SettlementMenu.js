@@ -25,12 +25,17 @@ class SettlementMenu extends Phaser.Scene {
     }
 
     loadUI() {
+        // if this settlement DOES have civilians:
         if (this.settlement.civilians != null) {
+            // for each civilian in the array:
             this.settlement.civilians.forEach((element, index) => {
-                this.add.text(40, 60 + (index * 20), 'you see ' + this.settlement.civilians[index].name);
+                // right now all we do is display the name, but later we can do more complicated things
+                // for each civilian there
+                this.add.text(40, 60 + (index * 30), 'you see ' + this.settlement.civilians[index].name);
             });
         } else {
-            this.add.text(40, 60, 'there is nobody here.');
+            // if nobody lives in this settlement:
+            this.add.text(40, 60, 'Nobody lives here.');
         }
 
         this.add.sprite(game.config.width - 200, game.config.height - 125, 'returnshipbutton')

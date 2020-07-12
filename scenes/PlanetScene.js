@@ -1,5 +1,6 @@
-// scene class for the planet view after selecting destination.
-
+/* 
+    scene class for the planet view after selecting destination.
+*/
 'use strict';
 class PlanetScene extends Phaser.Scene {
     constructor() {
