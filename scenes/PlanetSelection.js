@@ -11,7 +11,7 @@ class PlanetSelection extends Phaser.Scene {
         super('planetselection');
         this.ship = ship;
         this.maxTravelDistance;
-        
+        this.planetFactory = new PlanetFactory();
     }
 
     preload() {
@@ -24,53 +24,33 @@ class PlanetSelection extends Phaser.Scene {
     }
 
     create() {
-        this.scene.launch('sceneui');
+        // this.scene.launch('sceneui');
+
+
         // calculating the current max travel distance possible:
         // for now, let's just make the ship travel 8 units of distance per one unit of fuel
         // to keep things simple
         
-
-        /* 
-            planet stuff is hard coded for easy testing for now, but
-            ideally in the future we would be given to us a bunch of random planets
-            with random settlements and things and sizes and atmosphers to choose from
-         */
-
         this.maxTravelDistance = this.ship.maxTravelDistance;
-
-        this.planet = new Planet('earth');
-        this.planet2 = new Planet('moocury');
-
-        // and then we hard code the values for now 
-        this.planet.planetDistance = 360;
-        this.planet2.planetDistance = 1050;
         
-        this.planet.inhabitants = new Settlement('united states of america');
-        this.planet2.inhabitants = new Settlement('cowland');
-
-        this.planet2.inhabitants.civilians = [
-            new Civilian('hardcodedbob', 21, 100),
-            new Civilian('hardcodedtom', 10, 4),
-            new Civilian('elderjim', 104, 50),
-        ];
-
-        // later we might automatically generate them somehow
-        // probably using a factory class of some kind
-
-        // i hardcode everything for now!! easy on brain
+        // grab the array of planets we created in the planet factory
+        this.planetGroup = this.planetFactory.generatePlanets();
 
         // we make planet data objects that we pass into the UI so it knows what to draw (automate later)
 
+        // honestly if we create a new scene for UI we might be able to pass
+        // these in as the data parameter for starting a new scene
+
         this.planetData = {
-            planet: this.planet,
+            planet: this.planetGroup[0],
             travelTime: Phaser.Math.Snap.Ceil(
-                this.planet.planetDistance / (this.ship.engine.engineOutput + (this.ship.engine.engineEfficiency * 3)), 1),
+                this.planetGroup[0].planetDistance / (this.ship.engine.engineOutput + (this.ship.engine.engineEfficiency * 3)), 1),
         };
 
         this.planetData2 = {
-            planet: this.planet2,
+            planet: this.planetGroup[1],
             travelTime: Phaser.Math.Snap.Ceil(
-                this.planet2.planetDistance / (this.ship.engine.engineOutput + (this.ship.engine.engineEfficiency * 3)), 1),
+                this.planetGroup[1].planetDistance / (this.ship.engine.engineOutput + (this.ship.engine.engineEfficiency * 3)), 1),
         };
 
         // let planetArray = [this.planet, this.planet2];
