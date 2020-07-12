@@ -11,7 +11,9 @@ class PlanetSelection extends Phaser.Scene {
         super('planetselection');
         this.ship = ship;
         this.maxTravelDistance;
-        this.planetFactory = new PlanetFactory();
+
+        // things could alter how many planets get generated later
+        this.planetFactory = new PlanetFactory(4);
     }
 
     preload() {
@@ -32,7 +34,7 @@ class PlanetSelection extends Phaser.Scene {
         // to keep things simple
         
         this.maxTravelDistance = this.ship.maxTravelDistance;
-        
+
         // grab the array of planets we created in the planet factory
         this.planetGroup = this.planetFactory.generatePlanets();
 
@@ -40,6 +42,11 @@ class PlanetSelection extends Phaser.Scene {
 
         // honestly if we create a new scene for UI we might be able to pass
         // these in as the data parameter for starting a new scene
+
+        // TODO: we could dynamically create an object full of planetDatas and then
+        // pass just one object into a SceneUI so an overlay can easily get all
+        // the data for all the planets it needs? cuz rn we're manually creating each 
+        // planetData object to pass into the PlanetButtonObject
 
         this.planetData = {
             planet: this.planetGroup[0],
@@ -80,10 +87,11 @@ class PlanetSelection extends Phaser.Scene {
          */
         this.add.sprite(game.config.width / 2, game.config.height / 8, 'selectdestinationbanner')
         this.add.sprite(game.config.width / 5, 9 * game.config.height / 16, 'statszone')
-        this.add.text(400, 2 * game.config.height / 8, 'Day ' + (this.ship.totalDaysTravelled + 1) + ': ' + this.ship.currentPlanet.name);
-        this.add.text(395, 2.5 * game.config.height / 8, 'You may only travel to a planet if your engine is');
-        this.add.text(395, 3 * game.config.height / 8, 'powerful or efficient enough!');
-        this.add.text(395, 3.5 * game.config.height / 8, 'Ship engine efficiency (distance per unit of engine output): ' + this.ship.engine.engineEfficiency);
+        this.add.text(game.config.width / 8, 2.2 * game.config.height / 8, 'Day ' + (this.ship.totalDaysTravelled + 1) + ': ' + this.ship.currentPlanet.name);
+        this.add.text(395, 2 * game.config.height / 8, 'You may only travel to a planet if your engine is');
+        this.add.text(395, 2.5 * game.config.height / 8, 'powerful or efficient enough!');
+        this.add.text(395, 3 * game.config.height / 8, 'Ship engine efficiency (distance per unit of engine output): ' + this.ship.engine.engineEfficiency);
+        this.add.text(395, 3.5 * game.config.height / 8, 'travel time: distance/(engineOutput+(engineEfficiency * 3))');
         
 
         // temporary button for giving free fuel (for prototype testing)
@@ -94,9 +102,9 @@ class PlanetSelection extends Phaser.Scene {
             changes to the button depending on the attributes of the planet
             (we pass in the planet the button is representing as the planet objects we made in create())
         */
-        this.planetButton = new PlanetButtonObject(this, 395, 455, 'planetbutton', 0, this.planetData);
+        this.planetButton = new PlanetButtonObject(this, 450, 550, 'planetbutton', 0, this.planetData);
         // hard code in the second planet for now:
-        this.planetButton2 = new PlanetButtonObject(this, 565, 455, 'planetbutton', 0, this.planetData2);
+        this.planetButton2 = new PlanetButtonObject(this, 620, 550, 'planetbutton', 0, this.planetData2);
     }
 
     loadPlanetMenu(planet) {

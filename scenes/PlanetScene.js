@@ -55,8 +55,12 @@ class PlanetScene extends Phaser.Scene {
     
     loadSettlement() {
         // go into trading district
-        // with 
-        this.scene.start('settlementmenu', this.planet);
+        if (this.planet.inhabitants) {
+            this.scene.start('settlementmenu', this.planet);
+        } else {
+            // show this in UI later
+            console.log('no settlement on this planet!');
+        }
     }
     /* 
     // preemptively setting up scene loading methods

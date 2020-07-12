@@ -7,11 +7,12 @@ class Ship {
         this.game = game;
 
         // create a new Engine component and attach
-        this.engine = new Engine(game);
+        this.engine = new Engine();
 
         // ship stats
         this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');
         this.maxFuelAmount = this.game.registry.get('INITIAL_SHIP_MAX_FUEL');
+
         this.totalDaysTravelled = 0;
         this.lastTravelTime = 0;
 
@@ -35,6 +36,7 @@ class Ship {
         // my temporary travel time calculation: (planet distance / (engine's output + (engine's effiency * 3)))
         // the Ceil method rounds up so that we dont have decimal number days
         this.lastTravelTime = Phaser.Math.Snap.Ceil((planet.planetDistance / (this.engine.engineOutput + (this.engine.engineEfficiency * 3))), 1);
-        this.totalDaysTravelled = this.totalDaysTravelled + this.lastTravelTime;
+        // +1 because once you arrive on destination you don't leave until the next day
+        this.totalDaysTravelled = this.totalDaysTravelled + this.lastTravelTime + 1;
     }
 }

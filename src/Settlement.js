@@ -28,10 +28,17 @@ class Settlement {
     constructor(name) {
         // tbh it might be a lot of work making ALL of this including civilians and stuff random gen LOL
         // but idk
+        // if (!name) {
+        //     this.name = 
+        // } else {
+        //     this.settlementName = name;
+        // }
+
         this.settlementName = name;
 
+        this.abandoned = false;
         // array of civilians
-        this.civilians;
+        this.civilians = [];
         this.traders;
     }
 
