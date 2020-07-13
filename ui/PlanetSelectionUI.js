@@ -31,7 +31,8 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.add.text(game.config.width / 9.4, 2.8 * game.config.height / 8, 'Max Travel Distance: ' + ship.maxTravelDistance);
         this.add.text(370, 2 * game.config.height / 8, 'You may only warp to a planet if your engine is');
         this.add.text(370, 2.2 * game.config.height / 8, 'powerful or efficient enough!');
-        this.add.text(370, 3.5 * game.config.height / 8, 'travel time: distance / (engine power + ( engine efficiency * 3))');
+        this.add.text(370, 2.8 * game.config.height / 8, 'travel time: distance / engine power');
+        this.add.text(370, 3 * game.config.height / 8, 'max travel distance: engine power * engine efficiency');
         
 
         // temporary button for giving free fuel (for prototype testing)
