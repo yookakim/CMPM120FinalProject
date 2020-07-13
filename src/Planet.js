@@ -24,6 +24,8 @@ class Planet {
 
         this._planetDistance = game.registry.get('PLACEHOLDER_PLANET_DISTANCE');
         
+        this.travelTime;
+
         /* 
             Since a Planet object could be home to a number of other things, 
             like a town, inhabitants, resources, materials, etc.
@@ -52,8 +54,8 @@ class Planet {
         return this._planetDistance;
     }
 
-    // delete this later, nothing outside this class has no business changing the distance
-    // here for testing and debugging before random generation
+    // before I said that nothing else should change the planet's distance,
+    // but leave this setter method here to define when constructing planets from the factory
     set planetDistance(distance) {
         this._planetDistance = distance;
     }

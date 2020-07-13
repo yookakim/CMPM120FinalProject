@@ -35,7 +35,7 @@ class Ship {
 
         // my temporary travel time calculation: (planet distance / (engine's output + (engine's effiency * 3)))
         // the Ceil method rounds up so that we dont have decimal number days
-        this.lastTravelTime = Phaser.Math.Snap.Ceil((planet.planetDistance / (this.engine.engineOutput + (this.engine.engineEfficiency * 3))), 1);
+        this.lastTravelTime = planet.travelTime;
         // +1 because once you arrive on destination you don't leave until the next day
         this.totalDaysTravelled = this.totalDaysTravelled + this.lastTravelTime + 1;
     }

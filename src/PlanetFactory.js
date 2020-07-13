@@ -5,11 +5,12 @@ class PlanetFactory {
     constructor (number) {
         // properties to manage planet randomization
         // randomization properties change dynamically as game goes on
-        this.ship = ship;
 
         this.planetArray = [];
         this.generateNumber = number;
 
+        // make sure at least one of the planets are travellable
+        this.travellablePlanetMade = false;
 
         // honestly we could put this sort of stuff in one big data file?
         // consider doing weighted randomizations later
@@ -36,11 +37,34 @@ class PlanetFactory {
         // for every generateNumber:
         for (var i = 0; i < this.generateNumber; i++) {
             this.planetArray[i] = new Planet();
-            this.planetArray[i].name = this.generatePlanetName();
-            this.planetArray[i].planetDistance = this.generateDistance();
+            var currentPlanet = this.planetArray[i];
+            currentPlanet.name = this.generatePlanetName();
+            currentPlanet.planetDistance = this.generateDistance();
+            currentPlanet.travelTime =  Phaser.Math.Snap.Ceil(
+                (currentPlanet.planetDistance / (ship.engine.engineOutput)), 1);
+            if (currentPlanet.planetDistance < ship.maxTravelDistance) {
+                this.travellablePlanetMade = true;
+            }
             // this.planetArray[i].inhabitants = this.generateSettlements();
         }
 
+        while (!this.travellablePlanetMade) {
+            console.log('no travellable planets created; recreating in random index...');
+            var randomIndex = Phaser.Math.Between(0, this.planetArray.length - 1);
+            this.planetArray[randomIndex] = null;
+            this.planetArray[randomIndex] = new Planet();
+            var replacementPlanet = this.planetArray[randomIndex];
+            replacementPlanet.name = this.generatePlanetName();
+            replacementPlanet.planetDistance = this.generateDistance();
+            replacementPlanet.travelTime =  Phaser.Math.Snap.Ceil(
+                (replacementPlanet.planetDistance / (ship.engine.engineOutput)), 1);
+            if (replacementPlanet.planetDistance < ship.maxTravelDistance) {
+                console.log('travellable planet found, inserted at index ' + randomIndex);
+                this.travellablePlanetMade = true;
+            }
+        }
+
+        this.travellablePlanetMade = false;
         /* 
         we hard code here with array indices, but the goal is to
         iterate through the array to create random planets 
@@ -67,7 +91,7 @@ class PlanetFactory {
 
     generateDistance() {
         // for now returns something between these hard-coded numbers 
-        return Phaser.Math.Between(400, 1100);
+        return Phaser.Math.Between(400, 2000);
     }
 
     // generateSettlements() {

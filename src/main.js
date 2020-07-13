@@ -19,7 +19,7 @@ let config = {
             fps: 140,
         },
     },
-    scene: [ TitleScreen , SceneUI , PlanetSelection , PlanetScene , SettlementMenu ],
+    scene: [ TitleScreen , PlanetSelection , PlanetScene , SettlementMenu , PlanetSelectionUI ],
 }
 
 
@@ -32,7 +32,7 @@ game.registry.set({
     // arbitrary engine start strength
     INITIAL_PLANET_OBJECT: new Planet('startplanet'),
     INITIAL_SHIP_MAX_FUEL: 100,
-    INITIAL_ENGINE_OUTPUT: 100,
+    INITIAL_ENGINE_OUTPUT: 60,
     INITIAL_ENGINE_EFFICIENCY: 11,
     
     // arbitrary placeholder initial planet distance

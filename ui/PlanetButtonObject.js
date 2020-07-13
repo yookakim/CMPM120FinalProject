@@ -4,7 +4,7 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
     // create a separate class for a UI sprite that reflects what the planet looks like in the UI
     // based on what kind of planet was passed in (we can set this up later)
     
-    constructor(scene, x, y, texture, frame, planetData) {
+    constructor(scene, x, y, texture, frame, planet) {
         // call parent constructor 
         super(scene, x, y, texture, frame);
 
@@ -14,8 +14,8 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
         this.y = y;
 
         // we unload the data from the object passed in, but i wonder if there's a better way to do it idk lol
-        this.planet = planetData.planet;
-        this.travelTime = planetData.travelTime;
+        this.planet = planet;
+        this.travelTime = this.planet.travelTime;
 
         // later we could make a standardized global textConfig object
         this.textConfig = {
@@ -54,11 +54,11 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
     checkTravellable() {
         
         // check if we can still travel to this planet
-        if (this.scene.maxTravelDistance >= this.planet.planetDistance && !this.isTravellable) {
+        if (ship.maxTravelDistance >= this.planet.planetDistance && !this.isTravellable) {
             // if button detects travel possible, clear tint
             this.isTravellable = true;
             this.clearTint();
-        } else if (this.scene.maxTravelDistance < this.planet.planetDistance && this.isTravellable) {
+        } else if (ship.maxTravelDistance < this.planet.planetDistance && this.isTravellable) {
             // if travel is not possible, tint gray
             this.isTravellable = false;
             this.setTint(TINT_GRAY);
@@ -70,7 +70,7 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
             this.scene.loadPlanetMenu(this.planet);
         } else {
             console.log('you cannot travel here for watever reason');
-            console.log(this.scene.maxTravelDistance);
+            console.log(ship.maxTravelDistance);
         }
     }
 
