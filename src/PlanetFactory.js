@@ -14,7 +14,8 @@ class PlanetFactory {
 
         // honestly we could put this sort of stuff in one big data file?
         // consider doing weighted randomizations later
-        this.nameList = ['Earth', 'Moocury', 'LittleBig', 'Tatooine', 'RFX-240', 'Goopiter', 'Slimeworld'];
+        this.planetNameList = ['Earth', 'Moocury', 'LittleBig', 'Tatooine', 'RFX-240', 'Goopiter', 'Slimeworld'];
+        this.settlementNameList = ['Los Angeles', 'Bikini Bottom', 'UCSC', 'Whale Island', 'Village McVillageface'];
     }
 
     generatePlanets() {
@@ -40,12 +41,13 @@ class PlanetFactory {
             var currentPlanet = this.planetArray[i];
             currentPlanet.name = this.generatePlanetName();
             currentPlanet.planetDistance = this.generateDistance();
+            currentPlanet.inhabitants = this.generateSettlements();
             currentPlanet.travelTime =  Phaser.Math.Snap.Ceil(
                 (currentPlanet.planetDistance / (ship.engine.engineOutput)), 1);
             if (currentPlanet.planetDistance < ship.maxTravelDistance) {
                 this.travellablePlanetMade = true;
             }
-            // this.planetArray[i].inhabitants = this.generateSettlements();
+            
         }
 
         while (!this.travellablePlanetMade) {
@@ -56,6 +58,7 @@ class PlanetFactory {
             var replacementPlanet = this.planetArray[randomIndex];
             replacementPlanet.name = this.generatePlanetName();
             replacementPlanet.planetDistance = this.generateDistance();
+            replacementPlanet.inhabitants = this.generateSettlements();
             replacementPlanet.travelTime =  Phaser.Math.Snap.Ceil(
                 (replacementPlanet.planetDistance / (ship.engine.engineOutput)), 1);
             if (replacementPlanet.planetDistance < ship.maxTravelDistance) {
@@ -86,34 +89,25 @@ class PlanetFactory {
 
     generatePlanetName() {
         // return a random string out of an array of random names?
-        return this.nameList[Phaser.Math.Between(0, this.nameList.length - 1)];
+        return this.planetNameList[Phaser.Math.Between(0, this.planetNameList.length - 1)];
     }
 
     generateDistance() {
         // for now returns something between these hard-coded numbers 
-        return Phaser.Math.Between(400, 2000);
+        // for generating distance, 
+        return Phaser.Math.Between(300, 1200);
     }
 
-    // generateSettlements() {
-    //     var tempSettlement = new Settlement();
-    //     // random population, but we could later add things that affect population size
-    //     // if it's a ghost town, it could have 0 living ppl
-    //     // depending on planet attributes, there could be more people livign there, less, different kinds of people, etc
-    //     // but doing all of that would be pretty complicated
+    generateSettlements() {
+        var tempSettlement = new Settlement(this.settlementNameList[Phaser.Math.Between(0, this.settlementNameList.length - 1)]);
+        // random population, but we could later add things that affect population size
+        // if it's a ghost town, it could have 0 living ppl
+        // depending on planet attributes, there could be more people livign there, less, different kinds of people, etc
+        // but doing all of that would be pretty complicated
         
-    //     // somewhere from 0 to 3 ppl for now lmao
-    //     var population = Phaser.Math.Between(0, 3);
-    //     if (population != 0) {
-    //         // if not abandoned, generate however many people
-    //         for (var i = 0; i < population - 1; i++) {
-    //             tempSettlement.civilians[i] = 
-    //         }
-    //     } else {
-    //         // nobody living here, abandoned
-    //         tempSettlement.abandoned = true;
-    //     }
-    //     return tempSettlement;
-    // }
+
+        return tempSettlement;
+    }
 
 
 }

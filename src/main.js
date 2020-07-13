@@ -34,6 +34,7 @@ game.registry.set({
     INITIAL_SHIP_MAX_FUEL: 100,
     INITIAL_ENGINE_OUTPUT: 60,
     INITIAL_ENGINE_EFFICIENCY: 11,
+    INITIAL_PLAYER_SANITY: 100,
     
     // arbitrary placeholder initial planet distance
     PLACEHOLDER_PLANET_DISTANCE: 1000,

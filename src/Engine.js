@@ -1,12 +1,14 @@
+'use strict';
+
 class Engine {
     constructor() {
 
 
         // set engine power (speed) when constructed
         this._engineOutput = game.registry.get('INITIAL_ENGINE_OUTPUT');
+
         // engineEfficiency = the number of distance units travelled per one unit of fuel
         this._engineEfficiency = game.registry.get('INITIAL_ENGINE_EFFICIENCY');
-        // this._warpRange = this._engineOutput * 
 
     }
 

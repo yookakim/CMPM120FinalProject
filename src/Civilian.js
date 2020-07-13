@@ -15,6 +15,9 @@ class Civilian {
     hopefully later we can add smoething that isn't just giving free money
     */
 
+    // let's do a simple thing where talking to a civilian gives you free money
+    // treasury is stored globally as ship.treasury (is it even ok to store it globally like thsi? idk)
+
     giveMoney() {
 
         // again, it feels sketchy directly changing a global variable like this but idk what else to do lmao

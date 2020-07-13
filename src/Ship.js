@@ -18,6 +18,8 @@ class Ship {
 
         // player money:
         this.treasury = 0;
+
+        this.sanity = this.game.registry.get('INITIAL_PLAYER_SANITY');
         
         // set initial max travel distanec
         this._maxTravelDistance = this.engine.engineOutput * this.engine.engineEfficiency;

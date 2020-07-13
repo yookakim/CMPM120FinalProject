@@ -50,7 +50,7 @@ class PlanetSelection extends Phaser.Scene {
     
 
     loadUI() {
-        this.add.text(0, 400, 'planetselectiondebug');
+        // this.add.text(0, 400, 'planetselectiondebug');
 
     }
 

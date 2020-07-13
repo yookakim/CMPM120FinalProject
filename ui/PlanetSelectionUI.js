@@ -29,14 +29,11 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.add.text(game.config.width / 9.4, 2.4 * game.config.height / 8, 'Engine Power: ' + ship.engine.engineOutput);
         this.add.text(game.config.width / 9.4, 2.6 * game.config.height / 8, 'Engine Efficiency: ' + ship.engine.engineEfficiency);
         this.add.text(game.config.width / 9.4, 2.8 * game.config.height / 8, 'Max Travel Distance: ' + ship.maxTravelDistance);
+        this.add.text(game.config.width / 9.4, 3.0 * game.config.height / 8, 'sanity: ' + ship.sanity);
         this.add.text(370, 2 * game.config.height / 8, 'You may only warp to a planet if your engine is');
         this.add.text(370, 2.2 * game.config.height / 8, 'powerful or efficient enough!');
         this.add.text(370, 2.8 * game.config.height / 8, 'travel time: distance / engine power');
         this.add.text(370, 3 * game.config.height / 8, 'max travel distance: engine power * engine efficiency');
-        
-
-        // temporary button for giving free fuel (for prototype testing)
-
 
         /*
             i made a separate class for a button object, so that we can apply graphical
@@ -44,7 +41,6 @@ class PlanetSelectionUI extends Phaser.Scene {
             (we pass in the planet the button is representing as the planet objects we made in create())
         */
         this.planetButton = new PlanetButtonObject(this, 430, 550, 'planetbutton', 0, this.planetsData[0]);
-        // hard code in the second planet for now:
         this.planetButton2 = new PlanetButtonObject(this, 590, 550, 'planetbutton', 0, this.planetsData[1]);
         this.planetButton2 = new PlanetButtonObject(this, 750, 550, 'planetbutton', 0, this.planetsData[2]);
         this.planetButton2 = new PlanetButtonObject(this, 910, 550, 'planetbutton', 0, this.planetsData[3]);
