@@ -10,8 +10,7 @@ class TitleScreen extends Phaser.Scene {
     create() {
         this.add.sprite(game.config.width / 2, game.config.height / 3, 'titlezone');
 
-        this.startButton = new ButtonTemplate(this, game.config.width / 2, (3 * game.config.height) / 4, 'titlestartbutton')
-            .setOrigin(0.5);
+        this.startButton = new ButtonTemplate(this, game.config.width / 2, (3 * game.config.height) / 4, 'titlestartbutton');
 
         this.startButton.on('pointerdown', this.loadPlanetSelection, this);
         

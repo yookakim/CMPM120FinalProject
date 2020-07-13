@@ -7,6 +7,7 @@ class SettlementMenu extends Phaser.Scene {
     
     preload() {
         this.load.image('returnshipbutton', './assets/UI/buttons/returnship_button.png');
+        this.load.image('talkbutton', './assets/UI/buttons/settlement_talk_button.png');
     }
 
     create() {
@@ -38,8 +39,8 @@ class SettlementMenu extends Phaser.Scene {
                 // maybe make a button to talk with each civilian liek we made custom button for choosing planet
                 // we pass the civilian object through the button parameter, so that the called function knows which
                 // civilian it is dealing with
-                // this.civilianButton = new TalkButton(this, 40, 140 + (index * 60 + 20), 0, this.settlement.civilian[index])
-                this.add.text(40, 140 + (index * 60),
+                this.civilianButton = new TalkButtonObject(this, 115, 140 + (index * 120 + 75), 'talkbutton', 0, this.settlement.civilians[index])
+                this.add.text(40, 140 + (index * 120),
                     'you see ' + 
                     this.settlement.civilians[index].name + 
                     ', ' + this.settlement.civilians[index].age + 

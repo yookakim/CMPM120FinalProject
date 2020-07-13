@@ -11,7 +11,6 @@ class ButtonTemplate extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, key) {
         super(scene, x, y, key);
         this.setInteractive();
-        this.setOrigin(0, 0);
         scene.add.existing(this);
     }
 }
