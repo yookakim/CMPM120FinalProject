@@ -38,7 +38,14 @@ class Ship {
         // my temporary travel time calculation: (planet distance / (engine's output + (engine's effiency * 3)))
         // the Ceil method rounds up so that we dont have decimal number days
         this.lastTravelTime = planet.travelTime;
+        this.changeSanity();
         // +1 because once you arrive on destination you don't leave until the next day
         this.totalDaysTravelled = this.totalDaysTravelled + this.lastTravelTime + 1;
+    }
+
+    // decrease sanity; might be other factors changing how this works later
+    changeSanity() {
+        // for now just decrease by .5 for every day in travel
+        this.sanity = this.sanity - this.lastTravelTime / 2;
     }
 }

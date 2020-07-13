@@ -13,6 +13,8 @@ class PlanetSelectionUI extends Phaser.Scene {
     }
 
     create() {
+
+        // get the array of planets from the data we passed in 
         this.planetsData = this.scene.settings.data;
         /*
             probably should find some way to remove hard coded UI sprite/text position values later. 

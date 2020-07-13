@@ -34,14 +34,20 @@ class SettlementMenu extends Phaser.Scene {
             this.settlement.civilians.forEach((element, index) => {
                 // right now all we do is display the name, but later we can do more complicated things
                 // for each civilian there
-                this.add.text(40, 140 + (index * 35),
+
+                // maybe make a button to talk with each civilian liek we made custom button for choosing planet
+                // we pass the civilian object through the button parameter, so that the called function knows which
+                // civilian it is dealing with
+                // this.civilianButton = new TalkButton(this, 40, 140 + (index * 60 + 20), 0, this.settlement.civilian[index])
+                this.add.text(40, 140 + (index * 60),
                     'you see ' + 
                     this.settlement.civilians[index].name + 
                     ', ' + this.settlement.civilians[index].age + 
                     ' years old, with ' + this.settlement.civilians[index].wealth +
                     ' pieces of gold in their pocket.')
-                    .setInteractive();
-                    // .on('pointerdown', this.interactCivilian, this);
+                    .setInteractive()
+                    .on('pointerdown', this.interactCivilian, this);
+                    
             });
         } else {
             // if nobody lives in this settlement:
@@ -55,9 +61,9 @@ class SettlementMenu extends Phaser.Scene {
         
     }
 
-    // interactCivilian() {
-        
-    // }
+    interactCivilian() {
+        console.log('civilian clicked');
+    }
 
     returnToShip() {
         this.scene.switch('planetscene');

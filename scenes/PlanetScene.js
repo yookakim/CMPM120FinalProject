@@ -12,6 +12,7 @@ class PlanetScene extends Phaser.Scene {
     }
 
     preload() {
+        this.load.image('planet', './assets/planetscene_bigplanet.png');
         this.load.image('planetstats', './assets/UI/planetmenu_stats_placeholder.png');
         this.load.image('shiptinkerbutton', './assets/UI/buttons/ship_tinker_button.png');
         this.load.image('settlementbutton', './assets/UI/buttons/visit_settlement_button.png');
@@ -28,9 +29,11 @@ class PlanetScene extends Phaser.Scene {
     }
 
     loadUI() {
-        // welcome player and get planet name
-        this.add.text(10, 10, 'You arrived at \'' + this.planet.name + '\' after ' + this.ship.lastTravelTime + ' days.');
+        // welcome player and get planet name 
+        this.add.text(10, 10, 'You arrived at \'' + this.planet.name + '\' after ' + this.ship.lastTravelTime + ' lonely days in warp.');
         this.add.text(10, 30, 'what actions do u take on this planet?');
+
+        this.add.sprite(360, 310, 'planet');
 
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
@@ -41,7 +44,7 @@ class PlanetScene extends Phaser.Scene {
         //     .on('pointerdown', this.loadTradingMenu, this);
 
         
-        this.settlementButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 250, 'settlementbutton')
+        this.settlementButton = new ButtonTemplate(this, game.config.width / 12, game.config.height / 3, 'settlementbutton')
             .on('pointerdown', this.loadSettlement, this);
 
         this.nextPlanetButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
