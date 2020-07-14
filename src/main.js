@@ -1,5 +1,15 @@
 'use strict';
 
+/* 
+    CMPM 120 Project
+
+    by:
+
+    Yooha Kim
+    Oliver Berggren
+    Jonathan Palafox
+*/
+
 // define game config
 let config = {
     type: Phaser.Canvas,
@@ -33,6 +43,10 @@ let HEADER_TEXT_STYLE = {
 
 let DEFAULT_TEXT_STYLE = {
     fontFamily: 'Tahoma',
+}
+
+let DEFAULT_SFX_CONFIG = {
+    volume: .8,
 }
 
 // initialize the Phaser game

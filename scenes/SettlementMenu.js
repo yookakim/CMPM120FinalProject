@@ -9,6 +9,7 @@ class SettlementMenu extends Phaser.Scene {
         this.load.image('settlementbackground', './assets/settlement_background.png');
         this.load.image('returnshipbutton', './assets/UI/buttons/returnship_button.png');
         this.load.image('talkbutton', './assets/UI/buttons/settlement_talk_button.png');
+        this.load.audio('doorknock', './assets/SFX/door_knock.wav');
     }
 
     create() {
@@ -67,6 +68,12 @@ class SettlementMenu extends Phaser.Scene {
         // once click input detected, loads civilian interaction scene with the NPC in question
         console.log('talk button clicked');
         this.scene.start('civiliantalkscene', civilian);
+
+        // plays door-knocking sound only if first time visiting
+        if (!civilian.hasVisited) {
+            this.sound.play('doorknock', DEFAULT_SFX_CONFIG);
+            civilian.hasVisited = true;
+        }
     }
 
     returnToShip() {

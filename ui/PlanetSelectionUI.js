@@ -10,6 +10,8 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.load.image('selectdestinationbanner', './assets/UI/select_destination_banner.png');
         this.load.image('statszone', './assets/UI/planetselection_stats_zone.png');
         this.load.image('fuelbutton', './assets/UI/buttons/fuel_button.png');
+
+        this.load.audio('launchsound', './assets/SFX/launch_sound.wav');
     }
 
     create() {
@@ -36,6 +38,7 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.add.text(370, 2.2 * game.config.height / 8, 'powerful or efficient enough!', DEFAULT_TEXT_STYLE);
         this.add.text(370, 2.8 * game.config.height / 8, 'travel time: distance / engine power', DEFAULT_TEXT_STYLE);
         this.add.text(370, 3 * game.config.height / 8, 'max travel distance: engine power * engine efficiency', DEFAULT_TEXT_STYLE);
+        this.add.text(370, 3.2 * game.config.height / 8, '(we probably put this information in a help/info scene, or use some tooltips/labels)', DEFAULT_TEXT_STYLE);
 
         /*
             i made a separate class for a button object, so that we can apply graphical
@@ -51,7 +54,7 @@ class PlanetSelectionUI extends Phaser.Scene {
     loadPlanetMenu(planet) {
         // the callback function for the 'pointerdown' listener on the planet button
         // later on, the UI would know the info about the planet, and display it accordingly
-
+        this.sound.play('launchsound', DEFAULT_SFX_CONFIG);
         // start next scene (we can add the intermediary scene between this one and planetscene later)
         this.scene.start('planetscene', planet);
         this.scene.stop('planetselectionui');

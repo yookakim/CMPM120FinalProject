@@ -44,7 +44,7 @@ class PlanetScene extends Phaser.Scene {
         //     .on('pointerdown', this.loadTradingMenu, this);
 
         
-        this.settlementButton = new ButtonTemplate(this, game.config.width / 12, game.config.height / 3, 'settlementbutton')
+        this.settlementButton = new ButtonTemplate(this, game.config.width / 9, game.config.height / 3, 'settlementbutton')
             .on('pointerdown', this.loadSettlement, this);
 
         this.nextPlanetButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
