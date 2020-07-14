@@ -66,13 +66,12 @@ class SettlementMenu extends Phaser.Scene {
 
     loadCivilianTalkScene(civilian) {
         // once click input detected, loads civilian interaction scene with the NPC in question
-        console.log('talk button clicked');
         this.scene.start('civiliantalkscene', civilian);
 
         // plays door-knocking sound only if first time visiting
         if (!civilian.hasVisited) {
             this.sound.play('doorknock', DEFAULT_SFX_CONFIG);
-            civilian.hasVisited = true;
+            
         }
     }
 

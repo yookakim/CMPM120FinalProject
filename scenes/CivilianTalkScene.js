@@ -29,7 +29,14 @@ class CivilianTalkScene extends Phaser.Scene {
             .setInteractive()
             .on('pointerdown', this.returnToSettlement, this);
 
-        this.add.text(10, 50, 'Hi, my name is ' + this.civilian.name + '.', DEFAULT_TEXT_STYLE);
+        if (!this.civilian.hasVisited) {
+            this.add.text(10, 50, 'Hi, my name is ' + this.civilian.name + '.', DEFAULT_TEXT_STYLE);
+            this.civilian.hasVisited = true;
+        } else {
+            this.add.text(10, 50, 'Nice to see you again!', DEFAULT_TEXT_STYLE);
+            
+        }
+
         this.add.text(10, 80, 'Right now I only say the same things as literally everybody else in the universe!', DEFAULT_TEXT_STYLE)
         this.add.text(10, 110, 'What I say is still hard-coded and it\'s uncomfortable!', DEFAULT_TEXT_STYLE);
         this.add.text(10, 140, 'I have ' + this.civilian.wealth + ' gold pieces in my wallet! Just felt like letting you know.', DEFAULT_TEXT_STYLE);
