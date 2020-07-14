@@ -17,6 +17,6 @@ class TalkButtonObject extends Phaser.GameObjects.Sprite {
 
     onClick() {
         // start talk scene with civilian
-        
+        this.scene.loadCivilianTalkScene(this.civilian);
     }
 }

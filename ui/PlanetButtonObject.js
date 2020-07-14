@@ -22,6 +22,7 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
             align: 'center',
             fixedWidth: '150',
             fontSize: '12px',
+            fontFamily: 'Tahoma',
             backgroundColor: '#adadad',
             wordWrap: {
                 width: 150,

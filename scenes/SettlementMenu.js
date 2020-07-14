@@ -6,6 +6,7 @@ class SettlementMenu extends Phaser.Scene {
     }
     
     preload() {
+        this.load.image('settlementbackground', './assets/settlement_background.png');
         this.load.image('returnshipbutton', './assets/UI/buttons/returnship_button.png');
         this.load.image('talkbutton', './assets/UI/buttons/settlement_talk_button.png');
     }
@@ -15,9 +16,10 @@ class SettlementMenu extends Phaser.Scene {
         /* 
         
         */
+        this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
         this.hostPlanet = this.scene.settings.data;
         this.settlement = this.hostPlanet.inhabitants;
-        this.add.text(40, 40, 'Welcome to ' + this.settlement.settlementName + ', ' + this.hostPlanet.name);
+        this.add.text(40, 40, 'Welcome to ' + this.settlement.settlementName + ', ' + this.hostPlanet.name, DEFAULT_TEXT_STYLE);
         
 
         // again, later on, we can have a ubiquitous scene that handles UI for us
@@ -29,7 +31,7 @@ class SettlementMenu extends Phaser.Scene {
     loadUI() {
         // if this settlement DOES have civilians:
         if (!this.settlement.abandoned) {
-            this.add.text(40, 60, this.settlement.population + ' beings live here.');
+            this.add.text(40, 60, this.settlement.population + ' beings live here.', DEFAULT_TEXT_STYLE);
 
             // for each civilian in the array:
             this.settlement.civilians.forEach((element, index) => {
@@ -45,14 +47,13 @@ class SettlementMenu extends Phaser.Scene {
                     this.settlement.civilians[index].name + 
                     ', ' + this.settlement.civilians[index].age + 
                     ' years old, with ' + this.settlement.civilians[index].wealth +
-                    ' pieces of gold in their pocket.')
+                    ' pieces of gold in their pocket.', DEFAULT_TEXT_STYLE)
                     .setInteractive()
-                    .on('pointerdown', this.interactCivilian, this);
                     
             });
         } else {
             // if nobody lives in this settlement:
-            this.add.text(40, 80, 'Nobody lives here.');
+            this.add.text(40, 80, 'Nobody lives here.', DEFAULT_TEXT_STYLE);
         }
 
         this.add.sprite(game.config.width - 200, game.config.height - 125, 'returnshipbutton')
@@ -62,8 +63,10 @@ class SettlementMenu extends Phaser.Scene {
         
     }
 
-    interactCivilian() {
-        console.log('civilian clicked');
+    loadCivilianTalkScene(civilian) {
+        // once click input detected, loads civilian interaction scene with the NPC in question
+        console.log('talk button clicked');
+        this.scene.start('civiliantalkscene', civilian);
     }
 
     returnToShip() {

@@ -19,9 +19,21 @@ let config = {
             fps: 140,
         },
     },
-    scene: [ TitleScreen , PlanetSelection , PlanetScene , SettlementMenu , PlanetSelectionUI ],
+    scene: [ 
+        TitleScreen , PlanetSelection , PlanetScene ,
+        SettlementMenu , CivilianTalkScene , PlanetSelectionUI 
+    ],
 }
 
+let HEADER_TEXT_STYLE = {
+    fontFamily: 'Tahoma',
+    fontSize: '26',
+    fontStyle: 'strong',
+}
+
+let DEFAULT_TEXT_STYLE = {
+    fontFamily: 'Tahoma',
+}
 
 // initialize the Phaser game
 let game = new Phaser.Game(config);

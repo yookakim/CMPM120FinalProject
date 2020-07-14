@@ -30,8 +30,8 @@ class PlanetScene extends Phaser.Scene {
 
     loadUI() {
         // welcome player and get planet name 
-        this.add.text(10, 10, 'You arrived at \'' + this.planet.name + '\' after ' + this.ship.lastTravelTime + ' lonely days in warp.');
-        this.add.text(10, 30, 'what actions do u take on this planet?');
+        this.add.text(10, 10, 'You arrived at \'' + this.planet.name + '\' after ' + this.ship.lastTravelTime + ' lonely days in warp.', DEFAULT_TEXT_STYLE);
+        this.add.text(10, 30, 'what actions do u take on this planet?', DEFAULT_TEXT_STYLE);
 
         this.add.sprite(360, 310, 'planet');
 
