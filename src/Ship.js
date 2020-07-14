@@ -9,6 +9,9 @@ class Ship {
         // create a new Engine component and attach
         this.engine = new Engine();
 
+        // storing items
+        this.inventory = new Inventory();
+
         // ship stats
         this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');
         this.maxFuelAmount = this.game.registry.get('INITIAL_SHIP_MAX_FUEL');

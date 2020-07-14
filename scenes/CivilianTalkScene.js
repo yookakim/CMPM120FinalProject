@@ -8,6 +8,9 @@ class CivilianTalkScene extends Phaser.Scene {
     constructor() {
         super('civiliantalkscene');
         this.civilian;
+
+        // reference to global ship object
+        this.ship = ship;
     }
 
     preload() {
