@@ -34,11 +34,13 @@ class PlanetSelection extends Phaser.Scene {
         // grab the array of planets we created in the planet factory
         this.planetGroup = this.planetFactory.generatePlanets();
 
+        // this.ship.inventory.inventoryAdd();
+
 
 
         // in the future, planet generation, planet data loading, loading UI for respective planets, will all 
         // happen in one clean function here hopefully
-        this.loadUI();
+        
         this.scene.launch('planetselectionui', this.planetGroup);
         // this.scene.wake('planetselectionui');
         this.inputSetup();        
@@ -47,14 +49,6 @@ class PlanetSelection extends Phaser.Scene {
     update() {
 
     }
-    
-
-    loadUI() {
-        // this.add.text(0, 400, 'planetselectiondebug');
-
-    }
-
-
 
     giveFreeFuel() {
         this.ship.fuelAmount += 50;

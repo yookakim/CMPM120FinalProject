@@ -8,6 +8,7 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.cameras.main.setBackgroundColor(' ');
         this.load.image('planetbutton', './assets/temp_planet.png');
         this.load.image('selectdestinationbanner', './assets/UI/select_destination_banner.png');
+        this.load.image('inventorybutton', './assets/UI/buttons/inventory_button.png');
         this.load.image('statszone', './assets/UI/planetselection_stats_zone.png');
         this.load.image('fuelbutton', './assets/UI/buttons/fuel_button.png');
 
@@ -26,9 +27,16 @@ class PlanetSelectionUI extends Phaser.Scene {
             iterate along however many planets were generated (unless we are settling on fixed planets per turn)
             inside the array of planets we defined in create()
 
-         */
+            */
         this.add.sprite(game.config.width / 2, game.config.height / 8, 'selectdestinationbanner');
         this.add.sprite(game.config.width / 5, 9 * game.config.height / 16, 'statszone');
+            
+        this.inventoryButton = new ButtonTemplate(this, game.config.width / 5, game.config.height / 2, 'inventorybutton')
+            .on('pointerdown', this.loadInventoryMenu, this);
+    
+        
+
+
         this.add.text(game.config.width / 9.4, 2.2 * game.config.height / 8, 'Day ' + (ship.totalDaysTravelled + 1) + ': ' + ship.currentPlanet.name, DEFAULT_TEXT_STYLE);
         this.add.text(game.config.width / 9.4, 2.4 * game.config.height / 8, 'Engine Power: ' + ship.engine.engineOutput, DEFAULT_TEXT_STYLE);
         this.add.text(game.config.width / 9.4, 2.6 * game.config.height / 8, 'Engine Efficiency: ' + ship.engine.engineEfficiency, DEFAULT_TEXT_STYLE);
@@ -51,6 +59,12 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.planetButton2 = new PlanetButtonObject(this, 910, 550, 'planetbutton', 0, this.planetsData[3]);
     }
 
+    loadInventoryMenu() {
+        this.scene.switch('inventoryscene');
+        this.scene.sleep('planetselectionui');
+        this.scene.sleep('planetselection');
+    }
+
     loadPlanetMenu(planet) {
         // the callback function for the 'pointerdown' listener on the planet button
         // later on, the UI would know the info about the planet, and display it accordingly
@@ -58,6 +72,7 @@ class PlanetSelectionUI extends Phaser.Scene {
         // start next scene (we can add the intermediary scene between this one and planetscene later)
         this.scene.start('planetscene', planet);
         this.scene.stop('planetselectionui');
+        this.scene.stop('planetselection');
 
         ship.travel(planet);
     }    

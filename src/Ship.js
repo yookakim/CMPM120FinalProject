@@ -10,7 +10,7 @@ class Ship {
         this.engine = new Engine();
 
         // storing items
-        this.inventory = new Inventory();
+        this.inventory = new PlayerInventory();
 
         // ship stats
         this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');

@@ -14,18 +14,20 @@ class Inventory {
                 functions:
                 adding items
                 removing items
-                checking for certain item combinations 
+                checking for certain item combinations
                     (how often? probably every time we make a change, like add or delete)
-                    Should we make a child class for specific player inventory
+                    this would be done in PlayerInventory, because not all inventory
+                    systems need this functionality
 
         */
        
         // array of item objects
         this.inventoryArray = [];
+        console.log('parent inventory constructor');
         
     }
     inventoryAdd() {
-
+        console.log('item added');
     }
 
     inventoryRemove() {

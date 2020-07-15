@@ -30,7 +30,7 @@ let config = {
         },
     },
     scene: [ 
-        TitleScreen , PlanetSelection , PlanetScene ,
+        TitleScreen , PlanetSelection , PlanetScene , InventoryScene ,
         SettlementMenu , CivilianTalkScene , PlanetSelectionUI 
     ],
 }
@@ -49,6 +49,9 @@ let DEFAULT_SFX_CONFIG = {
     volume: .8,
 }
 
+// global "uninteractable" tint value
+let TINT_GRAY = 0x8c8c8c;
+
 // initialize the Phaser game
 let game = new Phaser.Game(config);
 
@@ -65,9 +68,6 @@ game.registry.set({
     // arbitrary placeholder initial planet distance
     PLACEHOLDER_PLANET_DISTANCE: 1000,
 })
-
-// global "uninteractable" tint value
-let TINT_GRAY = 0x8c8c8c;
 
 // initialize the ship as a global object
 let ship = new Ship(game);
