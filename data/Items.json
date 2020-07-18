@@ -1,0 +1,17 @@
+{
+    "rock": {
+        "name": "rock",
+        "components": {
+            "consumable": {
+                "value": 3  
+            },
+            "engineUpgrade": {
+                "value": 1
+            }
+        }
+    },
+    "repairkit": {
+        "name": "repairkit",
+        "components": [ "consumable" , "repair" ]
+    }
+}

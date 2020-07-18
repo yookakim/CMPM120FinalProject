@@ -7,8 +7,11 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, texture, frame, planet) {
         // call parent constructor 
         super(scene, x, y, texture, frame);
-
+        
+        this.planetSelectionScene = scene.scene.get('planetselection');
         // pass initial params into properties
+
+        // the scene this button belongs to (PlanetSelection)
         this.scene = scene;
         this.x = x;
         this.y = y;
@@ -68,7 +71,7 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
 
     onClick() {
         if (this.isTravellable) {
-            this.scene.loadPlanetMenu(this.planet);
+            this.planetSelectionScene.loadPlanetMenu(this.planet);
         } else {
             console.log('you cannot travel here for watever reason');
             console.log(ship.maxTravelDistance);

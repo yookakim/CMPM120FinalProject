@@ -9,6 +9,8 @@ class Civilian {
         this.age = age;
         this.wealth = wealth;
         this.hasVisited = false;
+
+        
     }
 
     // prototype player interaction method

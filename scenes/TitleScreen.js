@@ -3,8 +3,7 @@ class TitleScreen extends Phaser.Scene {
         super('titlescreen');
     }
     preload() {
-        this.load.image('titlezone', './assets/UI/title_zone.png');
-        this.load.image('titlestartbutton', './assets/UI/buttons/title_start_button.png');
+
     }
 
     create() {

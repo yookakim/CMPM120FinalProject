@@ -30,8 +30,9 @@ let config = {
         },
     },
     scene: [ 
+        Preloader ,
         TitleScreen , PlanetSelection , PlanetScene , InventoryScene ,
-        SettlementMenu , CivilianTalkScene , PlanetSelectionUI 
+        InventoryUI , SettlementMenu , CivilianTalkScene , PlanetSelectionUI 
     ],
 }
 
@@ -51,6 +52,9 @@ let DEFAULT_SFX_CONFIG = {
 
 // global "uninteractable" tint value
 let TINT_GRAY = 0x8c8c8c;
+
+
+
 
 // initialize the Phaser game
 let game = new Phaser.Game(config);

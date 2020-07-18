@@ -10,7 +10,9 @@ class Ship {
         this.engine = new Engine();
 
         // storing items
-        this.inventory = new PlayerInventory();
+        this.inventory = new Inventory();
+        console.log(this.inventory);
+
 
         // ship stats
         this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');
@@ -23,6 +25,7 @@ class Ship {
         this.treasury = 0;
 
         this.sanity = this.game.registry.get('INITIAL_PLAYER_SANITY');
+        this.sanityLossFactor = 2;
         
         // set initial max travel distanec
         this._maxTravelDistance = this.engine.engineOutput * this.engine.engineEfficiency;
@@ -37,7 +40,7 @@ class Ship {
 
     travel(planet) {
         this.currentPlanet = planet;
-
+        // this.traverseItemEffects();
         // my temporary travel time calculation: (planet distance / (engine's output + (engine's effiency * 3)))
         // the Ceil method rounds up so that we dont have decimal number days
         this.lastTravelTime = planet.travelTime;
@@ -49,6 +52,13 @@ class Ship {
     // decrease sanity; might be other factors changing how this works later
     changeSanity() {
         // for now just decrease by .5 for every day in travel
-        this.sanity = this.sanity - this.lastTravelTime / 2;
+        this.sanity = this.sanity - this.lastTravelTime / this.sanityLossFactor;
+
     }
+
+    // traverseItemEffects() {
+    //     for(var i = 0; i < this.inventory.inventoryArray.length; i++) {
+    //         this.inventory.inventoryArray[index].
+    //     }
+    // }
 }

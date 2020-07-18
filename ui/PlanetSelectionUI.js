@@ -6,19 +6,14 @@ class PlanetSelectionUI extends Phaser.Scene {
     
     preload() {
         this.cameras.main.setBackgroundColor(' ');
-        this.load.image('planetbutton', './assets/temp_planet.png');
-        this.load.image('selectdestinationbanner', './assets/UI/select_destination_banner.png');
-        this.load.image('inventorybutton', './assets/UI/buttons/inventory_button.png');
-        this.load.image('statszone', './assets/UI/planetselection_stats_zone.png');
-        this.load.image('fuelbutton', './assets/UI/buttons/fuel_button.png');
 
-        this.load.audio('launchsound', './assets/SFX/launch_sound.wav');
     }
 
     create() {
 
         // get the array of planets from the data we passed in 
-        this.planetsData = this.scene.settings.data;
+        this.planetsData = this.scene.settings.data.planets;
+        this.planetSelectionScene = this.scene.settings.data.containerScene;
         /*
             probably should find some way to remove hard coded UI sprite/text position values later. 
             if there are variable number of planets to choose from later, it would be difficult 
@@ -32,7 +27,7 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.add.sprite(game.config.width / 5, 9 * game.config.height / 16, 'statszone');
             
         this.inventoryButton = new ButtonTemplate(this, game.config.width / 5, game.config.height / 2, 'inventorybutton')
-            .on('pointerdown', this.loadInventoryMenu, this);
+            .on('pointerdown', this.planetSelectionScene.loadInventoryMenu, this.planetSelectionScene);
     
         
 
@@ -59,21 +54,7 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.planetButton2 = new PlanetButtonObject(this, 910, 550, 'planetbutton', 0, this.planetsData[3]);
     }
 
-    loadInventoryMenu() {
-        this.scene.switch('inventoryscene');
-        this.scene.sleep('planetselectionui');
-        this.scene.sleep('planetselection');
+    update() {
+
     }
-
-    loadPlanetMenu(planet) {
-        // the callback function for the 'pointerdown' listener on the planet button
-        // later on, the UI would know the info about the planet, and display it accordingly
-        this.sound.play('launchsound', DEFAULT_SFX_CONFIG);
-        // start next scene (we can add the intermediary scene between this one and planetscene later)
-        this.scene.start('planetscene', planet);
-        this.scene.stop('planetselectionui');
-        this.scene.stop('planetselection');
-
-        ship.travel(planet);
-    }    
 }

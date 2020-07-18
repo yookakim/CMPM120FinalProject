@@ -17,7 +17,7 @@ class PlanetSelection extends Phaser.Scene {
     }
 
     preload() {
-
+        
 
     }
 
@@ -41,13 +41,19 @@ class PlanetSelection extends Phaser.Scene {
         // in the future, planet generation, planet data loading, loading UI for respective planets, will all 
         // happen in one clean function here hopefully
         
-        this.scene.launch('planetselectionui', this.planetGroup);
+        // launch the UI scene containing all the interactables and panels
+        this.scene.launch('planetselectionui', {
+            planets: this.planetGroup,
+            containerScene: this,
+        });
         // this.scene.wake('planetselectionui');
         this.inputSetup();        
     }
 
     update() {
-
+   
+        
+  
     }
 
     giveFreeFuel() {
@@ -56,6 +62,26 @@ class PlanetSelection extends Phaser.Scene {
         this.fuelAmountText.text = 'Ship fuel amount: ' + this.ship.fuelAmount + ', max fuel: ' + this.ship.maxFuelAmount;
     }
 
+    loadInventoryMenu() {
+        this.scene.sleep('planetselectionui');
+        this.scene.sleep('planetselection');
+
+        this.scene.start('inventoryscene');
+    }
+
+    loadPlanetMenu(planet) {
+        
+        // the callback function for the 'pointerdown' listener on the planet button
+        // later on, the UI would know the info about the planet, and display it accordingly
+        this.sound.play('launchsound', DEFAULT_SFX_CONFIG);
+        // start next scene (we can add the intermediary scene between this one and planetscene later)
+        this.scene.start('planetscene', planet);
+        this.scene.stop('planetselectionui');
+        this.scene.stop('planetselection');
+
+        ship.travel(planet);
+    }    
+    
     inputSetup() {
 
     }
