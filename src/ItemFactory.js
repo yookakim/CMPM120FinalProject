@@ -36,7 +36,7 @@ class ItemFactory {
         for (let i = 0; i < componentList.length; i++) {
 
             let value = this.itemObject.components[componentList[i]]["value"];
-            let component = new Components[componentList[i]](value);
+            let component = new GameComponents[componentList[i]](value);
             item.addComponent(component);
 
         }

@@ -2,7 +2,7 @@
 
 // here is the components namespace for holding the static methods
 
-this.Components = {
+this.GameComponents = {
     
     consumable: function (consumes) {
 

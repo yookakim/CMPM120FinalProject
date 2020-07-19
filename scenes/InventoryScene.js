@@ -38,7 +38,7 @@ class InventoryScene extends Phaser.Scene {
 
         this.add.sprite(game.config.width - 200, game.config.height - 125, 'returnbutton')
             .setInteractive()
-            .on('pointerdown', this.returnToShip, this);
+            .on('pointerdown', this.returnToShip, this);    
     }
 
     returnToShip() {

@@ -38,7 +38,7 @@ this.CivilianFactory = function(planet) {
     }
 
     function addComponent(key) {
-        let component = new Components[key]();
+        let component = new GameComponents[key]();
         civilian.components[key] = component;
     }
 

@@ -43,7 +43,7 @@ class Civilian {
     addComponents(type) {
     
         // let value = this.itemObject.components[componentList[i]]["value"];
-        let component = new Components[type]();
+        let component = new GameComponents[type]();
         this.components[type] = component;
     }
 }
