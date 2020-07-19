@@ -6,10 +6,7 @@ class SettlementMenu extends Phaser.Scene {
     }
     
     preload() {
-        this.load.image('settlementbackground', './assets/settlement_background.png');
-        this.load.image('returnshipbutton', './assets/UI/buttons/returnship_button.png');
-        this.load.image('talkbutton', './assets/UI/buttons/settlement_talk_button.png');
-        this.load.audio('doorknock', './assets/SFX/door_knock.wav');
+        
     }
 
     create() {
@@ -42,12 +39,17 @@ class SettlementMenu extends Phaser.Scene {
                 // maybe make a button to talk with each civilian liek we made custom button for choosing planet
                 // we pass the civilian object through the button parameter, so that the called function knows which
                 // civilian it is dealing with
-                this.civilianButton = new TalkButtonObject(this, 115, 140 + (index * 120 + 75), 'talkbutton', 0, this.settlement.civilians[index])
+                if (element.hasVisited) {
+                    this.civilianButton = new TalkButtonObject(this, 115, 140 + (index * 120 + 75), 'talkbutton', 0, this.settlement.civilians[index])
+                } else if (!element.hasVisited) {
+                    this.civilianButton = new TalkButtonObject(this, 115, 140 + (index * 120 + 75), 'meetbutton', 0, this.settlement.civilians[index])
+                }
                 this.add.text(40, 140 + (index * 120),
                     'you see ' + 
-                    this.settlement.civilians[index].name + 
-                    ', ' + this.settlement.civilians[index].age + 
-                    ' years old, with ' + this.settlement.civilians[index].wealth +
+                    element.name + ', ' +
+                    element.age +
+                    ' years old, with ' + 
+                    element.wealth +
                     ' pieces of gold in their pocket.', DEFAULT_TEXT_STYLE)
                     .setInteractive()
                     
@@ -79,5 +81,4 @@ class SettlementMenu extends Phaser.Scene {
         this.scene.switch('planetscene');
         this.scene.stop('settlementmenu');
     }
-
 }

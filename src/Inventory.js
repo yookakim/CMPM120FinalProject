@@ -27,7 +27,7 @@ class Inventory {
         // todo change from hard code later
         this.maxSize = 7;
 
-        // populate inventory with null objects
+        // populate inventory with null to initialize
         for (var i = 0; i < this.maxSize; i++) {
             this.contents[i] = null;
         }

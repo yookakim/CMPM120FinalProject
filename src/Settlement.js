@@ -25,7 +25,7 @@ How will we display this information in SettlementMenu scene?
 
 
 class Settlement {
-    constructor(name) {
+    constructor(name, planet) {
         // tbh it might be a lot of work making ALL of this including civilians and stuff random gen LOL
         // but idk
         if (!name) {
@@ -35,19 +35,18 @@ class Settlement {
         }
 
         this.settlementName = name;
-        
-        // somewhere from 0 to 3 ppl for now lmao
-        this.population = Phaser.Math.Between(0, 3);
+        this.hostPlanet = planet;
+
+        // somewhere from 0 to 5 ppl for now lmao
+        this.population = Phaser.Math.Between(0, 5);
 
         this.abandoned = false;
         // array of civilians
         this.traders;
         
-        this.civilianNames = ['Jack', 'Beck', 'Carl', 'Ashley', 'Sarah', 'Phil', 'June', 'Karen', 'Obama',
-        'Naruto', 'Morty', 'Grey', 'Skywalker' ];
-        
         this.civilians = [];
         this.generateCivilians();
+        console.log(this.civilians);
     }
 
 
@@ -58,24 +57,11 @@ class Settlement {
         if (this.population != 0) {
             // if not abandoned, generate however many people
             for (var i = 0; i <= this.population - 1; i++) {
-                this.civilians[i] = new Civilian(this.randomizeName(), this.randomizeAge(), this.randomizeWealth());
+                this.civilians[i] = CivilianFactory(this.hostPlanet);
             }
         } else if (this.population === 0) {
             // nobody living here, abandoned
             this.abandoned = true;
         }        
     }
-
-    randomizeName() {
-        return this.civilianNames[Phaser.Math.Between(0, this.civilianNames.length - 1)];
-    }
-
-    randomizeAge() {
-        return Phaser.Math.Between(3, 80);
-    }
-
-    randomizeWealth() {
-        return Phaser.Math.Between(0, 100);
-    }
-    
 }

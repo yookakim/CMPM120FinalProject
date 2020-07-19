@@ -11,7 +11,8 @@ class Ship {
 
         // storing items
         this.inventory = new Inventory();
-        console.log(this.inventory);
+        
+        
 
 
         // ship stats

@@ -15,8 +15,7 @@ class CivilianTalkScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('settlementbackground', './assets/settlement_background.png');
-        this.load.image('return', './assets/UI/buttons/return_to_settlement_button.png');
+        
     }
 
     create() {
@@ -25,7 +24,7 @@ class CivilianTalkScene extends Phaser.Scene {
         this.civilian = this.scene.settings.data;
         
 
-        this.add.text(10, 10, 'You initiate a conversation with ' + this.civilian.name, DEFAULT_TEXT_STYLE);
+        this.add.text(10, 10, 'You initiate a conversation with ' + this.civilian.name + '.', DEFAULT_TEXT_STYLE);
 
         this.loadUI();
     }
@@ -35,19 +34,19 @@ class CivilianTalkScene extends Phaser.Scene {
             .setInteractive()
             .on('pointerdown', this.returnToSettlement, this);
 
-        if (!this.civilian.hasVisited) {
-            this.add.text(10, 50, 'Hi, my name is ' + this.civilian.name + '.', DEFAULT_TEXT_STYLE);
-            this.civilian.hasVisited = true;
-        } else {
-            this.add.text(10, 50, 'Nice to see you again!', DEFAULT_TEXT_STYLE);
-            
-        }
+        this.loadDialogue();
+        
+        // this.scene.launch('inventoryui', this.playerInventory);
+        this.scene.bringToTop('inventoryui');
+    }
+
+    loadDialogue() {
+
+        this.add.text(10, 50, this.civilian.sayGreeting(), DEFAULT_TEXT_STYLE);
 
         this.add.text(10, 80, 'Right now I only say the same things as literally everybody else in the universe!', DEFAULT_TEXT_STYLE)
         this.add.text(10, 110, 'What I say is still hard-coded and it\'s uncomfortable!', DEFAULT_TEXT_STYLE);
         this.add.text(10, 140, 'I have ' + this.civilian.wealth + ' gold pieces in my wallet! Just felt like letting you know.', DEFAULT_TEXT_STYLE);
-        this.scene.launch('inventoryui');
-        this.scene.bringToTop('inventoryui');
     }
 
     returnToSettlement() {

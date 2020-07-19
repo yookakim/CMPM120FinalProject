@@ -63,8 +63,8 @@ class PlanetSelection extends Phaser.Scene {
     }
 
     loadInventoryMenu() {
-        this.scene.sleep('planetselectionui');
-        this.scene.sleep('planetselection');
+        this.scene.stop('planetselectionui');
+        this.scene.stop('planetselection');
 
         this.scene.start('inventoryscene');
     }

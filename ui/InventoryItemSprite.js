@@ -2,6 +2,7 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
     constructor(scene, x, y, item, inventory, index) {
         super(scene, x, y, item.name);
 
+        this.scene = scene;
         this.item = item;
         this.inventory = inventory;
         this.index = index;
@@ -15,7 +16,8 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
     // method to run for when this sprite representing the item gets clicked
     itemClick() {
         console.log('clicked');
-
-        this.item.onUse(this.inventory, this.index);
+        if (this.scene.scene.isActive('inventoryscene')) {
+            this.item.onUse(this.inventory, this.index);
+        }
     }
 }

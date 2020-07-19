@@ -41,13 +41,15 @@ class PlanetFactory {
             var currentPlanet = this.planetArray[i];
             currentPlanet.name = this.generatePlanetName();
             currentPlanet.planetDistance = this.generateDistance();
-            currentPlanet.inhabitants = this.generateSettlements();
+            
             currentPlanet.travelTime =  Phaser.Math.Snap.Ceil(
                 (currentPlanet.planetDistance / (ship.engine.engineOutput)), 1);
             if (currentPlanet.planetDistance < ship.maxTravelDistance) {
                 this.travellablePlanetMade = true;
             }
-            
+
+            // generate settlement based on properties of current planet
+            currentPlanet.inhabitants = this.generateSettlements(currentPlanet);
         }
 
         while (!this.travellablePlanetMade) {
@@ -57,14 +59,15 @@ class PlanetFactory {
             this.planetArray[randomIndex] = new Planet();
             var replacementPlanet = this.planetArray[randomIndex];
             replacementPlanet.name = this.generatePlanetName();
-            replacementPlanet.planetDistance = this.generateDistance();
-            replacementPlanet.inhabitants = this.generateSettlements();
+            replacementPlanet.planetDistance = this.generateDistance();            
             replacementPlanet.travelTime =  Phaser.Math.Snap.Ceil(
                 (replacementPlanet.planetDistance / (ship.engine.engineOutput)), 1);
             if (replacementPlanet.planetDistance < ship.maxTravelDistance) {
                 console.log('travellable planet found, inserted at index ' + randomIndex);
                 this.travellablePlanetMade = true;
             }
+
+            replacementPlanet.inhabitants = this.generateSettlements(replacementPlanet);
         }
 
         this.travellablePlanetMade = false;
@@ -98,8 +101,11 @@ class PlanetFactory {
         return Phaser.Math.Between(300, 1200);
     }
 
-    generateSettlements() {
-        var tempSettlement = new Settlement(this.settlementNameList[Phaser.Math.Between(0, this.settlementNameList.length - 1)]);
+    generateSettlements(planet) {
+        var tempSettlement = new Settlement(
+            this.settlementNameList[Phaser.Math.Between(0, this.settlementNameList.length - 1)],
+            planet
+        );
         // random population, but we could later add things that affect population size
         // if it's a ghost town, it could have 0 living ppl
         // depending on planet attributes, there could be more people livign there, less, different kinds of people, etc

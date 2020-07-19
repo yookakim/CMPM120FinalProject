@@ -8,9 +8,12 @@ class Civilian {
         this.name = name;
         this.age = age;
         this.wealth = wealth;
+
         this.hasVisited = false;
 
-        
+        this.components = {};
+
+        // this.addComponents(civilianType);
     }
 
     // prototype player interaction method
@@ -18,17 +21,29 @@ class Civilian {
     hopefully later we can add smoething that isn't just giving free money
     */
 
-    // let's do a simple thing where talking to a civilian gives you free money
-    // treasury is stored globally as ship.treasury (is it even ok to store it globally like thsi? idk)
-
-    giveMoney() {
-
-        // again, it feels sketchy directly changing a global variable like this but idk what else to do lmao
-        if (this.wealth > 0) {
-            ship.treasury++;
-            this.wealth--;
+    sayGreeting() {
+        var greetingString = '';
+        
+        if (!this.hasVisited) {
+            if (this.components.hasOwnProperty('child')) {
+                greetingString += this.components.child.greetings[Phaser.Math.Between(0, this.components.child.greetings.length - 1)];
+            }
+            greetingString += 'My name is ' + this.name + '!';
+            if (this.components.hasOwnProperty('merchant')) {
+                greetingString += ' Care to look at some of my wares?';
+            }
+            this.hasVisited = true;
         } else {
-            console.log('i dont have enough money to give you.');
+            greetingString = 'Nice to see you again!';
+            
         }
+        return greetingString;
+    }
+
+    addComponents(type) {
+    
+        // let value = this.itemObject.components[componentList[i]]["value"];
+        let component = new Components[type]();
+        this.components[type] = component;
     }
 }

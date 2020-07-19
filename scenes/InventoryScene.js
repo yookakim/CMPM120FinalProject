@@ -23,16 +23,7 @@ class InventoryScene extends Phaser.Scene {
         
         // launch the container scene for the inventory
         this.scene.launch('inventoryui', this.inventory);
-        
-        // debug/test variables: adds a rock item to inventory every time this scene is opened
-        // None of this should be here by final build
-        let rock = this.itemFactory.generateItem('rock', itemList);
-        console.log(rock);
         console.log(this.inventory);
-        
-        // add the rock to the inventory
-        this.inventory.inventoryAdd(rock);
-
         this.add.text(30, 30, 'inventoryscene', DEFAULT_TEXT_STYLE);
 
         this.loadUI();
@@ -52,8 +43,8 @@ class InventoryScene extends Phaser.Scene {
 
     returnToShip() {
 
-        this.scene.wake('planetselection');
-        this.scene.wake('planetselectionui');
+        this.scene.run('planetselection');
+        this.scene.run('planetselectionui');
         this.scene.stop('inventoryui');
         this.scene.stop('inventoryscene');
     }

@@ -49,9 +49,12 @@ class InventoryUI extends Phaser.Scene {
                 }
 
             } else {
-                if (this.inventory.contents[i] === null) {
+                if (this.inventory.contents[i] === null) {                    
                     this.cellContainer[i].occupant = null;
                     this.cellContainer[i].occupied = false;
+
+                    // if the cell has a representative after refresh where there shouldn't be, destroy
+                    // the representative
                     if (this.cellContainer[i].representative) {
                         this.cellContainer[i].representative.destroy();
                     }

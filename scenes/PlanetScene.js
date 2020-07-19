@@ -12,11 +12,8 @@ class PlanetScene extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('planet', './assets/planetscene_bigplanet.png');
-        this.load.image('planetstats', './assets/UI/planetmenu_stats_placeholder.png');
-        this.load.image('shiptinkerbutton', './assets/UI/buttons/ship_tinker_button.png');
-        this.load.image('settlementbutton', './assets/UI/buttons/visit_settlement_button.png');
-        this.load.image('nextplanetbutton', './assets/UI/buttons/next_planet_button.png');
+
+
     }
 
     create() {

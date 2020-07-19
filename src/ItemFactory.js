@@ -1,7 +1,12 @@
 'use strict';
 
 // instantiates a new item based on the key given
-
+/* 
+    honestly pretty weird how i put this in a new class, I feel like
+    this functionality could have just been put in one function
+    instead of having to instantiate a new item factory to generate items,
+    we could just call the function 
+*/
 
 class ItemFactory {
     constructor() {
@@ -21,6 +26,7 @@ class ItemFactory {
         // set item's name to the key
         item.name = key;
 
+        item.description = this.itemObject.description;
         // iterate through the data object's component list to see 
         // which components the item needs
         var componentList = Object.keys(this.itemObject.components);
