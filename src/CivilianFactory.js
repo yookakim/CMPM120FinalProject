@@ -61,13 +61,20 @@ this.CivilianFactory = function(planet) {
     
     // do the component adding here
     function randomizeType(civilian) {
-        var random = Phaser.Math.Between(0, 100);
-        if (random < 75) {
+        // var weightsTotal;
+        var merchantChance = 50;
+        
+        if (Phaser.Math.Between(0, 100) < merchantChance) {
             addComponent("merchant");
             civilian.components.merchant.randomizeWares(civilian);
-            // return "merchant";
-        } else if (random >= 75) {
+            
+        }
+
+        var civilianChance = 50;
+        if (Phaser.Math.Between(0,100) < civilianChance) {
             addComponent("civilian");
+        } else {
+            addComponent("outcast")
         }
     }
 }

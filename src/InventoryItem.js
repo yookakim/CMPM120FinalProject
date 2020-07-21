@@ -1,5 +1,8 @@
-// individual item object base class
+/* 
+    Base class for generating items and adding their components
 
+    Yooha Kim
+*/
 'use strict';
 
 class InventoryItem {

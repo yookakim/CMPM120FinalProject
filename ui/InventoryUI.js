@@ -1,3 +1,8 @@
+/* 
+    UI Scene to overlay inventory scene for displaying and using from inventory
+
+    Yooha Kim
+*/
 'use strict';
 
 class InventoryUI extends Phaser.Scene {

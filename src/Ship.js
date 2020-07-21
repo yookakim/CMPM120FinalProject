@@ -1,3 +1,8 @@
+/* 
+    global singleton used for keeping player and spaceship data
+
+    Yooha Kim
+*/
 'use strict';
 
 class Ship {

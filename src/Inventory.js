@@ -1,5 +1,8 @@
-// inventory system which holds item objects
+/* 
+    Inventory class to manage inventories and add/remove from them
 
+    Yooha Kim
+*/
 'use strict';
 
 class Inventory {

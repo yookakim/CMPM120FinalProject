@@ -37,7 +37,7 @@ class PlanetSelectionUI extends Phaser.Scene {
         this.add.text(game.config.width / 9.4, 2.6 * game.config.height / 8, 'Engine Efficiency: ' + ship.engine.engineEfficiency, DEFAULT_TEXT_STYLE);
         this.add.text(game.config.width / 9.4, 2.8 * game.config.height / 8, 'Max Travel Distance: ' + ship.maxTravelDistance, DEFAULT_TEXT_STYLE);
         this.add.text(game.config.width / 9.4, 3.0 * game.config.height / 8, 'sanity: ' + ship.sanity, DEFAULT_TEXT_STYLE);
-        this.add.text(game.config.width / 9.4, 3.2 * game.config.height / 8, 'treasury: ' + ship.treasury + " gold", DEFAULT_TEXT_STYLE);
+        // this.add.text(game.config.width / 9.4, 3.2 * game.config.height / 8, 'treasury: ' + ship.treasury + " gold", DEFAULT_TEXT_STYLE);
         this.add.text(370, 2 * game.config.height / 8, 'You may only warp to a planet if your engine is', DEFAULT_TEXT_STYLE);
         this.add.text(370, 2.2 * game.config.height / 8, 'powerful or efficient enough!', DEFAULT_TEXT_STYLE);
         this.add.text(370, 2.8 * game.config.height / 8, 'travel time: distance / engine power', DEFAULT_TEXT_STYLE);

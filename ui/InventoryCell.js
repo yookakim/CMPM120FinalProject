@@ -1,3 +1,8 @@
+/* 
+    Class to hold empty inventory/trade menu tile for holding item sprites
+
+    Yooha Kim
+*/
 'use strict';
 
 

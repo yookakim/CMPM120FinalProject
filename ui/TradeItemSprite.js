@@ -1,3 +1,8 @@
+/* 
+    Sprite class for displaying items in trade menu
+
+    Yooha Kim
+*/
 'use strict';
 
 class TradeItemSprite extends Phaser.GameObjects.Sprite {

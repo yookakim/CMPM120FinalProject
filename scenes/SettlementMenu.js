@@ -18,7 +18,8 @@ class SettlementMenu extends Phaser.Scene {
         this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
         this.hostPlanet = this.scene.settings.data;
         this.settlement = this.hostPlanet.inhabitants;
-        this.add.text(80, 80, 'You enter ' + this.settlement.settlementName + ', ' + this.hostPlanet.name, HEADER_TEXT_STYLE);
+        this.add.text(80, 40, "You grab your things and enter...", DEFAULT_TEXT_STYLE);
+        this.add.text(80, 80, this.settlement.settlementName + ', ' + this.hostPlanet.name, HEADER_TEXT_STYLE);
         
 
         // again, later on, we can have a ubiquitous scene that handles UI for us
@@ -53,10 +54,8 @@ class SettlementMenu extends Phaser.Scene {
                     'you see ' + 
                     element.name + ', ' +
                     element.age +
-                    ' years old, with ' + 
-                    element.wealth +
-                    ' pieces of gold in their pocket.', DEFAULT_TEXT_STYLE)
-                    .setInteractive()
+                    ' years old',
+                    DEFAULT_TEXT_STYLE);
                     
             });
         } else {

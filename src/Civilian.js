@@ -25,38 +25,141 @@ class Civilian {
     hopefully later we can add smoething that isn't just giving free money
     */
 
-    sayGreeting() {
+    getText() {
         
-        var greetingString = '';
+        var textObject = {
+            greetingString: '',
+            title: ''
+        }
         
         
-        if (!this.hasVisited) {
-            if (this.components.hasOwnProperty('child')) {
-                greetingString += this.components.child.greetings[Phaser.Math.Between(0, this.components.child.greetings.length - 1)];
-            }
-            greetingString += '\nMy name is ' + this.name + '!';
+        // if (!this.hasVisited) {
+        //     if (this.components.hasOwnProperty('child')) {
+        //         greetingString += this.components.child.greetings[Phaser.Math.Between(0, this.components.child.greetings.length - 1)];
+        //     }
+        //     greetingString += '\nMy name is ' + this.name + '!';
             
           
-        } else if (this.hasVisited) {
-            greetingString += 'Nice to see you again!';
-        }
+        // } else if (this.hasVisited) {
+        //     greetingString += 'Nice to see you again!';
+        // }
         
-        if (this.ship.hoursLeftInDay < 1) {
+        // if (this.ship.hoursLeftInDay < 1) {
 
-            greetingString += ' Don\'t you think it\'s getting a little too late to talk? I\'m tired.';   
+        //     greetingString += ' Don\'t you think it\'s getting a little too late to talk? I\'m tired.';   
 
-        } else if (this.ship.hoursLeftInDay > 0) {
+        // } else if (this.ship.hoursLeftInDay > 0) {
             
-            greetingString += ' I have ' + this.wealth + ' gold pieces in my wallet! Just felt like letting you know.';
-            this.ship.spendTime(1);
-            if (this.components.hasOwnProperty('merchant')) {
-                greetingString += '\n \nCare to look at some of my wares?';
-            }
+        //     greetingString += ' I have ' + this.wealth + ' gold pieces in my wallet! Just felt like letting you know.';
+        //     this.ship.spendTime(1);
+        //     if (this.components.hasOwnProperty('merchant')) {
+        //         // if civilian is merchant:
+        //         greetingString += '\n \nCare to look at some of my wares?';
+        //         if (this.components.hasOwnProperty('child')) {
+        //             // if merchant AND child
+        //             greetingString += '\nBelieve it or not, I\'m growing up to become the richest merchant all throughout the stars!';
+        //         }
+        //     }
+            
+
+        // }
+
+        /* 
+            this.components.hasOwnProperty('civilian')
+            this.components.hasOwnProperty('child')
+            this.components.hasOwnProperty('merchant')
+            this.components.hasOwnProperty('outcast')
+        */
+
+
+        // 1
+
+        // ten conditions
+
+        // civilian types:
+        var cond1 = (this.components.hasOwnProperty('civilian') && 
+                    !this.components.hasOwnProperty('merchant') &&
+                    !this.components.hasOwnProperty('child') &&
+                    !this.components.hasOwnProperty('outcast'));
+        var cond2 = (this.components.hasOwnProperty('civilian') && 
+                    !this.components.hasOwnProperty('merchant') &&
+                    this.components.hasOwnProperty('child') &&
+                    !this.components.hasOwnProperty('outcast'));
+        var cond3 = (this.components.hasOwnProperty('civilian') && 
+                    this.components.hasOwnProperty('merchant') &&
+                    this.components.hasOwnProperty('child') &&
+                    !this.components.hasOwnProperty('outcast'));
+        var cond4 = (this.components.hasOwnProperty('civilian') && 
+                    this.components.hasOwnProperty('merchant') &&
+                    !this.components.hasOwnProperty('child') &&
+                    !this.components.hasOwnProperty('outcast'));
+
+        // outcast types:
+        var cond5 = (!this.components.hasOwnProperty('civilian') && 
+                    !this.components.hasOwnProperty('merchant') &&
+                    !this.components.hasOwnProperty('child') &&
+                    this.components.hasOwnProperty('outcast'));
+        var cond6 = (!this.components.hasOwnProperty('civilian') && 
+                    !this.components.hasOwnProperty('merchant') &&
+                    this.components.hasOwnProperty('child') &&
+                    this.components.hasOwnProperty('outcast'));
+        var cond7 = (!this.components.hasOwnProperty('civilian') && 
+                    this.components.hasOwnProperty('merchant') &&
+                    this.components.hasOwnProperty('child') &&
+                    this.components.hasOwnProperty('outcast'));
+        var cond8 = (!this.components.hasOwnProperty('civilian') && 
+                    this.components.hasOwnProperty('merchant') &&
+                    !this.components.hasOwnProperty('child') &&
+                    this.components.hasOwnProperty('outcast'));
+
+
+        if (cond1) {
+            //greetingString += '\nMy name is ' + this.name + '!';
+            textObject.greetingString = 'How are you doing, my name is ' + this.name + '.';
+            textObject.title = '- Civilian -';
+        }
+        // 2
+        if (cond2) {
+            textObject.greetingString = 'Hi! I want somebody to play with!';
+            textObject.title = '- Civilian - Child -';
+        }
+        //3
+        if (cond3) {
+            textObject.greetingString = 'I\'m going to become the richest of the rich! Buy my things!';
+            textObject.title = '- Civilian - Merchant - Child -';
+        }
+        //4
+        if (cond4) {
+            textObject.greetingString = 'How are you? I\'m ' + this.name + ', take a look at some of my wares!';
+            textObject.title = '- Civilian - Merchant -';
+        }
+        //5
+        if (cond5) {
+            textObject.greetingString = 'What do you want?';
+            textObject.title = '- Outcast -';
+        }
+        //6
+        if (cond6) {
+            textObject.greetingString = 'When I grow up... I\'m not turning out like everybody else.';
+            textObject.title = '- Child - Outcast -';
+        }
+        //7
+        if (cond7) {
+            textObject.greetingString = 'I\'m ' + this.name + '. None of the older ones like what I\'m getting myself into... but you\'ll look at what I\'m selling, right?';
+            textObject.title = '- Child - Merchant - Outcast -';
+        }
+        //8
+        if (cond8) {
+            textObject.greetingString = 'The name\'s ' + this.name + '...take a look at my stuff... you won\'t regret it.';
+            textObject.title = '- Merchant - Outcast -';
+        }
+         
+        else if (this.ship.hoursLeftInDay < 1) {
+            textObject.greetingString = ' Don\'t you think it\'s getting a little too late to talk? I\'m tired.';   
 
         }
-        
-         
-        return greetingString;
+
+        return textObject;
     }
 
     addComponents(type) {

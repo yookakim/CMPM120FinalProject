@@ -1,5 +1,7 @@
 /* 
     Interaction scene between civilian and player
+
+    Yooha Kim
 */
 
 'use strict';
@@ -23,6 +25,8 @@ class CivilianTalkScene extends Phaser.Scene {
         
         this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
         this.civilian = this.scene.settings.data;
+        this.textObject = this.civilian.getText();
+
         
         if (this.ship.hoursLeftInDay < 1) {
             this.tooLate = true;
@@ -45,29 +49,29 @@ class CivilianTalkScene extends Phaser.Scene {
             .setInteractive()
             .on('pointerdown', this.returnToSettlement, this);
 
-        var civilianTitle;
+        // var civilianTitle;
 
-        civilianTitle = this.civilian.name + ': - ';
+        // civilianTitle = this.civilian.name + ': - ';
 
-        if (this.civilian.components.hasOwnProperty('civilian')) {
-            civilianTitle += 'Civilian - ';
-        }
+        // if (this.civilian.components.hasOwnProperty('civilian')) {
+        //     civilianTitle += 'Civilian - ';
+        // }
 
-        if (this.civilian.components.hasOwnProperty('merchant')) {
-            civilianTitle += 'Merchant - ';
+        // if (this.civilian.components.hasOwnProperty('merchant')) {
+        //     civilianTitle += 'Merchant - ';
 
-            if (!this.tooLate) {
-                this.tradeButton = new ButtonTemplate(this, 300, 300, 'tradebutton');
-                this.tradeButton.on('pointerdown', this.openTradeMenu, this);
-            }
-        }
+        //     if (!this.tooLate) {
+        //         this.tradeButton = new ButtonTemplate(this, 300, 300, 'tradebutton');
+        //         this.tradeButton.on('pointerdown', this.openTradeMenu, this);
+        //     }
+        // }
 
-        if (this.civilian.components.hasOwnProperty('child')) {
-            civilianTitle += 'Child -';
-        }
+        // if (this.civilian.components.hasOwnProperty('child')) {
+        //     civilianTitle += 'Child -';
+        // }
         
 
-        this.add.text(80, 80, civilianTitle, HEADER_TEXT_STYLE);
+        this.add.text(80, 80, this.textObject.title, HEADER_TEXT_STYLE);
         
         this.scene.bringToTop('inventoryui');
 
@@ -76,7 +80,7 @@ class CivilianTalkScene extends Phaser.Scene {
 
     loadDialogue() {
 
-        this.add.text(80, 140, this.civilian.sayGreeting(), DEFAULT_TEXT_STYLE);
+        this.add.text(80, 140, this.textObject.greetingString, DEFAULT_TEXT_STYLE);
     
         this.civilian.hasVisited = true;
     }

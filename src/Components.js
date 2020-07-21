@@ -1,6 +1,9 @@
-'use strict';
+/* 
+    functions with data and functionality to attach to objects at runtime
 
-// here is the components namespace for holding various methods/mechanics
+    Yooha Kim
+*/
+'use strict';
 
 this.GameComponents = {
     
@@ -54,6 +57,10 @@ this.GameComponents = {
         this.name = 'civilian';
     },
 
+    outcast: function() {
+        this.name = 'outcast';
+    },
+
     merchant: function () {
         
         this.name = 'merchant';
@@ -66,14 +73,20 @@ this.GameComponents = {
             // randomize later, but add a rock for debug purposes
 
             var itemFactory = new ItemFactory();
-            var rock = itemFactory.generateItem('rock', ITEMLIST);
-            var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
-            var book = itemFactory.generateItem('book', ITEMLIST);
-            
 
-            civilian.inventory.inventoryAdd(rock);
-            civilian.inventory.inventoryAdd(childtoy);
-            civilian.inventory.inventoryAdd(book);
+
+
+
+            if (civilian.components.hasOwnProperty('child')) {
+                var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
+                civilian.inventory.inventoryAdd(childtoy);
+            } else {
+                var rock = itemFactory.generateItem('rock', ITEMLIST);
+                var book = itemFactory.generateItem('book', ITEMLIST);
+    
+                civilian.inventory.inventoryAdd(rock);
+                civilian.inventory.inventoryAdd(book);
+            }
 
             var items = [];
             // return items

@@ -21,8 +21,8 @@ class TitleScreen extends Phaser.Scene {
         this.itemFactory = new ItemFactory();
 
         // initialize inventory with free stuff
-        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('rock', ITEMLIST));
-        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('goldbag', ITEMLIST));
+        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('upgradekit', ITEMLIST));
+        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('piratebadge', ITEMLIST));
         
     }
 

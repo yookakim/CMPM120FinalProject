@@ -1,3 +1,8 @@
+/* 
+    The Phaser scene that displays the trade menu with merchant
+
+    Yooha Kim
+*/
 'use strict';
 
 class TradeScene extends Phaser.Scene {
@@ -153,7 +158,7 @@ class TradeScene extends Phaser.Scene {
 
         // then, calculate space for both inventories
         // if not, then immediately return 
-        
+
         if (this.merchantOfferItems.length - this.playerOfferItems.length > this.ship.inventory.numberOpenSpaces()) {
             console.log('you cant carry all that');
             // reset the arrays
