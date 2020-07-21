@@ -1,8 +1,10 @@
+'use strict';
+
 class InventoryUI extends Phaser.Scene {
     constructor() {
         super('inventoryui');
         this.inventoryPositionX = 100;
-        this.inventoryPositionY = 600;
+        this.inventoryPositionY = 500;
         this.inventorySquareSize = 64;
     }
 
@@ -21,12 +23,12 @@ class InventoryUI extends Phaser.Scene {
         this.refreshItems();
 
         // add listeners for redrawing on items added or removed
-        this.inventory.inventoryEvents.on('inventory-add', this.refreshItems, this);
-        this.inventory.inventoryEvents.on('inventory-remove', this.refreshItems, this);
+        EventManager.on('inventory-add', this.refreshItems, this);
+        EventManager.on('inventory-remove', this.refreshItems, this);
     }
 
     update() {
-        // this.refreshItems();
+        
     }
 
     refreshItems() {
@@ -34,7 +36,6 @@ class InventoryUI extends Phaser.Scene {
         for (var i = 0; i < this.inventory.maxSize; i++) {
             if (this.inventory.contents[i]) {
                 this.cellContainer[i].occupant = this.inventory.contents[i];
-                this.cellContainer[i].occupied = true;
                 
                 // if the container cell currently has no sprite representing it, make one
                 if (!this.cellContainer[i].representative) {
@@ -51,7 +52,6 @@ class InventoryUI extends Phaser.Scene {
             } else {
                 if (this.inventory.contents[i] === null) {                    
                     this.cellContainer[i].occupant = null;
-                    this.cellContainer[i].occupied = false;
 
                     // if the cell has a representative after refresh where there shouldn't be, destroy
                     // the representative
@@ -65,7 +65,7 @@ class InventoryUI extends Phaser.Scene {
 
     drawCells() {
         for (var i = 0; i < this.inventory.maxSize; i++) {
-            this.cellContainer[i] = new InventoryCell(this, this.inventoryPositionX + (i * this.inventorySquareSize), this.inventoryPositionY, 'inventorytile');
+            this.cellContainer[i] = new InventoryCell(this, this.inventoryPositionX + (i * this.inventorySquareSize), this.inventoryPositionY, 'inventorytile', this.inventory);
         }
     }
 }

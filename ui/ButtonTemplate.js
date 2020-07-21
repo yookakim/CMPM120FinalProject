@@ -12,5 +12,17 @@ class ButtonTemplate extends Phaser.GameObjects.Sprite {
         super(scene, x, y, key);
         this.setInteractive();
         scene.add.existing(this);
+
+        this.clickable = true;
+    }
+
+    checkClickable() {
+        if (this.clickable === false) {
+            this.setTint(TINT_GRAY);
+            this.disableInteractive();
+        } if (this.clickable === true) {
+            this.clearTint();
+            this.setInteractive();
+        }
     }
 }

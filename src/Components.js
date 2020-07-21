@@ -1,6 +1,6 @@
 'use strict';
 
-// here is the components namespace for holding the static methods
+// here is the components namespace for holding various methods/mechanics
 
 this.GameComponents = {
     
@@ -40,6 +40,13 @@ this.GameComponents = {
             ship.treasury += goldAmount;
         }
     },
+
+    flatSanityIncrease: function (sanityAmount) {
+        this.name = 'flatSanityIncrease';
+        this.onUse = function(ship) {
+            ship.sanity += sanityAmount
+        }
+    },
     
 
     // civilian components
@@ -51,16 +58,36 @@ this.GameComponents = {
         
         this.name = 'merchant';
         
+        this.randomizeWares = function(civilian) {
+
+            civilian.inventory = new CivilianInventory(7, civilian);
+            // array of inventory items to spawn for this merchant
+
+            // randomize later, but add a rock for debug purposes
+
+            var itemFactory = new ItemFactory();
+            var rock = itemFactory.generateItem('rock', ITEMLIST);
+            var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
+            var book = itemFactory.generateItem('book', ITEMLIST);
+            
+
+            civilian.inventory.inventoryAdd(rock);
+            civilian.inventory.inventoryAdd(childtoy);
+            civilian.inventory.inventoryAdd(book);
+
+            var items = [];
+            // return items
+        };
     },
 
     child: function() {
 
         this.name = 'child';
         this.greetings = [
-            'You look a little weird... but also really cool! ',
+            'You seem weird... but also really cool! ',
             'Hi old man! ',
             'My mom said not talk to strangers, but you seem like a friend. ',
-            'CAAANDDDYYY!!!'
+            'CAAANDDDYYY!!! '
         ];
     }
 }

@@ -24,6 +24,8 @@ class PlanetSelection extends Phaser.Scene {
     create() {
         // this.scene.launch('sceneui');
 
+        // just travelled, so reset the hours left in the day
+        this.ship.resetTime();
 
         // calculating the current max travel distance possible:
         // for now, let's just make the ship travel 8 units of distance per one unit of fuel
@@ -51,7 +53,7 @@ class PlanetSelection extends Phaser.Scene {
     }
 
     update() {
-   
+        
         
   
     }
@@ -64,7 +66,7 @@ class PlanetSelection extends Phaser.Scene {
 
     loadInventoryMenu() {
         this.scene.stop('planetselectionui');
-        this.scene.stop('planetselection');
+        this.scene.sleep('planetselection');
 
         this.scene.start('inventoryscene');
     }

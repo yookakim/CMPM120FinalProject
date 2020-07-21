@@ -13,6 +13,7 @@ class InventoryItem {
 
         this.name;
         this.description;
+        this.worth;
         this.components = {};
         // this.type;
     }
@@ -35,6 +36,11 @@ class InventoryItem {
 
                     case "giveMoney":
                         this.components.giveMoney.onUse(ship);
+                        break;
+
+                    case "flatSanityIncrease":
+                        this.components.flatSanityIncrease.onUse(ship);
+                        break;
 
                     // call this case last so the "consuming" part happens after other item effects
                     case "consumable":
@@ -46,5 +52,9 @@ class InventoryItem {
                 }
             }
         }
+    }
+
+    onTrade() {
+        // sends the item to the trade offer cells
     }
 }

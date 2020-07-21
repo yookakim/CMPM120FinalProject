@@ -22,7 +22,11 @@ class PlanetScene extends Phaser.Scene {
         
         // ui like text and buttons will probably be managed by a separate Scene overlayed on top later
         this.loadUI();
+        
+    }
 
+    update() {
+        this.settlementButton.checkClickable();
     }
 
     loadUI() {
@@ -35,6 +39,8 @@ class PlanetScene extends Phaser.Scene {
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
 
+        this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+
         // this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
         //     .setOrigin(0, 0)
         //     .setInteractive()
@@ -43,6 +49,10 @@ class PlanetScene extends Phaser.Scene {
         
         this.settlementButton = new ButtonTemplate(this, game.config.width / 9, game.config.height / 3, 'settlementbutton')
             .on('pointerdown', this.loadSettlement, this);
+
+        if (this.ship.hoursLeftInDay < 3) {
+            this.settlementButton.clickable = false;
+        }
 
         this.nextPlanetButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
             .on('pointerdown', this.loadPlanetSelection, this);
@@ -55,11 +65,14 @@ class PlanetScene extends Phaser.Scene {
     
     loadSettlement() {
         // go into trading district
-        if (this.planet.inhabitants) {
+        if (this.planet.inhabitants && this.ship.hoursLeftInDay >= 3) {
+            this.ship.spendTime(3);
             this.scene.start('settlementmenu', this.planet);
-        } else {
+        } else if (this.ship.hoursLeftInDay < 3) {
             // show this in UI later
-            console.log('no settlement on this planet!');
+            console.log('not enough time left for travel to this location');
+        } else if (!this.planet.inhabitants) {
+            console.log('no settlement to travel to');
         }
     }
     /* 

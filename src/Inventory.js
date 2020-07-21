@@ -3,7 +3,7 @@
 'use strict';
 
 class Inventory {
-    constructor() {
+    constructor(size, owner) {
         /* 
             Properties an inventory might need:
                 
@@ -23,9 +23,11 @@ class Inventory {
        
         // array of item objects
         this.contents = [];
+
+        // reference to the object this inventory is stuck to
+        this.owner = owner;
         
-        // todo change from hard code later
-        this.maxSize = 7;
+        this.maxSize = size;
 
         // populate inventory with null to initialize
         for (var i = 0; i < this.maxSize; i++) {
@@ -33,9 +35,20 @@ class Inventory {
         }
 
         // new instance of phaser event system
-        this.inventoryEvents = new Phaser.Events.EventEmitter();
+        // this.inventoryEvents = new Phaser.Events.EventEmitter();
         
     }
+
+    numberOpenSpaces() {
+        var openSpaces = 0;
+        for (let i = 0; i < this.maxSize; i++) {
+            if (this.contents[i] === null) {
+                openSpaces++;
+            }
+        }
+        return openSpaces;
+    }
+
     inventoryAdd(item) {
 
         // finds first open slot, then adds the item into it
@@ -43,7 +56,7 @@ class Inventory {
 
             if (this.contents[i] === null) {
                 this.contents.splice(i, 1, item);
-                this.inventoryEvents.emit('inventory-add', this);
+                EventManager.emit('inventory-add', this);
                 return;
             }
         }
@@ -56,6 +69,6 @@ class Inventory {
         if (this.contents[index] != null) {
             this.contents.splice(index, 1, null);
         }
-        this.inventoryEvents.emit('inventory-remove', this);
+        EventManager.emit('inventory-remove', this);
     }
 }

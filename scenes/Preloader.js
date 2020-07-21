@@ -15,7 +15,10 @@ class Preloader extends Phaser.Scene {
         this.load.image('returnshipbutton', './assets/UI/buttons/returnship_button.png');
         this.load.image('talkbutton', './assets/UI/buttons/settlement_talk_button.png');
         this.load.image('meetbutton', './assets/UI/buttons/settlement_meet_button.png');
+        this.load.image('tradebutton', './assets/UI/buttons/civilian_trade_button.png');
         this.load.image('return', './assets/UI/buttons/return_to_settlement_button.png');
+        this.load.image('cancelbutton', './assets/UI/buttons/cancel_button.png');
+        this.load.image('confirmtradebutton', './assets/UI/buttons/confirm_trade_button.png');
         
         // planet selection
         this.load.image('planetbutton', './assets/temp_planet.png');
@@ -34,11 +37,15 @@ class Preloader extends Phaser.Scene {
         // inventory systems
         this.load.image('inventorytile', './assets/UI/inventorytile.png');
         this.load.image('returnbutton', './assets/UI/buttons/returnship_button.png');
-        this.load.json('items', './data/Items.json');
         
+        this.load.json('items', './data/Items.json');
+
         // items
+        this.load.image('highlightborder', './assets/items/highlightborder.png');
         this.load.image('rock', './assets/items/rockicon.png');
         this.load.image('goldbag', './assets/items/goldbagicon.png');
+        this.load.image('childtoy', './assets/items/childtoyicon.png');
+        this.load.image('book', './assets/items/bookicon.png');
 
         // audio
         this.load.audio('launchsound', './assets/SFX/launch_sound.wav');
@@ -46,6 +53,9 @@ class Preloader extends Phaser.Scene {
     }
 
     create() {
+        
+        // load the json file from global cache into our global variable for the data object
+        ITEMLIST = this.cache.json.get('items');
         this.scene.start('titlescreen');
     }
 }

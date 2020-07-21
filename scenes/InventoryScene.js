@@ -43,8 +43,8 @@ class InventoryScene extends Phaser.Scene {
 
     returnToShip() {
 
-        this.scene.run('planetselection');
-        this.scene.run('planetselectionui');
+        this.scene.wake('planetselection');
+        this.scene.start('planetselectionui');
         this.scene.stop('inventoryui');
         this.scene.stop('inventoryscene');
     }

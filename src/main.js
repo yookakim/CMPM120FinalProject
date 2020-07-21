@@ -31,14 +31,13 @@ let config = {
     },
     scene: [ 
         Preloader ,
-        TitleScreen , PlanetSelection , PlanetScene , InventoryScene ,
-        InventoryUI , SettlementMenu , CivilianTalkScene , PlanetSelectionUI 
+        TitleScreen , PlanetSelection , PlanetSelectionUI, PlanetScene , InventoryScene ,
+        InventoryUI , SettlementMenu , CivilianTalkScene , TradeScene 
     ],
 }
 
 let HEADER_TEXT_STYLE = {
-    fontFamily: 'Tahoma',
-    fontSize: '26',
+    font: '40px Tahoma',
     fontStyle: 'strong',
 }
 
@@ -53,7 +52,8 @@ let DEFAULT_SFX_CONFIG = {
 // global "uninteractable" tint value
 let TINT_GRAY = 0x8c8c8c;
 
-
+// global itemlist var to add item json data to in preloader
+let ITEMLIST;
 
 
 // initialize the Phaser game
@@ -67,7 +67,7 @@ game.registry.set({
     INITIAL_SHIP_MAX_FUEL: 100,
     INITIAL_ENGINE_OUTPUT: 60,
     INITIAL_ENGINE_EFFICIENCY: 11,
-    INITIAL_PLAYER_SANITY: 100,
+    INITIAL_MAX_SANITY: 100,
     
     // arbitrary placeholder initial planet distance
     PLACEHOLDER_PLANET_DISTANCE: 1000,

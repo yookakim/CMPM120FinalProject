@@ -1,3 +1,6 @@
+'use strict';
+
+
 this.CivilianFactory = function(planet) {
     let civilianNames = ['Jack', 'Beck', 'Carl', 'Ashley', 'Sarah', 'Phil', 'June', 'Karen', 
         'Steve' , 'Julia' , 'David' , 'Amy' , 'Thomas' , 'Suzy' , 'Aidan' , 'Sophia' , 'Wai-Chun' ,
@@ -26,6 +29,8 @@ this.CivilianFactory = function(planet) {
 
     return civilian;
 
+    /* ************ */
+
     function componentsSetup(key) {
 
         // if civilian is under 13, make child
@@ -34,7 +39,7 @@ this.CivilianFactory = function(planet) {
         }
 
         // give civilian random job
-        addComponent(randomizeType());
+        randomizeType(civilian);
     }
 
     function addComponent(key) {
@@ -54,12 +59,15 @@ this.CivilianFactory = function(planet) {
         return Phaser.Math.Between(0, 100);
     }
     
-    function randomizeType() {
+    // do the component adding here
+    function randomizeType(civilian) {
         var random = Phaser.Math.Between(0, 100);
-        if (random < 25) {
-            return "merchant";
-        } else if (random >= 25) {
-            return "civilian";
+        if (random < 75) {
+            addComponent("merchant");
+            civilian.components.merchant.randomizeWares(civilian);
+            // return "merchant";
+        } else if (random >= 75) {
+            addComponent("civilian");
         }
     }
 }

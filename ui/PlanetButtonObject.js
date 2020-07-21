@@ -16,7 +16,7 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
         this.x = x;
         this.y = y;
 
-        // we unload the data from the object passed in, but i wonder if there's a better way to do it idk lol
+        // we unload the data from the object passed in
         this.planet = planet;
         this.travelTime = this.planet.travelTime;
 

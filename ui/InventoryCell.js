@@ -1,9 +1,13 @@
+'use strict';
+
+
 class InventoryCell extends Phaser.GameObjects.Sprite {
 
-    constructor(scene, x, y, key) {
+    constructor(scene, x, y, key, inventory) {
         
         super(scene, x, y, key);
         this.isOccupied = false;
+        this.inventory = inventory
 
         // actual item data cell is holding
         this.occupant;

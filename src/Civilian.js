@@ -8,8 +8,12 @@ class Civilian {
         this.name = name;
         this.age = age;
         this.wealth = wealth;
+        this.ship = ship;
 
         this.hasVisited = false;
+
+        // we attach inventory in civilian factory
+        this.inventory;
 
         this.components = {};
 
@@ -22,21 +26,36 @@ class Civilian {
     */
 
     sayGreeting() {
+        
         var greetingString = '';
+        
         
         if (!this.hasVisited) {
             if (this.components.hasOwnProperty('child')) {
                 greetingString += this.components.child.greetings[Phaser.Math.Between(0, this.components.child.greetings.length - 1)];
             }
-            greetingString += 'My name is ' + this.name + '!';
-            if (this.components.hasOwnProperty('merchant')) {
-                greetingString += ' Care to look at some of my wares?';
-            }
-            this.hasVisited = true;
-        } else {
-            greetingString = 'Nice to see you again!';
+            greetingString += '\nMy name is ' + this.name + '!';
             
+          
+        } else if (this.hasVisited) {
+            greetingString += 'Nice to see you again!';
         }
+        
+        if (this.ship.hoursLeftInDay < 1) {
+
+            greetingString += ' Don\'t you think it\'s getting a little too late to talk? I\'m tired.';   
+
+        } else if (this.ship.hoursLeftInDay > 0) {
+            
+            greetingString += ' I have ' + this.wealth + ' gold pieces in my wallet! Just felt like letting you know.';
+            this.ship.spendTime(1);
+            if (this.components.hasOwnProperty('merchant')) {
+                greetingString += '\n \nCare to look at some of my wares?';
+            }
+
+        }
+        
+         
         return greetingString;
     }
 

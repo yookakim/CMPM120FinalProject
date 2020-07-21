@@ -17,12 +17,12 @@ class TitleScreen extends Phaser.Scene {
         this.startButton.on('pointerdown', this.loadPlanetSelection, this);
 
         // initialize the ship inventory with starter items
-        this.itemList = this.cache.json.get('items');
+        
         this.itemFactory = new ItemFactory();
 
         // initialize inventory with free stuff
-        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('rock', this.itemList));
-        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('goldbag', this.itemList));
+        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('rock', ITEMLIST));
+        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('goldbag', ITEMLIST));
         
     }
 

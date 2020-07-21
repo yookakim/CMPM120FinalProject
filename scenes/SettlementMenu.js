@@ -3,6 +3,7 @@
 class SettlementMenu extends Phaser.Scene {
     constructor() {
         super('settlementmenu');
+        this.ship = ship;
     }
     
     preload() {
@@ -17,7 +18,7 @@ class SettlementMenu extends Phaser.Scene {
         this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
         this.hostPlanet = this.scene.settings.data;
         this.settlement = this.hostPlanet.inhabitants;
-        this.add.text(40, 40, 'Welcome to ' + this.settlement.settlementName + ', ' + this.hostPlanet.name, DEFAULT_TEXT_STYLE);
+        this.add.text(80, 80, 'You enter ' + this.settlement.settlementName + ', ' + this.hostPlanet.name, HEADER_TEXT_STYLE);
         
 
         // again, later on, we can have a ubiquitous scene that handles UI for us
@@ -27,9 +28,13 @@ class SettlementMenu extends Phaser.Scene {
     }
 
     loadUI() {
+
+        // display time left in day
+        this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+
         // if this settlement DOES have civilians:
         if (!this.settlement.abandoned) {
-            this.add.text(40, 60, this.settlement.population + ' beings live here.', DEFAULT_TEXT_STYLE);
+            this.add.text(80, 140, this.settlement.population + ' beings live here.', DEFAULT_TEXT_STYLE);
 
             // for each civilian in the array:
             this.settlement.civilians.forEach((element, index) => {
@@ -40,11 +45,11 @@ class SettlementMenu extends Phaser.Scene {
                 // we pass the civilian object through the button parameter, so that the called function knows which
                 // civilian it is dealing with
                 if (element.hasVisited) {
-                    this.civilianButton = new TalkButtonObject(this, 115, 140 + (index * 120 + 75), 'talkbutton', 0, this.settlement.civilians[index])
+                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 120 + 75), 'talkbutton', 0, this.settlement.civilians[index])
                 } else if (!element.hasVisited) {
-                    this.civilianButton = new TalkButtonObject(this, 115, 140 + (index * 120 + 75), 'meetbutton', 0, this.settlement.civilians[index])
+                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 120 + 75), 'meetbutton', 0, this.settlement.civilians[index])
                 }
-                this.add.text(40, 140 + (index * 120),
+                this.add.text(80, 180 + (index * 120),
                     'you see ' + 
                     element.name + ', ' +
                     element.age +
@@ -56,7 +61,7 @@ class SettlementMenu extends Phaser.Scene {
             });
         } else {
             // if nobody lives in this settlement:
-            this.add.text(40, 80, 'Nobody lives here.', DEFAULT_TEXT_STYLE);
+            this.add.text(80, 140, 'Nobody lives here.', DEFAULT_TEXT_STYLE);
         }
 
         this.add.sprite(game.config.width - 200, game.config.height - 125, 'returnshipbutton')
@@ -69,7 +74,6 @@ class SettlementMenu extends Phaser.Scene {
     loadCivilianTalkScene(civilian) {
         // once click input detected, loads civilian interaction scene with the NPC in question
         this.scene.start('civiliantalkscene', civilian);
-
         // plays door-knocking sound only if first time visiting
         if (!civilian.hasVisited) {
             this.sound.play('doorknock', DEFAULT_SFX_CONFIG);

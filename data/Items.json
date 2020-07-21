@@ -1,26 +1,54 @@
 {
     "rock": {
         "name": "rock",
+        "displayname": "rock",
         "description": "A simple, friendly rock.",
+        "worth": 20,
         "components": {
             "consumable": {
-                "value": 3  
+                "value": 1  
             },
             "engineUpgrade": {
-                "value": 5
+                "value": 15
             }
         }
     },
 
     "goldbag": {
         "name": "goldbag",
+        "displayname": "bag of gold",
         "description": "A nice plump bag of gold.",
+        "worth": 180,
         "components": {
             "consumable": {
                 "value": 1
             },
             "giveMoney": {
                 "value": 200
+            }
+        }
+    },
+
+    "childtoy": {
+        "name": "childtoy",
+        "displayname": "child's toy",
+        "description": "A well crafted toy for the common civilian child.",
+        "worth": 50,
+        "components": {
+
+        }
+    },
+    "book": {
+        "name": "book",
+        "displayname": "book",
+        "description": "A Proto-Neptuvian novel worth reading in one sitting.",
+        "worth": 70,
+        "components": {
+            "consumable": {
+                "value": 1
+            },
+            "flatSanityIncrease": {
+                "value": 20
             }
         }
     }
