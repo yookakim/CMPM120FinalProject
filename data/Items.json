@@ -18,7 +18,7 @@
         "name": "piratebadge",
         "displayname": "pirate badge",
         "description": "Your old, tattered ensignia for Space Pyrates Squadron 4.",
-        "worth": 15,
+        "worth": 150,
         "components": {
 
         }
@@ -60,7 +60,7 @@
 
         }
     },
-    
+
     "book": {
         "name": "book",
         "displayname": "book",

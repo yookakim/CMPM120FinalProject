@@ -57,14 +57,14 @@ class CivilianTalkScene extends Phaser.Scene {
         //     civilianTitle += 'Civilian - ';
         // }
 
-        // if (this.civilian.components.hasOwnProperty('merchant')) {
-        //     civilianTitle += 'Merchant - ';
+        if (this.civilian.components.hasOwnProperty('merchant')) {
+            
 
-        //     if (!this.tooLate) {
-        //         this.tradeButton = new ButtonTemplate(this, 300, 300, 'tradebutton');
-        //         this.tradeButton.on('pointerdown', this.openTradeMenu, this);
-        //     }
-        // }
+            if (!this.tooLate) {
+                this.tradeButton = new ButtonTemplate(this, 300, 300, 'tradebutton');
+                this.tradeButton.on('pointerdown', this.openTradeMenu, this);
+            }
+        }
 
         // if (this.civilian.components.hasOwnProperty('child')) {
         //     civilianTitle += 'Child -';
