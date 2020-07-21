@@ -43,7 +43,7 @@ class CivilianTalkScene extends Phaser.Scene {
         
 
 
-        this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        this.add.text(game.config.width - 280, 100, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
         
         this.returnButton = this.add.sprite(game.config.width - 200, game.config.height - 125, 'return')
             .setInteractive()
