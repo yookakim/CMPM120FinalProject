@@ -26,12 +26,12 @@ this.GameComponents = {
         }
     },
 
-    engineUpgrade: function (strength) {
+    engineUpgrade: function (outputUpgradeAmount) {
 
         this.name = 'engineUpgrade';
         this.onUse = function(ship) {
             console.log('upgraded engine');
-            ship.engine.engineOutput += strength
+            ship.engine.engineOutput += outputUpgradeAmount;
         };
     },
 
@@ -42,6 +42,7 @@ this.GameComponents = {
     },
 
     flatSanityIncrease: function (sanityAmount) {
+        
         this.name = 'flatSanityIncrease';
         this.onUse = function(ship) {
             ship.sanity += sanityAmount;

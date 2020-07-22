@@ -39,7 +39,7 @@
     "piratebadge": {
         "name": "piratebadge",
         "displayname": "pirate badge",
-        "description": "Your old, tattered ensignia for Space Pyrates Squadron 4.",
+        "description": "Your old, tattered ensignia for Space Pyrates Squadron 4. \n\nIn your opinion, it still looks cool as ever.",
         "worth": 150,
         "components": {
 

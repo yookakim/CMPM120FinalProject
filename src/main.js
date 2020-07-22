@@ -45,10 +45,10 @@ let DEFAULT_TEXT_STYLE = {
     fontFamily: 'Tahoma',
 }
 
-let DEFAULT_TOOLTIP_STYLE = {    
+let DEFAULT_TOOLTIP_STYLE = {
     align: 'center',
     fixedWidth: '150',
-    fontSize: '12px',
+    fontSize: '14px',
     fontFamily: 'Tahoma',
     backgroundColor: '#adadad',
     wordWrap: {
@@ -73,7 +73,7 @@ let game = new Phaser.Game(config);
 // insert static globals into the game's freebie data registry
 game.registry.set({
     
-    INITIAL_PLANET_OBJECT: new Planet('startplanet'),
+    INITIAL_PLANET_OBJECT: new Planet('Home'),
     
     GAME_PLAYTHROUGH_TOTAL_DAYS: 50,
 

@@ -23,9 +23,9 @@ class InventoryScene extends Phaser.Scene {
         // launch the container scene for the inventory
         this.scene.launch('inventoryui', this.inventory);
         console.log(this.inventory);
-        this.add.text(30, 30, 'inventoryscene', DEFAULT_TEXT_STYLE);
-        this.add.text(30, 80, 'Consumable items can be used by clicking on them (differentiate between consumable/nonconsumable items later)', DEFAULT_TEXT_STYLE);
-        this.add.text(30, 100, 'TODO: Add item tooltips/explanation of effects on consume', DEFAULT_TEXT_STYLE);
+        this.add.text(30, 30, 'Ship Inventory', HEADER_TEXT_STYLE);
+        this.add.text(30, 80, 'Certain items can be used by clicking on them.', DEFAULT_TEXT_STYLE);
+        this.add.text(30, 100, 'Hover over each item for a description.', DEFAULT_TEXT_STYLE);
 
         this.loadUI();
 

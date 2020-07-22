@@ -8,6 +8,8 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
         this.item = item;
         this.inventory = inventory;
         this.index = index;
+
+        // properties for controlling tooltip
         this.pointer = scene.input.activePointer;
         this.tooltipTimer = 0;
         this.hovered = false;
@@ -18,25 +20,21 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         this.setInteractive();
         this.on('pointerdown', this.itemClick);
-        // this.on('pointerout', function() {
-        //     this.tooltipTimer = 0;
-        // });
+
         this.on('pointerover', function() {
-            // this.tooltipTimer = 0;
-            // console.log('pointer moved, destroying if tooltip exists');
-            // if (this.tooltip) {
-            //     console.log('destroyed tooltip');
-            //     this.tooltip.destroy(this.tooltip);
-            // }
+            // if hovered over, the pointer is on top
             this.hovered = true;
         });
         this.on('pointerout', function() {
+            // if pointer leaves, hovered is false
             this.hovered = false;
         });
         this.scene.input.on('pointermove', () => {
+            // reset the tooltip timer every time pointer moves
             this.tooltipTimer = 0;
             if (this.tooltipExists) {
                 console.log('destroyed tooltip');
+                // if there is a tooltip existing and pointer moves, destroy the tooltip
                 this.tooltipExists = false;
                 this.tooltip.destroy(this.tooltip);
             }            
