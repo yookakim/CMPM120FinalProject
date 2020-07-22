@@ -24,7 +24,6 @@ class Ship {
 
         // ship stats
         this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');
-        this.maxFuelAmount = this.game.registry.get('INITIAL_SHIP_MAX_FUEL');
 
         this.totalDaysTravelled = 0;
         this.lastTravelTime = 0;
@@ -38,9 +37,11 @@ class Ship {
 
         this.maxSanity = this.game.registry.get('INITIAL_MAX_SANITY');
         this.sanity = this.maxSanity / 2;
-        this.sanityLossFactor = 2;
+
+        // default .5, check bonuses every turn and subtract if passive item in inventory
+        this.sanityLossFactor = .5;
         
-        // set initial max travel distanec
+        // set initial max travel distance
         this._maxTravelDistance = this.engine.engineOutput * this.engine.engineEfficiency;
     }
 
@@ -72,8 +73,19 @@ class Ship {
 
     // decrease sanity; might be other factors changing how this works later
     changeSanity() {
-        // for now just decrease by .5 for every day in travel
-        this.sanity = this.sanity - this.lastTravelTime / this.sanityLossFactor;
+        // lose one sanity every two days by default
+        console.log(this.inventory);
+
+        var thisTurnSanityLoss = this.sanityLossFactor;
+
+        for (var i = 0; i < this.inventory.contents.length; i++) {
+            if (this.inventory.contents[i] != null) {
+                if (this.inventory.contents[i].components.hasOwnProperty('passiveSanityIncrease')) {
+                    thisTurnSanityLoss = this.sanityLossFactor - this.inventory.contents[i].components.passiveSanityIncrease.amount;
+                }
+            }
+        }
+        this.sanity = this.sanity - this.lastTravelTime * thisTurnSanityLoss;
 
     }
 

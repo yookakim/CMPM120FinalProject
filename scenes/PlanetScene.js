@@ -18,6 +18,7 @@ class PlanetScene extends Phaser.Scene {
 
     create() {
         // this.planet = game.registry.get('tempPlanet');
+        console.log(ship);
         this.planet = this.scene.settings.data;
         
         // ui like text and buttons will probably be managed by a separate Scene overlayed on top later

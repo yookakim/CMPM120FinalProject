@@ -35,6 +35,19 @@ this.GameComponents = {
         };
     },
 
+    passiveSanityIncrease: function(sanityPerTurnIncrease) {
+        
+        this.name = 'passiveSanityIncrease';
+        this.amount = sanityPerTurnIncrease;
+    },
+
+    flatSanityIncrease: function (sanityAmount) {
+        this.name = 'flatSanityIncrease';
+        this.onUse = function(ship) {
+            ship.sanity += sanityAmount;
+        }
+    },
+    
     giveMoney: function (goldAmount) {
 
         this.name = 'giveMoney';
@@ -43,14 +56,6 @@ this.GameComponents = {
             ship.treasury += goldAmount;
         }
     },
-
-    flatSanityIncrease: function (sanityAmount) {
-        this.name = 'flatSanityIncrease';
-        this.onUse = function(ship) {
-            ship.sanity += sanityAmount
-        }
-    },
-    
 
     // civilian components
     civilian: function() {

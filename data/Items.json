@@ -30,7 +30,9 @@
         "description": "Just an ordinary beat-up doll of those damned Feds... or is it?",
         "worth": 120,
         "components": {
-
+            "passiveSanityIncrease": {
+                "value": 0.1
+            }
         }
     },
 
