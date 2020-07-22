@@ -45,6 +45,17 @@ let DEFAULT_TEXT_STYLE = {
     fontFamily: 'Tahoma',
 }
 
+let DEFAULT_TOOLTIP_STYLE = {    
+    align: 'center',
+    fixedWidth: '150',
+    fontSize: '12px',
+    fontFamily: 'Tahoma',
+    backgroundColor: '#adadad',
+    wordWrap: {
+        width: 150,
+    }    
+}
+
 let DEFAULT_SFX_CONFIG = {
     volume: .8,
 }

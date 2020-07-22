@@ -27,7 +27,7 @@
     "fedcursingdoll": {
         "name": "fedcursingdoll",
         "displayname": "Federation Officer Cursing Doll",
-        "description": "Just an ordinary beat-up doll of those damned Feds... or is it?",
+        "description": "Just an ordinary beat-up doll of those damned Feds... or is it? \n\nSaves you .1 sanity every day in travel as long as \nit is in your inventory.",
         "worth": 120,
         "components": {
             "passiveSanityIncrease": {
@@ -49,7 +49,7 @@
     "upgradekit": {
         "name": "upgradekit",
         "displayname": "upgrade kit",
-        "description": "A high level automated upgrade kit stolen years ago by the Feds.",
+        "description": "A high level automated upgrade kit stolen years ago by the Feds. \n\nClick to upgrade your engine!",
         "worth": 100,
         "components": {
             "consumable": {
