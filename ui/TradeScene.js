@@ -54,8 +54,10 @@ class TradeScene extends Phaser.Scene {
         this.cancelButton = new ButtonTemplate(this, 150, 600, 'cancelbutton');
         this.cancelButton.on('pointerdown', this.cancelTrade, this);
 
-        this.receiveValueText = this.add.text(900, 300, '0', DEFAULT_TEXT_STYLE);
-        this.offerValueText = this.add.text(200, 300, '0', DEFAULT_TEXT_STYLE);
+        this.add.text(800, 220, 'Total value of their offer:', DEFAULT_TEXT_STYLE);
+        this.receiveValueText = this.add.text(900, 260, '0', DEFAULT_TEXT_STYLE);
+        this.add.text(100, 220, 'Total value of your offer:', DEFAULT_TEXT_STYLE);
+        this.offerValueText = this.add.text(200, 260, '0', DEFAULT_TEXT_STYLE);
 
         // set up merchant inventory and cells
 
@@ -197,13 +199,18 @@ class TradeScene extends Phaser.Scene {
 
         console.log(this.ship.inventory.contents);
         console.log(this.civilian.inventory.contents);
+
+        this.civilian.components.merchant.justTraded = true;
+
+        console.log(this.civilian);
         this.scene.stop('inventoryui');
         this.scene.stop('tradescene');
-        this.scene.start('civiliantalkscene');
+        this.scene.start('civiliantalkscene', this.civilian);
     }
 
     cancelTrade() {
-
+    
+        this.civilian.components.merchant.justTraded = true;
         this.scene.stop('inventoryui');
         this.scene.stop('tradescene');
         this.scene.start('civiliantalkscene');

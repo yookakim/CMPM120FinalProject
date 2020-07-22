@@ -65,12 +65,28 @@ this.GameComponents = {
         
         this.name = 'merchant';
         
+        // for changing dialogue immediately after trade scene
+        this.justTraded = false;
+        
+        /* 
+            types of merchants will have different types of items:
+            Possible items ordered from most to least likely
+
+            Civilian merchant (most normal?):
+                book (flat sanity increase)
+            Civilian child merchant
+                child toy
+            Outcast merchant
+                book (flat sanity increase)
+                illegal ship parts (ship upgrade)
+            Outcast child merchant (most rare)
+                child toy
+        */
+
         this.randomizeWares = function(civilian) {
 
             civilian.inventory = new CivilianInventory(7, civilian);
             // array of inventory items to spawn for this merchant
-
-            // randomize later, but add a rock for debug purposes
 
             var itemFactory = new ItemFactory();
 

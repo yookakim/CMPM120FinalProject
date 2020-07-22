@@ -77,11 +77,19 @@ class PlanetSelection extends Phaser.Scene {
         // later on, the UI would know the info about the planet, and display it accordingly
         this.sound.play('launchsound', DEFAULT_SFX_CONFIG);
         // start next scene (we can add the intermediary scene between this one and planetscene later)
-        this.scene.start('planetscene', planet);
+        ship.travel(planet);
+        
+        if (this.ship.totalDaysTravelled >= game.registry.get('GAME_PLAYTHROUGH_TOTAL_DAYS') - 1) {
+            // load end game scene, and "settle in" on new planet
+            this.scene.start('endgamescene');
+        } else {
+            this.scene.start('planetscene', planet);
+        } 
+        
+        
         this.scene.stop('planetselectionui');
         this.scene.stop('planetselection');
 
-        ship.travel(planet);
     }    
     
     inputSetup() {

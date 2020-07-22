@@ -32,7 +32,7 @@ let config = {
     scene: [ 
         Preloader ,
         TitleScreen , PlanetSelection , PlanetSelectionUI, PlanetScene , InventoryScene ,
-        InventoryUI , SettlementMenu , CivilianTalkScene , TradeScene 
+        InventoryUI , SettlementMenu , CivilianTalkScene , TradeScene , EndGameScene
     ],
 }
 
@@ -62,9 +62,11 @@ let game = new Phaser.Game(config);
 // insert static globals into the game's freebie data registry
 game.registry.set({
     
-    // arbitrary engine start strength
     INITIAL_PLANET_OBJECT: new Planet('startplanet'),
-    INITIAL_SHIP_MAX_FUEL: 100,
+    
+    GAME_PLAYTHROUGH_TOTAL_DAYS: 20,
+
+    // arbitrary engine start strength
     INITIAL_ENGINE_OUTPUT: 60,
     INITIAL_ENGINE_EFFICIENCY: 11,
     INITIAL_MAX_SANITY: 100,
@@ -73,5 +75,5 @@ game.registry.set({
     PLACEHOLDER_PLANET_DISTANCE: 1000,
 })
 
-// initialize the ship as a global object
+// initialize the ship as a global singleton
 let ship = new Ship(game);

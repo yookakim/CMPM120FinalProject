@@ -62,6 +62,8 @@ this.CivilianFactory = function(planet) {
     // do the component adding here
     function randomizeType(civilian) {
         // var weightsTotal;
+
+        // percentage of time the NPC is a trader:
         var merchantChance = 50;
         
         if (Phaser.Math.Between(0, 100) < merchantChance) {
@@ -70,6 +72,7 @@ this.CivilianFactory = function(planet) {
             
         }
 
+        // percentage of time NPC is a civilian (otherwise, is an outcast)
         var civilianChance = 50;
         if (Phaser.Math.Between(0,100) < civilianChance) {
             addComponent("civilian");
