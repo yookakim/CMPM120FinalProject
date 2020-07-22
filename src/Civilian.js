@@ -1,7 +1,7 @@
 'use strict';
 
 class Civilian {
-    constructor(name, age, wealth) {
+    constructor(name, age, wealth, hostPlanet) {
         
         // some basic stats to play around with (as long as we have the base citizen object we can add whatever later)
         // could be possible to use inheritance to create some scripted custom people as well, or other types of civilians
@@ -11,6 +11,8 @@ class Civilian {
         this.ship = ship;
 
         this.hasVisited = false;
+
+        this.hostPlanet = hostPlanet;
 
         // we attach inventory in civilian factory
         this.inventory;
@@ -30,7 +32,7 @@ class Civilian {
 
 
     getGreeting() {
-        
+
         this.CIV = 
                     (this.components.hasOwnProperty('civilian') && 
                     !this.components.hasOwnProperty('merchant') &&
@@ -72,7 +74,8 @@ class Civilian {
                     (!this.components.hasOwnProperty('civilian') && 
                     this.components.hasOwnProperty('merchant') &&
                     !this.components.hasOwnProperty('child') &&
-                    this.components.hasOwnProperty('outcast'));        
+                    this.components.hasOwnProperty('outcast'));    
+                        
         var dialogueObject = {
             greetingString: '',
             tooLateString: '',

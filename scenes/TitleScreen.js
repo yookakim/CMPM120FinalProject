@@ -23,6 +23,7 @@ class TitleScreen extends Phaser.Scene {
         // initialize inventory with free stuff
         this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('upgradekit', ITEMLIST));
         this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('piratebadge', ITEMLIST));
+        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('fedcursingdoll', ITEMLIST));
         
     }
 

@@ -19,32 +19,59 @@ this.CivilianFactory = function(planet) {
     // reference to host planet to read data from
     let hostPlanet = planet;
 
-    let civilian = new Civilian(
+    let newcivilian = new Civilian(
         randomizeName(),
         randomizeAge(),
-        randomizeWealth()
+        randomizeWealth(),
+        hostPlanet
     );
 
-    componentsSetup();
+    componentsSetup(newcivilian);
 
-    return civilian;
+    if (newcivilian.components.hasOwnProperty('merchant')) {
+        newcivilian.components.merchant.randomizeWares(newcivilian);
+    }
+
+    return newcivilian;
 
     /* ************ */
 
-    function componentsSetup(key) {
+    function componentsSetup(civilian) {
 
         // if civilian is under 13, make child
-        if (civilian.age < 13) {
-            addComponent('child');
+        if (civilian.age < 60) {
+            addComponent('child', civilian);
         }
 
         // give civilian random job
         randomizeType(civilian);
     }
 
-    function addComponent(key) {
+    function addComponent(key, civilian) {
         let component = new GameComponents[key]();
         civilian.components[key] = component;
+    }
+    
+    // do the component adding here
+    function randomizeType(civilian) {
+        // var weightsTotal;
+
+        // percentage of time the NPC is a trader:
+        var merchantChance = 50;
+        
+
+
+        // percentage of time NPC is a civilian (otherwise, is an outcast)
+        var civilianChance = 50;
+        if (Phaser.Math.Between(0,100) < civilianChance) {
+            addComponent("civilian", civilian);
+        } else {
+            addComponent("outcast", civilian)
+        }
+        if (Phaser.Math.Between(0, 100) < merchantChance) {
+            addComponent("merchant", civilian);
+            
+        }
     }
 
     function randomizeName() {
@@ -57,28 +84,6 @@ this.CivilianFactory = function(planet) {
     
     function randomizeWealth() {
         return Phaser.Math.Between(0, 100);
-    }
-    
-    // do the component adding here
-    function randomizeType(civilian) {
-        // var weightsTotal;
-
-        // percentage of time the NPC is a trader:
-        var merchantChance = 50;
-        
-        if (Phaser.Math.Between(0, 100) < merchantChance) {
-            addComponent("merchant");
-            civilian.components.merchant.randomizeWares(civilian);
-            
-        }
-
-        // percentage of time NPC is a civilian (otherwise, is an outcast)
-        var civilianChance = 50;
-        if (Phaser.Math.Between(0,100) < civilianChance) {
-            addComponent("civilian");
-        } else {
-            addComponent("outcast")
-        }
     }
 }
 

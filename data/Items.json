@@ -14,6 +14,26 @@
         }
     },
 
+    "xorenergydrink": {
+        "name": "xorenergydrink",
+        "displayname": "Xor's Energy Drink",
+        "description": "A centuries old formula designed to keep you sharp and alert for longer.",
+        "worth": 20,
+        "components": {
+            
+        }
+    },
+
+    "fedcursingdoll": {
+        "name": "fedcursingdoll",
+        "displayname": "Federation Officer Cursing Doll",
+        "description": "Just an ordinary beat-up doll of those damned Feds... or is it?",
+        "worth": 120,
+        "components": {
+
+        }
+    },
+
     "piratebadge": {
         "name": "piratebadge",
         "displayname": "pirate badge",

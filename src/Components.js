@@ -72,6 +72,7 @@ this.GameComponents = {
             types of merchants will have different types of items:
             Possible items ordered from most to least likely
 
+
             Civilian merchant (most normal?):
                 book (flat sanity increase)
             Civilian child merchant
@@ -90,18 +91,47 @@ this.GameComponents = {
 
             var itemFactory = new ItemFactory();
 
+            var CIV_MERC, CIV_CHILD_MERC, OUT_MERC, OUT_CHILD_MERC;
+
+            CIV_MERC = 
+                (civilian.components.hasOwnProperty('civilian') && 
+                !civilian.components.hasOwnProperty('child') &&
+                !civilian.components.hasOwnProperty('outcast'));
+
+            CIV_CHILD_MERC = 
+                (civilian.components.hasOwnProperty('civilian') && 
+                civilian.components.hasOwnProperty('child') &&
+                !civilian.components.hasOwnProperty('outcast'));
+
+            OUT_MERC = 
+                (!civilian.components.hasOwnProperty('civilian') && 
+                !civilian.components.hasOwnProperty('child') &&
+                civilian.components.hasOwnProperty('outcast'));
+
+            OUT_CHILD_MERC = 
+                (!civilian.components.hasOwnProperty('civilian') && 
+                civilian.components.hasOwnProperty('child') &&
+                civilian.components.hasOwnProperty('outcast'));
 
 
-
-            if (civilian.components.hasOwnProperty('child')) {
-                var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
-                civilian.inventory.inventoryAdd(childtoy);
-            } else {
+            if (CIV_MERC) {
                 var rock = itemFactory.generateItem('rock', ITEMLIST);
                 var book = itemFactory.generateItem('book', ITEMLIST);
     
                 civilian.inventory.inventoryAdd(rock);
                 civilian.inventory.inventoryAdd(book);
+            } else if (CIV_CHILD_MERC) {
+                var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
+
+                civilian.inventory.inventoryAdd(childtoy);
+            } else if (OUT_MERC) {
+                var xorenergydrink = itemFactory.generateItem('xorenergydrink', ITEMLIST);
+
+                civilian.inventory.inventoryAdd(xorenergydrink);
+            } else if (OUT_CHILD_MERC) {
+                var fedcursingdoll = itemFactory.generateItem('fedcursingdoll', ITEMLIST);
+
+                civilian.inventory.inventoryAdd(fedcursingdoll);
             }
 
             var items = [];

@@ -40,14 +40,14 @@ class PlanetFactory {
             this.planetArray[i] = new Planet();
             var currentPlanet = this.planetArray[i];
             currentPlanet.name = this.generatePlanetName();
-            currentPlanet.planetDistance = this.generateDistance();
-            
+            currentPlanet.planetDistance = this.generateDistance();            
             currentPlanet.travelTime =  Phaser.Math.Snap.Ceil(
                 (currentPlanet.planetDistance / (ship.engine.engineOutput)), 1);
             if (currentPlanet.planetDistance < ship.maxTravelDistance) {
                 this.travellablePlanetMade = true;
             }
 
+            currentPlanet.ecosystem = this.generateEcosystem(currentPlanet);
             // generate settlement based on properties of current planet
             currentPlanet.inhabitants = this.generateSettlements(currentPlanet);
         }
@@ -66,27 +66,12 @@ class PlanetFactory {
                 console.log('travellable planet found, inserted at index ' + randomIndex);
                 this.travellablePlanetMade = true;
             }
-
+            replacementPlanet.ecosystem = this.generateEcosystem(replacementPlanet);
             replacementPlanet.inhabitants = this.generateSettlements(replacementPlanet);
         }
 
         this.travellablePlanetMade = false;
-        /* 
-        we hard code here with array indices, but the goal is to
-        iterate through the array to create random planets 
-        */
 
-        // this.planetArray[0].planetDistance = 360
-        // this.planetArray[1].planetDistance = 1050;
-        
-        // this.planetArray[0].inhabitants = new Settlement('united states of america');
-        // this.planetArray[1].inhabitants = new Settlement('cowland');
-
-        // this.planetArray[1].inhabitants.civilians = [
-        //     new Civilian('hardcodedbob', 21, 100),
-        //     new Civilian('hardcodedtom', 10, 4),
-        //     new Civilian('elderjim', 104, 50),
-        // ];
         return this.planetArray;
     }
 
@@ -99,6 +84,12 @@ class PlanetFactory {
         // for now returns something between these hard-coded numbers 
         // for generating distance, 
         return Phaser.Math.Between(300, 1200);
+    }
+
+    generateEcosystem(planet) {
+        // will the planet be Temperate, Icy, Dry, or Humid
+        var tempEcosystem = new Ecosystem(planet);
+        return tempEcosystem;
     }
 
     generateSettlements(planet) {
@@ -114,6 +105,4 @@ class PlanetFactory {
 
         return tempSettlement;
     }
-
-
 }

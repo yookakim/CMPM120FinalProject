@@ -38,7 +38,7 @@ class Planet {
 
             etc.
         */
-        this.planetMass;
+        // this.planetMass;
 
         // new settlement object
         /* 
@@ -46,7 +46,10 @@ class Planet {
         would we just leave this.inhabitants as null?
         */
         this.inhabitants;
-        this.atmosphere;
+
+        this.ecosystem;
+
+        //this.atmosphere;
     }
 
     get planetDistance() {

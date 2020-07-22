@@ -43,11 +43,14 @@ class Preloader extends Phaser.Scene {
         // items
         this.load.image('highlightborder', './assets/items/highlightborder.png');
         this.load.image('rock', './assets/items/rockicon.png');
+        this.load.image('xorenergydrink', './assets/items/xorenergydrinkicon.png');
         this.load.image('piratebadge', './assets/items/piratebadgeicon.png');
         this.load.image('upgradekit', './assets/items/upgradekiticon.png');
         this.load.image('goldbag', './assets/items/goldbagicon.png');
         this.load.image('childtoy', './assets/items/childtoyicon.png');
         this.load.image('book', './assets/items/bookicon.png');
+        this.load.image('fedcursingdoll', './assets/items/fedcursingdollicon.png');
+        
 
         // audio
         this.load.audio('launchsound', './assets/SFX/launch_sound.wav');

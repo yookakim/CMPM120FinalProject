@@ -46,7 +46,6 @@ class Settlement {
         
         this.civilians = [];
         this.generateCivilians();
-        console.log(this.civilians);
     }
 
 

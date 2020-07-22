@@ -36,7 +36,7 @@ class PlanetSelection extends Phaser.Scene {
         // grab the array of planets we created in the planet factory
         this.planetGroup = this.planetFactory.generatePlanets();
 
-        // this.ship.inventory.inventoryAdd();
+        console.log(this.planetGroup);
 
 
 
