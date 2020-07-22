@@ -8,6 +8,10 @@ class Preloader extends Phaser.Scene {
         this.load.image('titlezone', './assets/UI/title_zone.png');
         this.load.image('titlestartbutton', './assets/UI/buttons/title_start_button.png');
         
+        // backgrounds
+        this.load.image('settlementbackground', './assets/settlement_background.png');
+        this.load.image('inventoryscenebackground', './assets/spaceship_inventory_background.png');
+
         // buttons/UI
         this.load.image('shiptinkerbutton', './assets/UI/buttons/ship_tinker_button.png');
         this.load.image('settlementbutton', './assets/UI/buttons/visit_settlement_button.png');
@@ -32,7 +36,6 @@ class Preloader extends Phaser.Scene {
         this.load.image('planetstats', './assets/UI/planetmenu_stats_placeholder.png');
         
         // settlement/civilian scenes
-        this.load.image('settlementbackground', './assets/settlement_background.png');
 
         // inventory systems
         this.load.image('inventorytile', './assets/UI/inventorytile.png');

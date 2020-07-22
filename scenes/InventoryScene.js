@@ -15,12 +15,11 @@ class InventoryScene extends Phaser.Scene {
 
     create() {
 
-        // cache all the item data from the JSON file we loaded in the preloader
-        let itemList = this.cache.json.get('items');
-
         // initialize new instance of our item making factory
         this.itemFactory = new ItemFactory();
         
+        this.add.image(0, 0, 'inventoryscenebackground').setOrigin(0, 0);
+
         // launch the container scene for the inventory
         this.scene.launch('inventoryui', this.inventory);
         console.log(this.inventory);
