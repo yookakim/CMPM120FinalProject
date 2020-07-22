@@ -14,7 +14,8 @@ class CivilianTalkScene extends Phaser.Scene {
 
         // reference to global ship object
         this.ship = ship;
-        this.tooLate = false;
+
+        EventManager.on('hoursleftincreased', this.checkTooLate, this);
     }
 
     preload() {
@@ -26,12 +27,10 @@ class CivilianTalkScene extends Phaser.Scene {
         this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
         this.civilian = this.scene.settings.data;
         
-        
-        if (this.ship.hoursLeftInDay < 2) {
-            // too late to talk
-            this.tooLate = true;
-        }
-        
+        this.tooLate = false;
+
+        this.checkTooLate();
+
         this.dialogueObject = this.civilian.getGreeting();
         
         
@@ -44,6 +43,15 @@ class CivilianTalkScene extends Phaser.Scene {
         
 
 
+    }
+
+    checkTooLate() {
+        if (this.ship.hoursLeftInDay < 2) {
+            // too late to talk
+            this.tooLate = true;
+        } else if (this.ship.hoursLeftInDay > 1) {
+            this.tooLate = false;
+        }
     }
 
     loadUI() {

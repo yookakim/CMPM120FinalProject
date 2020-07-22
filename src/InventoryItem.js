@@ -33,17 +33,29 @@ class InventoryItem {
             // components in item that are called on consume
             for ( var prop in this.components ) {
                 switch (prop) {
-                    case "engineUpgrade":
-                        this.components.engineUpgrade.onUse(ship);
+                    case "engineUpgrade":                        
+                        if (game.scene.isActive('inventoryscene')) {
+                            this.components.engineUpgrade.onUse(ship);
+                        }
                         break;
 
+                    case "flatSanityIncrease":
+                        if (game.scene.isActive('inventoryscene')) {
+                            this.components.flatSanityIncrease.onUse(ship);
+                        }
+                        break;
+                        
+                    case "dayTimeIncrease":
+                        if (game.scene.isActive('settlementmenu')) {
+                            console.log('used energy drink');
+                            this.components.dayTimeIncrease.onUse(ship);
+                        }
+                        break;
+                    
                     case "giveMoney":
                         this.components.giveMoney.onUse(ship);
                         break;
 
-                    case "flatSanityIncrease":
-                        this.components.flatSanityIncrease.onUse(ship);
-                        break;
 
                     // call this case last so the "consuming" part happens after other item effects
                     case "consumable":

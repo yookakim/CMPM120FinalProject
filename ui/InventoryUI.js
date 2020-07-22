@@ -8,17 +8,23 @@
 class InventoryUI extends Phaser.Scene {
     constructor() {
         super('inventoryui');
-        this.inventoryPositionX = 100;
-        this.inventoryPositionY = 500;
-        this.inventorySquareSize = 64;
+
     }
 
     preload() {        
 
     }
 
-    create() {        
-        this.inventory = this.scene.settings.data;
+    create() {
+
+        this.inventoryUIData = this.scene.settings.data;
+
+        this.inventory = this.inventoryUIData.inventory;
+        this.inventoryPositionX = this.inventoryUIData.positionX;
+        this.inventoryPositionY = this.inventoryUIData.positionY;
+        
+        this.inventorySquareSize = 64;
+
         this.cellContainer = [];
 
         // initial draw of empty tile cells/containers

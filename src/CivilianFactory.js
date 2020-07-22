@@ -38,8 +38,8 @@ this.CivilianFactory = function(planet) {
 
     function componentsSetup(civilian) {
 
-        // if civilian is under 13, make child
-        if (civilian.age < 60) {
+        // if civilian is 15 years or under, make child
+        if (civilian.age < 16) {
             addComponent('child', civilian);
         }
 
@@ -54,18 +54,17 @@ this.CivilianFactory = function(planet) {
     
     // do the component adding here
     function randomizeType(civilian) {
-        // var weightsTotal;
-
-        // percentage of time the NPC is a trader:
-        var merchantChance = 50;
-        
-
 
         // percentage of time NPC is a civilian (otherwise, is an outcast)
         var civilianChance = 50;
+        
+        // percentage of time the NPC is a trader:
+        var merchantChance = 50;
+
         if (Phaser.Math.Between(0,100) < civilianChance) {
             addComponent("civilian", civilian);
         } else {
+            // if not normal civilian, is an outcast
             addComponent("outcast", civilian)
         }
         if (Phaser.Math.Between(0, 100) < merchantChance) {
@@ -79,7 +78,7 @@ this.CivilianFactory = function(planet) {
     }
     
     function randomizeAge() {
-        return Phaser.Math.Between(3, 80);
+        return Phaser.Math.Between(3, 70);
     }
     
     function randomizeWealth() {

@@ -17,10 +17,15 @@
     "xorenergydrink": {
         "name": "xorenergydrink",
         "displayname": "Xor's Energy Drink",
-        "description": "A centuries old formula designed to keep you sharp and alert for longer.",
+        "description": "A centuries old formula designed to keep you sharp and alert for longer, popular with spacefarers across the universe.",
         "worth": 20,
         "components": {
-            
+            "consumable": {
+                "value": 1
+            },
+            "dayTimeIncrease": {
+                "value": 2
+            }
         }
     },
 

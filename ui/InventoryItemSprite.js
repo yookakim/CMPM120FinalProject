@@ -63,9 +63,18 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
         // these if statements feel a little dirty but i will use them lol
 
         console.log('clicked');
-        if (this.scene.scene.isActive('inventoryscene')) {
-            // if clicked in inventory menu:
-            this.item.onUse(this.inventory, this.index);
+        if (!this.scene.scene.isActive('tradescene')) {
+            // if not clicked in trade scene:
         }
+
+        // this is pretty hacky lmao
+        if (this.item.components.hasOwnProperty('dayTimeIncrease')) {
+            if (game.scene.isActive('settlementmenu') || game.scene.isActive('civiliantalkscene')) {
+                this.item.onUse(this.inventory, this.index);
+                return;
+            }
+            return;
+        }
+        this.item.onUse(this.inventory, this.index);
     }
 }

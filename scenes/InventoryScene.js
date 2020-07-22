@@ -20,12 +20,20 @@ class InventoryScene extends Phaser.Scene {
         
         this.add.image(0, 0, 'inventoryscenebackground').setOrigin(0, 0);
 
+        var inventoryUIDataObject = {
+            inventory: this.inventory,
+            positionX: 100,
+            positionY: 500
+        };
+        
         // launch the container scene for the inventory
-        this.scene.launch('inventoryui', this.inventory);
+        this.scene.launch('inventoryui', inventoryUIDataObject);
+
+
         console.log(this.inventory);
-        this.add.text(30, 30, 'Ship Inventory', HEADER_TEXT_STYLE);
-        this.add.text(30, 80, 'Certain items can be used by clicking on them.', DEFAULT_TEXT_STYLE);
-        this.add.text(30, 100, 'Hover over each item for a description.', DEFAULT_TEXT_STYLE);
+        this.add.text(68, 50, 'Ship Inventory', HEADER_TEXT_STYLE);
+        this.add.text(68, 100, 'Certain items can be used by clicking on them.', DEFAULT_TEXT_STYLE);
+        this.add.text(68, 120, 'Hover over each item for a description.', DEFAULT_TEXT_STYLE);
 
         this.loadUI();
 

@@ -26,6 +26,8 @@ this.GameComponents = {
         }
     },
 
+    /* ****** Active Effects ****** */
+
     engineUpgrade: function (outputUpgradeAmount) {
 
         this.name = 'engineUpgrade';
@@ -35,20 +37,24 @@ this.GameComponents = {
         };
     },
 
-    passiveSanityIncrease: function(sanityPerTurnIncrease) {
-        
-        this.name = 'passiveSanityIncrease';
-        this.amount = sanityPerTurnIncrease;
-    },
-
     flatSanityIncrease: function (sanityAmount) {
-        
+
         this.name = 'flatSanityIncrease';
         this.onUse = function(ship) {
             ship.sanity += sanityAmount;
         }
     },
     
+    dayTimeIncrease: function(timeAmount) {
+        
+        this.name = 'dayTimeIncrease';
+        this.onUse = function(ship) {
+            ship.hoursLeftInDay += timeAmount;
+            console.log('added ' + timeAmount + ' to hours left');
+            EventManager.emit('hoursleftincreased', ship.hoursLeftInDay);
+        }
+    },
+
     giveMoney: function (goldAmount) {
 
         this.name = 'giveMoney';
@@ -56,6 +62,14 @@ this.GameComponents = {
             console.log('added ' + goldAmount + ' to treasury');
             ship.treasury += goldAmount;
         }
+    },
+
+    /* ****** Passive Effects ****** */
+
+    passiveSanityIncrease: function(sanityPerTurnIncrease) {
+        
+        this.name = 'passiveSanityIncrease';
+        this.amount = sanityPerTurnIncrease;
     },
 
     // civilian components
@@ -121,11 +135,13 @@ this.GameComponents = {
 
 
             if (CIV_MERC) {
-                var rock = itemFactory.generateItem('rock', ITEMLIST);
-                var book = itemFactory.generateItem('book', ITEMLIST);
+                // var rock = itemFactory.generateItem('rock', ITEMLIST);
+                // var book = itemFactory.generateItem('book', ITEMLIST);
     
-                civilian.inventory.inventoryAdd(rock);
-                civilian.inventory.inventoryAdd(book);
+                // civilian.inventory.inventoryAdd(rock);
+                // civilian.inventory.inventoryAdd(book);
+
+
             } else if (CIV_CHILD_MERC) {
                 var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
 

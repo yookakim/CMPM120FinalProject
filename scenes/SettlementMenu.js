@@ -4,6 +4,12 @@ class SettlementMenu extends Phaser.Scene {
     constructor() {
         super('settlementmenu');
         this.ship = ship;
+        this.hoursLeftText;
+        EventManager.on('hoursleftincreased', (hoursLeft) => {
+            if (this.hoursLeftText) {
+                this.hoursLeftText.setText('Time left: ' + hoursLeft);
+            }
+        }, this);
     }
     
     preload() {
@@ -18,6 +24,23 @@ class SettlementMenu extends Phaser.Scene {
         this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
         this.hostPlanet = this.scene.settings.data;
         this.settlement = this.hostPlanet.inhabitants;
+
+        this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
+            .setOrigin(0, 0);
+
+        // this.inventoryButton = new ButtonTemplate(this, game.config.width - 300, (5 * game.config.height) / 10, 'inventorybutton');
+        // this.inventoryButton.setOrigin(0, 0);
+
+        var inventoryUIDataObject = {
+            inventory: this.ship.inventory,
+            positionX: game.config.width - 450,
+            positionY: (6 * game.config.height) / 10
+        };
+        
+        // launch the container scene for the inventory
+        this.scene.launch('inventoryui', inventoryUIDataObject);
+        this.scene.bringToTop('inventoryui');
+
         this.add.text(80, 40, "You grab your things and enter...", DEFAULT_TEXT_STYLE);
         this.add.text(80, 80, this.settlement.settlementName + ', ' + this.hostPlanet.name, HEADER_TEXT_STYLE);
         
@@ -31,7 +54,7 @@ class SettlementMenu extends Phaser.Scene {
     loadUI() {
 
         // display time left in day
-        this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
 
         // if this settlement DOES have civilians:
         if (!this.settlement.abandoned) {
@@ -73,6 +96,7 @@ class SettlementMenu extends Phaser.Scene {
     loadCivilianTalkScene(civilian) {
         // once click input detected, loads civilian interaction scene with the NPC in question
         this.scene.start('civiliantalkscene', civilian);
+        this.scene.stop('inventoryui');
         // plays door-knocking sound only if first time visiting
         if (!civilian.hasVisited) {
             this.sound.play('doorknock', DEFAULT_SFX_CONFIG);
@@ -82,6 +106,7 @@ class SettlementMenu extends Phaser.Scene {
 
     returnToShip() {
         this.scene.switch('planetscene');
+        this.scene.stop('inventoryui');
         this.scene.stop('settlementmenu');
     }
 }

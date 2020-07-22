@@ -6,9 +6,14 @@ class PlanetScene extends Phaser.Scene {
     constructor() {
         super('planetscene');
         this.ship = ship;
-
+        this.hoursLeftText;
         // initialize planet property so we can add the tempPlanet stored in registry in create()
         this.planet;
+        // EventManager.on('hoursleftincreased', (hoursLeft) => {
+        //     if (this.hoursLeftText) {
+        //         this.hoursLeftText.setText('Time left: ' + hoursLeft);
+        //     }
+        // })
     }
 
     preload() {
@@ -40,7 +45,7 @@ class PlanetScene extends Phaser.Scene {
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
 
-        this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
 
         // this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
         //     .setOrigin(0, 0)
