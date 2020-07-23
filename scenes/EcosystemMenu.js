@@ -3,10 +3,9 @@ class EcosystemMenu extends Phaser.Scene {
         super('ecosystemmenu');
         this.ship = ship;
         this.hoursLeftText;
-        EventManager.on('hoursleftincreased', (hoursLeft) => {
-            if (this.hoursLeftText) {
-                this.hoursLeftText.setText('Time left: ' + hoursLeft);
-            }
+        this.timeNeedsUpdate = false;
+        EventManager.on('hoursleftincreased', () => {
+            this.timeNeedsUpdate = true;
         }, this);        
     }
 
@@ -15,10 +14,16 @@ class EcosystemMenu extends Phaser.Scene {
     create() {
         this.hostPlanet = this.scene.settings.data;
         this.ecosystem = this.hostPlanet.ecosystem;
-
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
         this.loadUI();
+    }
+
+    update() {
+        if (this.timeNeedsUpdate) {
+            this.hoursLeftText.setText('Time left: ' + this.ship.hoursLeftInDay);
+            this.timeNeedsUpdate = false;
+        }
     }
 
     loadUI() {
@@ -31,7 +36,7 @@ class EcosystemMenu extends Phaser.Scene {
         var inventoryUIDataObject = {
             inventory: this.ship.inventory,
             positionX: game.config.width - 450,
-            positionY: (6 * game.config.height) / 10
+            positionY: (7 * game.config.height) / 10
         };
         
         // launch the container scene for the inventory

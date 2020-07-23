@@ -26,7 +26,7 @@ this.GameComponents = {
         }
     },
 
-    /* ****** Active Effects ****** */
+    /* ****** Active Item Effects ****** */
 
     engineUpgrade: function (outputUpgradeAmount) {
 
@@ -64,7 +64,7 @@ this.GameComponents = {
         }
     },
 
-    /* ****** Passive Effects ****** */
+    /* ****** Passive Item Effects ****** */
 
     passiveSanityIncrease: function(sanityPerTurnIncrease) {
         
@@ -170,7 +170,34 @@ this.GameComponents = {
             'My mom said not talk to strangers, but you seem like a friend. ',
             'CAAANDDDYYY!!! '
         ];
-    }
+    },
+
+    /* ****** Ecosystem/Biomes ****** */
+
+    temperate: function() {
+
+        this.name = 'temperate';
+
+        this.generateResources = function() {
+            // randomly generate resources
+        }
+
+    },
+
+    icy: function() {
+
+        this.name = 'icy';
+    },
+
+    desert: function() {
+
+        this.name = 'desert';
+    },
+    
+    humid: function() {
+
+        this.name = 'humid';
+    },
 }
 
 

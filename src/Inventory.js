@@ -27,7 +27,7 @@ class Inventory {
         // array of item objects
         this.contents = [];
 
-        // reference to the object this inventory is stuck to
+        // reference to the object this inventory is stuck to (could be anything rly)
         this.owner = owner;
         
         this.maxSize = size;

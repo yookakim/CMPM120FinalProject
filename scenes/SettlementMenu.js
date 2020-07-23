@@ -5,15 +5,30 @@ class SettlementMenu extends Phaser.Scene {
         super('settlementmenu');
         this.ship = ship;
         this.hoursLeftText;
-        EventManager.on('hoursleftincreased', (hoursLeft) => {
-            if (this.hoursLeftText) {
-                this.hoursLeftText.setText('Time left: ' + hoursLeft);
-            }
-        }, this);
+        this.timeNeedsUpdate = false;
+
+        /* 
+            before, I had the txt update immediately on the event call
+            which sometimes broke because it would attempt to update the 
+            text before the update/text refresh and the text texture would 
+            be null when attempted to change on event call, so I set a boolean
+            to signal a text change was needed and the text change would happen
+            in the update() method instead
+        */
+        EventManager.on('hoursleftincreased', () => {
+            this.timeNeedsUpdate = true;
+        }, this);   
     }
     
     preload() {
         
+    }
+
+    update() {
+        if (this.timeNeedsUpdate) {
+            this.hoursLeftText.setText('Time left: ' + this.ship.hoursLeftInDay);
+            this.timeNeedsUpdate = false;
+        }
     }
 
     create() {
@@ -34,7 +49,7 @@ class SettlementMenu extends Phaser.Scene {
         var inventoryUIDataObject = {
             inventory: this.ship.inventory,
             positionX: game.config.width - 450,
-            positionY: (6 * game.config.height) / 10
+            positionY: (7 * game.config.height) / 10
         };
         
         // launch the container scene for the inventory
@@ -49,6 +64,13 @@ class SettlementMenu extends Phaser.Scene {
         // (maybe make child objects of a base Scene.UIScene class?)
 
         this.loadUI();
+    }
+
+    updateTimeText(hoursLeft) {
+        if (this.hoursLeftText != null) {
+            console.log(this.hoursLeftText);
+            this.hoursLeftText.setText('Time left: ' + hoursLeft);
+        }        
     }
 
     loadUI() {

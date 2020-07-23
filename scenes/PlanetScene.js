@@ -7,13 +7,12 @@ class PlanetScene extends Phaser.Scene {
         super('planetscene');
         this.ship = ship;
         this.hoursLeftText;
+        this.timeNeedsUpdate = false;
         // initialize planet property so we can add the tempPlanet stored in registry in create()
         this.planet;
-        // EventManager.on('hoursleftincreased', (hoursLeft) => {
-        //     if (this.hoursLeftText) {
-        //         this.hoursLeftText.setText('Time left: ' + hoursLeft);
-        //     }
-        // })
+        EventManager.on('hoursleftincreased', () => {
+            this.timeNeedsUpdate = true;
+        }, this);  
     }
 
     preload() {
@@ -33,15 +32,55 @@ class PlanetScene extends Phaser.Scene {
 
     update() {
         this.settlementButton.checkClickable();
+        this.ecosystemButton.checkClickable();
+        if (this.ship.hoursLeftInDay < 3 && this.settlementButton.clickable) {
+            this.settlementButton.clickable = false;
+        }
+        if (this.ship.hoursLeftInDay < 3 && this.ecosystemButton.clickable) {
+            this.ecosystemButton.clickable = false;
+        }
+        if (this.ship.hoursLeftInDay >= 3 && !this.settlementButton.clickable) {
+            this.settlementButton.clickable = true;
+        }
+        if (this.ship.hoursLeftInDay >= 3 && !this.ecosystemButton.clickable) {
+            this.ecosystemButton.clickable = true;
+        }
+        if (this.timeNeedsUpdate) {
+            this.hoursLeftText.setText('Time left: ' + this.ship.hoursLeftInDay);
+            this.timeNeedsUpdate = false;
+        }
     }
 
     loadUI() {
-        // welcome player and get planet name 
-        this.add.text(10, 10, 'After ' + this.ship.lastTravelTime + ' lonely days in warp, you arrive at...', DEFAULT_TEXT_STYLE);
-        this.add.text(10, 30, this.planet.name , HEADER_TEXT_STYLE);
-        this.add.text(10, 80, 'What actions will you take on this planet?', DEFAULT_TEXT_STYLE);
 
-        this.add.sprite(360, 400, 'planet');
+        this.add.sprite(0, 0, 'planetscenebackground').setOrigin(0, 0);
+
+        // welcome player and get planet name 
+        this.add.text(50, 50, 'After ' + this.ship.lastTravelTime + ' lonely days in warp, you arrive at...', DEFAULT_TEXT_STYLE);
+        this.add.text(50, 70, this.planet.name , HEADER_TEXT_STYLE);
+        this.add.text(50, 120, 'What actions will you take on this planet?', DEFAULT_TEXT_STYLE);
+
+        var inventoryUIDataObject = {
+            inventory: this.ship.inventory,
+            positionX: game.config.width - 450,
+            positionY: (7 * game.config.height) / 10
+        };
+        
+        // launch the container scene for the inventory
+        this.scene.launch('inventoryui', inventoryUIDataObject);
+        this.scene.bringToTop('inventoryui');
+
+        if (this.planet.ecosystem.ecosystemType.hasOwnProperty('temperate')) {
+            this.add.sprite(360, 400, 'temperateplanet');
+        } else if (this.planet.ecosystem.ecosystemType.hasOwnProperty('icy')) {
+            this.add.sprite(360, 400, 'icyplanet');
+        } else if (this.planet.ecosystem.ecosystemType.hasOwnProperty('desert')) {
+            this.add.sprite(360, 400, 'desertplanet');
+        } else if (this.planet.ecosystem.ecosystemType.hasOwnProperty('humid')) {
+            this.add.sprite(360, 400, 'humidplanet');
+        }
+
+        
 
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
@@ -60,9 +99,7 @@ class PlanetScene extends Phaser.Scene {
         this.ecosystemButton = new ButtonTemplate(this,  7 * game.config.width / 12, game.config.height / 2, 'ecosystembutton')
             .on('pointerdown', this.loadEcosystem, this);
 
-        if (this.ship.hoursLeftInDay < 3) {
-            this.settlementButton.clickable = false;
-        }
+
 
         this.nextPlanetButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
             .on('pointerdown', this.loadPlanetSelection, this);
@@ -70,6 +107,7 @@ class PlanetScene extends Phaser.Scene {
 
     loadPlanetSelection() {
         this.scene.start('planetselection');
+        this.scene.stop('inventoryui');
     }
     
     
@@ -84,6 +122,7 @@ class PlanetScene extends Phaser.Scene {
         } else if (!this.planet.inhabitants) {
             console.log('no settlement to travel to');
         }
+        this.scene.stop('inventoryui');
     }
     loadEcosystem() {
         // go into trading district
@@ -97,6 +136,7 @@ class PlanetScene extends Phaser.Scene {
             console.log('no ecosystem to travel to');
         }
         this.ship.spendTime(3);
+        this.scene.stop('inventoryui');
     }
     /* 
     // preemptively setting up scene loading methods

@@ -33,7 +33,11 @@ class Preloader extends Phaser.Scene {
         this.load.image('fuelbutton', './assets/UI/buttons/fuel_button.png');
         
         // planet scene
-        this.load.image('planet', './assets/planetscene_bigplanet.png');
+        this.load.image('planetscenebackground', './assets/planetscene_background.png');
+        this.load.image('temperateplanet', './assets/planetscene_temperateplanet.png');
+        this.load.image('icyplanet', './assets/planetscene_icyplanet.png');
+        this.load.image('desertplanet', './assets/planetscene_desertplanet.png');
+        this.load.image('humidplanet', './assets/planetscene_humidplanet.png');
         this.load.image('planetstats', './assets/UI/planetmenu_stats_placeholder.png');
         
         // settlement/civilian scenes

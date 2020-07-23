@@ -1,15 +1,64 @@
 class Ecosystem {
     constructor(planet) {
-        // generate Temperate, Icy, Dry, Humid planets in 60, 20, 20, 20 percent chance respectively
+        // generate Temperate, Icy, Desert, Humid planets in 40, 20, 20, 20 percent chance respectively
+
+        this.inventory = new Inventory(5, this);
+        this.ecosystemType = {};
+
+        // for debug purposes only temperate planets spawn if this value set to 40
+        
+
+        this.randomizeType();
+
+
+        this.generateItems();
+    }
+
+    addComponent(key) {
+        let component = new GameComponents[key]();
+        this.ecosystemType[key] = component;
+    }
+
+    randomizeType() {
+
         var randomInt = Phaser.Math.Between(1, 100);
+        
         if (randomInt < 41) {
             // generate Temperate
-        } else if (40 < randomInt < 61) {
+            this.addComponent('temperate');
+            return;
+        } if (40 < randomInt && randomInt < 61) {
             // generate Icy
-        } else if (60 < randomInt < 81) {
-            // generate Dry
-        } else if (80 < randomInt) {
+            this.addComponent('icy');
+            return;
+        } if (60 < randomInt && randomInt < 81) {
+            // generate Desert
+            this.addComponent('desert');
+            return;
+        } if (80 < randomInt) {
             // generate Humid
+            this.addComponent('humid');
+            return;
+        }
+    }
+
+    generateItems() {
+        // pop the farmable resources into this ecosystem based on the type of biome
+        var factory = new ItemFactory();
+
+        if (this.ecosystemType.hasOwnProperty('temperate')) {
+            // generate temperate planet items
+            console.log('generating temperate resources');
+            return;
+        } if (this.ecosystemType.hasOwnProperty('icy')) {
+            console.log('generating icy resources');
+            return;
+        } if (this.ecosystemType.hasOwnProperty('desert')) {
+            console.log('generating desert resources');
+            return;
+        } if (this.ecosystemType.hasOwnProperty('humid')){
+            console.log('generating humid resources');
+            return;
         }
     }
 }

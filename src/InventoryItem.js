@@ -48,7 +48,8 @@ class InventoryItem {
                         
                     case "dayTimeIncrease":
                         if (game.scene.isActive('settlementmenu') ||
-                            game.scene.isActive('ecosystemmenu')) {
+                            game.scene.isActive('ecosystemmenu') ||
+                            game.scene.isActive('planetscene')) {
                             console.log('used energy drink');
                             this.components.dayTimeIncrease.onUse(ship);
                         }

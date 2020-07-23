@@ -73,7 +73,8 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
         // this is pretty hacky lmao, im figuring out a better way to do stuff like this for other projects lol
         if (this.item.components.hasOwnProperty('dayTimeIncrease')) {
             if (game.scene.isActive('settlementmenu') ||
-                game.scene.isActive('ecosystemmenu')) {
+                game.scene.isActive('ecosystemmenu') ||
+                game.scene.isActive('planetscene')) {
                 this.item.onUse(this.inventory, this.index);
                 return;
             }
