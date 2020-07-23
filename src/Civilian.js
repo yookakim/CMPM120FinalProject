@@ -25,11 +25,6 @@ class Civilian {
         // this.addComponents(civilianType);
     }
 
-    // prototype player interaction method
-    /* 
-    hopefully later we can add smoething that isn't just giving free money
-    */
-
 
     getGreeting() {
 

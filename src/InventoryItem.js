@@ -17,6 +17,7 @@ class InventoryItem {
         this.name;
         this.description;
         this.worth;
+        this.displayname;
         this.components = {};
         // this.type;
     }
@@ -34,9 +35,9 @@ class InventoryItem {
             for ( var prop in this.components ) {
                 switch (prop) {
                     case "engineUpgrade":                        
-                        if (game.scene.isActive('inventoryscene')) {
-                            this.components.engineUpgrade.onUse(ship);
-                        }
+                        
+                        this.components.engineUpgrade.onUse(ship);
+                        
                         break;
 
                     case "flatSanityIncrease":
@@ -46,7 +47,8 @@ class InventoryItem {
                         break;
                         
                     case "dayTimeIncrease":
-                        if (game.scene.isActive('settlementmenu')) {
+                        if (game.scene.isActive('settlementmenu') ||
+                            game.scene.isActive('ecosystemmenu')) {
                             console.log('used energy drink');
                             this.components.dayTimeIncrease.onUse(ship);
                         }

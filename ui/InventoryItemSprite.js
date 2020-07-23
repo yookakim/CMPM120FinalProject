@@ -49,6 +49,7 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
         if (!this.tooltipExists && this.tooltipTimer > 100 && this.hovered) {
             this.tooltipExists = true;
             var tooltipText = '';
+            tooltipText += this.item.displayname + '\n\n';
             tooltipText += this.item.description;
             this.tooltip = new Phaser.GameObjects.Text(this.scene, this.pointer.x, this.pointer.y, tooltipText, DEFAULT_TOOLTIP_STYLE);
             this.tooltip.setOrigin(0, 1);
@@ -67,9 +68,12 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
             // if not clicked in trade scene:
         }
 
-        // this is pretty hacky lmao
+
+        // set special use cases for certain items (for example, can only use energy drink when on planet)
+        // this is pretty hacky lmao, im figuring out a better way to do stuff like this for other projects lol
         if (this.item.components.hasOwnProperty('dayTimeIncrease')) {
-            if (game.scene.isActive('settlementmenu') || game.scene.isActive('civiliantalkscene')) {
+            if (game.scene.isActive('settlementmenu') ||
+                game.scene.isActive('ecosystemmenu')) {
                 this.item.onUse(this.inventory, this.index);
                 return;
             }

@@ -1,7 +1,7 @@
 {
     "rock": {
         "name": "rock",
-        "displayname": "rock",
+        "displayname": "Rock",
         "description": "A simple, friendly rock.",
         "worth": 20,
         "components": {
@@ -43,8 +43,8 @@
 
     "piratebadge": {
         "name": "piratebadge",
-        "displayname": "pirate badge",
-        "description": "Your old, tattered ensignia for Space Pyrates Squadron 4. \n\nIn your opinion, it still looks cool as ever.",
+        "displayname": "Sol Pyrates Badge",
+        "description": "Your old, tattered ensignia for Sol Pyrates Squadron 4. \n\nIn your opinion, it still looks cool as ever.",
         "worth": 150,
         "components": {
 
@@ -53,7 +53,7 @@
 
     "upgradekit": {
         "name": "upgradekit",
-        "displayname": "upgrade kit",
+        "displayname": "Federation Upgrade Kit",
         "description": "A high level automated upgrade kit stolen years ago by the Feds. \n\nClick to upgrade your engine!",
         "worth": 100,
         "components": {
@@ -61,14 +61,14 @@
                 "value": 1
             },
             "engineUpgrade": {
-                "value": 30
+                "value": 10
             }
         }
     },
 
     "goldbag": {
         "name": "goldbag",
-        "displayname": "bag of gold",
+        "displayname": "Bag of gold",
         "description": "A nice plump bag of gold.",
         "worth": 180,
         "components": {
@@ -80,7 +80,7 @@
 
     "childtoy": {
         "name": "childtoy",
-        "displayname": "child's toy",
+        "displayname": "Child's toy",
         "description": "A well crafted toy for the common civilian child.",
         "worth": 50,
         "components": {
@@ -90,7 +90,7 @@
 
     "book": {
         "name": "book",
-        "displayname": "book",
+        "displayname": "Book",
         "description": "A Proto-Neptuvian novel worth reading in one sitting.",
         "worth": 70,
         "components": {

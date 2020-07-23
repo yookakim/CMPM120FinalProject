@@ -37,10 +37,11 @@ class PlanetScene extends Phaser.Scene {
 
     loadUI() {
         // welcome player and get planet name 
-        this.add.text(10, 10, 'You arrived at \'' + this.planet.name + '\' after ' + this.ship.lastTravelTime + ' lonely days in warp.', DEFAULT_TEXT_STYLE);
-        this.add.text(10, 30, 'what actions do u take on this planet?', DEFAULT_TEXT_STYLE);
+        this.add.text(10, 10, 'After ' + this.ship.lastTravelTime + ' lonely days in warp, you arrive at...', DEFAULT_TEXT_STYLE);
+        this.add.text(10, 30, this.planet.name , HEADER_TEXT_STYLE);
+        this.add.text(10, 80, 'What actions will you take on this planet?', DEFAULT_TEXT_STYLE);
 
-        this.add.sprite(360, 310, 'planet');
+        this.add.sprite(360, 400, 'planet');
 
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
@@ -53,8 +54,11 @@ class PlanetScene extends Phaser.Scene {
         //     .on('pointerdown', this.loadTradingMenu, this);
 
         
-        this.settlementButton = new ButtonTemplate(this, game.config.width / 9, game.config.height / 3, 'settlementbutton')
+        this.settlementButton = new ButtonTemplate(this, game.config.width / 9, 4 * game.config.height / 9, 'settlementbutton')
             .on('pointerdown', this.loadSettlement, this);
+
+        this.ecosystemButton = new ButtonTemplate(this,  7 * game.config.width / 12, game.config.height / 2, 'ecosystembutton')
+            .on('pointerdown', this.loadEcosystem, this);
 
         if (this.ship.hoursLeftInDay < 3) {
             this.settlementButton.clickable = false;
@@ -80,6 +84,19 @@ class PlanetScene extends Phaser.Scene {
         } else if (!this.planet.inhabitants) {
             console.log('no settlement to travel to');
         }
+    }
+    loadEcosystem() {
+        // go into trading district
+        if (this.planet.ecosystem && this.ship.hoursLeftInDay >= 3) {
+            
+            this.scene.start('ecosystemmenu', this.planet);
+        } else if (this.ship.hoursLeftInDay < 3) {
+            // show this in UI later
+            console.log('not enough time left for travel to this location');
+        } else if (!this.planet.inhabitants) {
+            console.log('no ecosystem to travel to');
+        }
+        this.ship.spendTime(3);
     }
     /* 
     // preemptively setting up scene loading methods

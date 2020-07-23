@@ -28,6 +28,7 @@ class ItemFactory {
 
         item.description = this.itemObject.description;
         item.worth = this.itemObject.worth;
+        item.displayname = this.itemObject.displayname;
         // iterate through the data object's component list to see 
         // which components the item needs
         var componentList = Object.keys(this.itemObject.components);

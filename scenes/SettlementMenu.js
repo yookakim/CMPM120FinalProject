@@ -41,8 +41,8 @@ class SettlementMenu extends Phaser.Scene {
         this.scene.launch('inventoryui', inventoryUIDataObject);
         this.scene.bringToTop('inventoryui');
 
-        this.add.text(80, 40, "You grab your things and enter...", DEFAULT_TEXT_STYLE);
-        this.add.text(80, 80, this.settlement.settlementName + ', ' + this.hostPlanet.name, HEADER_TEXT_STYLE);
+        this.add.text(80, 40, "You grab your things and enter the settlement...", DEFAULT_TEXT_STYLE);
+        this.add.text(80, 80, this.settlement.settlementName, HEADER_TEXT_STYLE);
         
 
         // again, later on, we can have a ubiquitous scene that handles UI for us

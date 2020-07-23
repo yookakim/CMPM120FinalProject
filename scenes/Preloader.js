@@ -15,6 +15,7 @@ class Preloader extends Phaser.Scene {
         // buttons/UI
         this.load.image('shiptinkerbutton', './assets/UI/buttons/ship_tinker_button.png');
         this.load.image('settlementbutton', './assets/UI/buttons/visit_settlement_button.png');
+        this.load.image('ecosystembutton', './assets/UI/buttons/visit_ecosystem_button.png');
         this.load.image('nextplanetbutton', './assets/UI/buttons/next_planet_button.png');
         this.load.image('returnshipbutton', './assets/UI/buttons/returnship_button.png');
         this.load.image('talkbutton', './assets/UI/buttons/settlement_talk_button.png');
