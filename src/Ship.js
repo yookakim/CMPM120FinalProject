@@ -28,6 +28,9 @@ class Ship {
         this.totalDaysTravelled = 0;
         this.lastTravelTime = 0;
 
+        // distance units in this game: light years
+        this.totalTravelDistance = 0;
+
         // player money:
         this.treasury = 0;
 
@@ -37,6 +40,7 @@ class Ship {
 
         this.maxSanity = this.game.registry.get('INITIAL_MAX_SANITY');
         this.sanity = this.maxSanity / 2;
+        this.lastSanityChange = 0;
 
         // default .5, check bonuses every turn and subtract if passive item in inventory
         this.sanityLossFactor = .5;
@@ -54,13 +58,14 @@ class Ship {
 
     travel(planet) {
         this.currentPlanet = planet;
-        // this.traverseItemEffects();
-        // my temporary travel time calculation: (planet distance / (engine's output + (engine's effiency * 3)))
+
         // the Ceil method rounds up so that we dont have decimal number days
         this.lastTravelTime = planet.travelTime;
         this.changeSanity();
         // +1 because once you arrive on destination you don't leave until the next day
         this.totalDaysTravelled = this.totalDaysTravelled + this.lastTravelTime + 1;
+        this.totalTravelDistance = this.totalTravelDistance + planet.planetDistance;
+        console.log(this.totalTravelDistance);
     }
 
     resetTime() {
@@ -85,8 +90,8 @@ class Ship {
                 }
             }
         }
-        this.sanity = this.sanity - this.lastTravelTime * thisTurnSanityLoss;
-
+        this.lastSanityChange = -(this.lastTravelTime * thisTurnSanityLoss);
+        this.sanity = this.sanity + this.lastSanityChange;
     }
 
     // traverseItemEffects() {

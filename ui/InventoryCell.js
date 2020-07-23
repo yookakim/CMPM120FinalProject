@@ -12,7 +12,7 @@ class InventoryCell extends Phaser.GameObjects.Sprite {
         
         super(scene, x, y, key);
         this.isOccupied = false;
-        this.inventory = inventory
+        this.inventory = inventory;
 
         // actual item data cell is holding
         this.occupant;

@@ -78,6 +78,7 @@ class TradeItemSprite extends Phaser.GameObjects.Sprite {
         if (!this.tooltipExists && this.tooltipTimer > 100 && this.hovered) {
             this.tooltipExists = true;
             var tooltipText = '';
+            tooltipText += this.item.displayname + '\n\n';
             tooltipText += this.item.description;
             this.tooltip = new Phaser.GameObjects.Text(this.scene, this.pointer.x, this.pointer.y, tooltipText, DEFAULT_TOOLTIP_STYLE);
             this.tooltip.setOrigin(0, 1);

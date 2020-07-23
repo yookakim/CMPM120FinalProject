@@ -6,13 +6,16 @@ class Preloader extends Phaser.Scene {
     preload() {
 
         this.load.image('titlezone', './assets/UI/title_zone.png');
-        this.load.image('titlestartbutton', './assets/UI/buttons/title_start_button.png');
+        
         
         // backgrounds
         this.load.image('settlementbackground', './assets/settlement_background.png');
         this.load.image('inventoryscenebackground', './assets/spaceship_inventory_background.png');
+        this.load.image('planetselectionbackground', './assets/cockpitview_planetselection_background.png');
 
         // buttons/UI
+        this.load.image('titlestartbutton', './assets/UI/buttons/title_start_button.png');
+        this.load.image('introstartbutton', './assets/UI/buttons/introduction_start_button.png');
         this.load.image('shiptinkerbutton', './assets/UI/buttons/ship_tinker_button.png');
         this.load.image('settlementbutton', './assets/UI/buttons/visit_settlement_button.png');
         this.load.image('ecosystembutton', './assets/UI/buttons/visit_ecosystem_button.png');
@@ -20,6 +23,7 @@ class Preloader extends Phaser.Scene {
         this.load.image('returnshipbutton', './assets/UI/buttons/returnship_button.png');
         this.load.image('talkbutton', './assets/UI/buttons/settlement_talk_button.png');
         this.load.image('meetbutton', './assets/UI/buttons/settlement_meet_button.png');
+        this.load.image('scavengebutton', './assets/UI/buttons/ecosystem_scavenge_button.png');
         this.load.image('tradebutton', './assets/UI/buttons/civilian_trade_button.png');
         this.load.image('return', './assets/UI/buttons/return_to_settlement_button.png');
         this.load.image('cancelbutton', './assets/UI/buttons/cancel_button.png');
@@ -39,8 +43,14 @@ class Preloader extends Phaser.Scene {
         this.load.image('desertplanet', './assets/planetscene_desertplanet.png');
         this.load.image('humidplanet', './assets/planetscene_humidplanet.png');
         this.load.image('planetstats', './assets/UI/planetmenu_stats_placeholder.png');
+        this.load.image('threehourslabel', './assets/UI/threehourslabel.png');
+        this.load.image('twohourslabel', './assets/UI/twohourslabel.png');
         
-        // settlement/civilian scenes
+        // ecosystem/scavenging scenes
+        this.load.image('ecosystem_temperate', './assets/ecosystemmenu_temperate_background.png');
+        this.load.image('ecosystem_icy', './assets/ecosystemmenu_icy_background.png');
+        this.load.image('ecosystem_desert', './assets/ecosystemmenu_desert_background.png');
+        this.load.image('ecosystem_humid', './assets/ecosystemmenu_humid_background.png');
 
         // inventory systems
         this.load.image('inventorytile', './assets/UI/inventorytile.png');
@@ -58,11 +68,21 @@ class Preloader extends Phaser.Scene {
         this.load.image('childtoy', './assets/items/childtoyicon.png');
         this.load.image('book', './assets/items/bookicon.png');
         this.load.image('fedcursingdoll', './assets/items/fedcursingdollicon.png');
+        this.load.image('mystiviancharm', './assets/items/mystiviancharmicon.png');
+        this.load.image('andrometine', './assets/items/andrometineicon.png');
+
+        // planet resource items
+        this.load.image('tomfruit', './assets/items/tomfruiticon.png');
+        this.load.image('furs', './assets/items/fursicon.png');
+        this.load.image('rawgems', './assets/items/rawgemsicon.png');
+        this.load.image('coal', './assets/items/coalicon.png');
         
 
         // audio
         this.load.audio('launchsound', './assets/SFX/launch_sound.wav');
         this.load.audio('doorknock', './assets/SFX/door_knock.wav');
+        this.load.audio('titlemusic', './assets/SFX/titlemusic.wav');
+        this.load.audio('titlemusicintro', './assets/SFX/titlemusic_4barintro.wav');
     }
 
     create() {

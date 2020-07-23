@@ -74,7 +74,7 @@ class Civilian {
         var dialogueObject = {
             greetingString: '',
             tooLateString: '',
-            title: ''
+            titles: ''
         }
         
         
@@ -113,7 +113,7 @@ class Civilian {
 
         // civilian types:
 
-
+        dialogueObject
 
         if (this.CIV) {
             if (this.hasVisited) {
@@ -122,7 +122,7 @@ class Civilian {
                 dialogueObject.greetingString = 'How are you doing, my name is ' + this.name + '.';
             }
             dialogueObject.tooLateString = 'I\'m afraid it\'s getting a little too late... good night, and good luck!';
-            dialogueObject.title = '- Civilian -';
+            dialogueObject.titles = '- Civilian -';
         }
         // 2
         if (this.CIV_CHILD) {
@@ -132,7 +132,7 @@ class Civilian {
                 dialogueObject.greetingString = 'Hi! I want somebody to play with!';
             }
             dialogueObject.tooLateString = 'It\'s bedtime soon. I\'m going home, see you later!';
-            dialogueObject.title = '- Civilian - Child -';
+            dialogueObject.titles = '- Civilian - Child -';
         }
         //3
         if (this.CIV_MERC_CHILD) {            
@@ -145,7 +145,7 @@ class Civilian {
                 dialogueObject.greetingString = 'I\'m going to become the richest of the rich, old man! Buy my things!';
             }            
             dialogueObject.tooLateString = 'It\'s getting dark mister, I\'m heading home with my things soon. Good night!';
-            dialogueObject.title = '- Civilian - Merchant - Child -';
+            dialogueObject.titles = '- Civilian - Merchant - Child -';
         }
         //4
         if (this.CIV_MERC) {
@@ -158,7 +158,7 @@ class Civilian {
                 dialogueObject.greetingString = 'Hello, how are you? I\'m ' + this.name + ', take a look at some of my wares!';
             }   
             dialogueObject.tooLateString = 'It\'s getting a little late, and I\'m afraid I must pack my goods for the day.';
-            dialogueObject.title = '- Civilian - Merchant -';
+            dialogueObject.titles = '- Civilian - Merchant -';
         }
         //5
         if (this.OUT) {
@@ -168,7 +168,7 @@ class Civilian {
                 dialogueObject.greetingString = 'What do you want?';
             }
             dialogueObject.tooLateString = 'You wishing a death sentence for yourself, being out this late around somebody like me?';
-            dialogueObject.title = '- Outcast -';
+            dialogueObject.titles = '- Outcast -';
         }
         //6
         if (this.OUT_CHILD) {
@@ -178,7 +178,7 @@ class Civilian {
                 dialogueObject.greetingString = 'When I grow up... I\'m not turning out like everybody else.';
             }
             dialogueObject.tooLateString = 'I need sleep. Now shoo, gramps.'
-            dialogueObject.title = '- Child - Outcast -';
+            dialogueObject.titles = '- Child - Outcast -';
         }
         //7
         if (this.OUT_MERC_CHILD) {
@@ -191,7 +191,7 @@ class Civilian {
                 dialogueObject.greetingString = 'I\'m ' + this.name + '. None of the older ones like what I\'m getting myself into... but you\'ll look at what I\'m selling, right?';
             }            
             dialogueObject.tooLateString = 'A kid like me with no place to go home needs the time to find shelter... oh, you\'re not coming back tomorrow, old man?';
-            dialogueObject.title = '- Child - Merchant - Outcast -';
+            dialogueObject.titles = '- Child - Merchant - Outcast -';
         }
         //8
         if (this.OUT_MERC) {
@@ -204,7 +204,7 @@ class Civilian {
                 dialogueObject.greetingString = 'The name\'s ' + this.name + '...take a look at my stuff... you won\'t regret it.';
             }
             dialogueObject.tooLateString = 'It\'s too late for me to be out here selling this kind of stuff.';
-            dialogueObject.title = '- Merchant - Outcast -';
+            dialogueObject.titles = '- Merchant - Outcast -';
         }
          
         else if (this.ship.hoursLeftInDay < 1) {

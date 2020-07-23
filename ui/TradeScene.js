@@ -39,9 +39,9 @@ class TradeScene extends Phaser.Scene {
     }
 
     update() {
-        if (this.playerOfferValue > this.merchantOfferValue) {
+        if (this.playerOfferValue >= this.merchantOfferValue) {
             this.confirmButton.clickable = true;
-        } else if (this.merchantOfferValue >= this.playerOfferValue) {
+        } else if (this.merchantOfferValue > this.playerOfferValue) {
             this.confirmButton.clickable = false;
         }
         this.confirmButton.checkClickable();
@@ -102,6 +102,8 @@ class TradeScene extends Phaser.Scene {
             }
         }
     
+        this.add.text(370, 300, 'Press "Confirm Trade" to finalize and return.', DEFAULT_TEXT_STYLE);
+
         this.confirmButton = new ButtonTemplate(this, 525, 400, 'confirmtradebutton');
         this.confirmButton.clickable = false;
         this.confirmButton.on('pointerdown', this.finalizeTrade, this);

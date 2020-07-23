@@ -14,8 +14,10 @@ class PlanetFactory {
 
         // honestly we could put this sort of stuff in one big data file?
         // consider doing weighted randomizations later
-        this.planetNameList = ['Earth', 'Moocury', 'LittleBig', 'Tatooine', 'RFX-240', 'Goopiter', 'Slimeworld'];
-        this.settlementNameList = ['Los Angeles', 'Bikini Bottom', 'UCSC', 'Whale Island', 'Village McVillageface'];
+        this.planetNameList = [ 'Earth', 'Moocury', 'LittleBig', 'Tatooine', 'RFX-240', 'Goopiter', 'Slimeworld' , 
+                                'Sleptune', 'Blockturn', 'Plutonio', 'Planet One' , 'Muun' , 'Ew-Ropa' ];
+        this.settlementNameList = [ 'Los Angeles', 'Goola-Goon', 'Euysee-Esscee', 'Whale Island', 'Village McVillageface' ,
+                                    'Hidden Twig', 'Oh-Saka' , 'Smithtown' , 'Creative Name' ];
     }
 
     generatePlanets() {
@@ -83,7 +85,7 @@ class PlanetFactory {
     generateDistance() {
         // for now returns something between these hard-coded numbers 
         // for generating distance, 
-        return Phaser.Math.Between(300, 1200);
+        return Phaser.Math.Between(400, 1000);
     }
 
     generateEcosystem(planet) {

@@ -59,7 +59,7 @@ this.CivilianFactory = function(planet) {
         var civilianChance = 50;
         
         // percentage of time the NPC is a trader:
-        var merchantChance = 50;
+        var merchantChance = 70;
 
         if (Phaser.Math.Between(0,100) < civilianChance) {
             addComponent("civilian", civilian);

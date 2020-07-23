@@ -91,11 +91,11 @@ class SettlementMenu extends Phaser.Scene {
                 // we pass the civilian object through the button parameter, so that the called function knows which
                 // civilian it is dealing with
                 if (element.hasVisited) {
-                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 120 + 75), 'talkbutton', 0, this.settlement.civilians[index])
+                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 110 + 60), 'talkbutton', 0, this.settlement.civilians[index]);
                 } else if (!element.hasVisited) {
-                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 120 + 75), 'meetbutton', 0, this.settlement.civilians[index])
+                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 110 + 60), 'meetbutton', 0, this.settlement.civilians[index]);
                 }
-                this.add.text(80, 180 + (index * 120),
+                this.add.text(80, 180 + (index * 110),
                     'you see ' + 
                     element.name + ', ' +
                     element.age +

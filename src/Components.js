@@ -44,6 +44,14 @@ this.GameComponents = {
             ship.sanity += sanityAmount;
         }
     },
+
+    flatEngineEfficiencyIncrease: function(upgradeAmount) {
+        
+        this.name = 'flatEngineEfficiencyIncrease';
+        this.onUse = function(ship) {
+            ship.engine.engineEfficiency += upgradeAmount;
+        }
+    },
     
     dayTimeIncrease: function(timeAmount) {
         
@@ -135,25 +143,45 @@ this.GameComponents = {
 
 
             if (CIV_MERC) {
-                // var rock = itemFactory.generateItem('rock', ITEMLIST);
-                // var book = itemFactory.generateItem('book', ITEMLIST);
-    
-                // civilian.inventory.inventoryAdd(rock);
-                // civilian.inventory.inventoryAdd(book);
 
-
-            } else if (CIV_CHILD_MERC) {
-                var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
-
-                civilian.inventory.inventoryAdd(childtoy);
-            } else if (OUT_MERC) {
                 var xorenergydrink = itemFactory.generateItem('xorenergydrink', ITEMLIST);
 
                 civilian.inventory.inventoryAdd(xorenergydrink);
+
+                var book = itemFactory.generateItem('book', ITEMLIST);
+                
+                civilian.inventory.inventoryAdd(book);
+
+            } else if (CIV_CHILD_MERC) {
+
+                var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
+
+                civilian.inventory.inventoryAdd(childtoy);
+
+                var book = itemFactory.generateItem('book', ITEMLIST);
+                
+                civilian.inventory.inventoryAdd(book);
+
+            } else if (OUT_MERC) {
+
+                var xorenergydrink = itemFactory.generateItem('xorenergydrink', ITEMLIST);
+
+                civilian.inventory.inventoryAdd(xorenergydrink);
+
+                var andrometine = itemFactory.generateItem('andrometine', ITEMLIST);
+
+                civilian.inventory.inventoryAdd(andrometine);
+
             } else if (OUT_CHILD_MERC) {
+
                 var fedcursingdoll = itemFactory.generateItem('fedcursingdoll', ITEMLIST);
 
                 civilian.inventory.inventoryAdd(fedcursingdoll);
+
+                var mystiviancharm = itemFactory.generateItem('mystiviancharm', ITEMLIST);
+
+                civilian.inventory.inventoryAdd(mystiviancharm);
+
             }
 
             var items = [];
@@ -178,26 +206,67 @@ this.GameComponents = {
 
         this.name = 'temperate';
 
-        this.generateResources = function() {
-            // randomly generate resources
+        // random question, i wonder if i can use/utilize factories without making new instances of them.
+        this.factory = new ItemFactory();
+
+        this.generateResource = function() {
+            // return ONE random resource for this type of biome
+            return this.factory.generateItem('tomfruit', ITEMLIST);
         }
 
     },
 
+    temperateitem: function() {
+        
+    },
+    
     icy: function() {
 
         this.name = 'icy';
+
+        this.factory = new ItemFactory();
+
+        this.generateResource = function() {
+            // return ONE random resource for this type of biome
+            return this.factory.generateItem('furs', ITEMLIST);
+        }
     },
 
+    icyitem: function() {
+        
+    },
+    
     desert: function() {
 
         this.name = 'desert';
+
+        this.factory = new ItemFactory();
+
+        this.generateResource = function() {
+            // return ONE random resource for this type of biome
+            return this.factory.generateItem('rawgems', ITEMLIST);
+        }
     },
-    
+
+    desertitem: function() {
+        
+    },
+
     humid: function() {
 
         this.name = 'humid';
+
+        this.factory = new ItemFactory();
+
+        this.generateResource = function() {
+            // return ONE random resource for this type of biome
+            return this.factory.generateItem('coal', ITEMLIST);
+        }
     },
+
+    humiditem: function() {
+        
+    }
 }
 
 

@@ -45,6 +45,12 @@ class InventoryItem {
                             this.components.flatSanityIncrease.onUse(ship);
                         }
                         break;
+
+                    case "flatEngineEfficiencyIncrease":
+                        
+                        this.components.flatEngineEfficiencyIncrease.onUse(ship);
+                        
+                        break;
                         
                     case "dayTimeIncrease":
                         if (game.scene.isActive('settlementmenu') ||

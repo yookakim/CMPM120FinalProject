@@ -60,10 +60,11 @@ class Inventory {
             if (this.contents[i] === null) {
                 this.contents.splice(i, 1, item);
                 EventManager.emit('inventory-add', this);
-                return;
+                return true;
             }
         }
         console.log('inventory full');
+        return false;
     }
 
     inventoryRemove(index) {

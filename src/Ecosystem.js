@@ -2,6 +2,7 @@ class Ecosystem {
     constructor(planet) {
         // generate Temperate, Icy, Desert, Humid planets in 40, 20, 20, 20 percent chance respectively
 
+        this.planet = planet;
         this.inventory = new Inventory(5, this);
         this.ecosystemType = {};
 
@@ -11,7 +12,7 @@ class Ecosystem {
         this.randomizeType();
 
 
-        this.generateItems();
+        // this.generateItems();
     }
 
     addComponent(key) {
@@ -42,23 +43,26 @@ class Ecosystem {
         }
     }
 
-    generateItems() {
+    generateItem() {
         // pop the farmable resources into this ecosystem based on the type of biome
-        var factory = new ItemFactory();
 
         if (this.ecosystemType.hasOwnProperty('temperate')) {
             // generate temperate planet items
-            console.log('generating temperate resources');
-            return;
+            console.log('generating temperate resources');            
+            return this.ecosystemType.temperate.generateResource();
+
         } if (this.ecosystemType.hasOwnProperty('icy')) {
             console.log('generating icy resources');
-            return;
+            return this.ecosystemType.icy.generateResource();
+
         } if (this.ecosystemType.hasOwnProperty('desert')) {
             console.log('generating desert resources');
-            return;
+            return this.ecosystemType.desert.generateResource();
+
         } if (this.ecosystemType.hasOwnProperty('humid')){
             console.log('generating humid resources');
-            return;
+            return this.ecosystemType.humid.generateResource();
+
         }
     }
 }

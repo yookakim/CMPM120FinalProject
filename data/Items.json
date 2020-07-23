@@ -17,7 +17,7 @@
     "xorenergydrink": {
         "name": "xorenergydrink",
         "displayname": "Xor's Energy Drink",
-        "description": "A centuries old formula designed to keep you sharp and alert for longer, popular with spacefarers across the universe.",
+        "description": "A centuries old formula designed to keep you sharp and alert for longer, popular with spacefarers across the universe. \n\nDrink during planet visits for two extra hours of activity.",
         "worth": 20,
         "components": {
             "consumable": {
@@ -33,7 +33,7 @@
         "name": "fedcursingdoll",
         "displayname": "Federation Officer Cursing Doll",
         "description": "Just an ordinary beat-up doll of those damned Feds... or is it? \n\nSaves you .1 sanity every day in travel as long as \nit is in your inventory.",
-        "worth": 120,
+        "worth": 100,
         "components": {
             "passiveSanityIncrease": {
                 "value": 0.1
@@ -54,7 +54,7 @@
     "upgradekit": {
         "name": "upgradekit",
         "displayname": "Federation Upgrade Kit",
-        "description": "A high level automated upgrade kit stolen years ago by the Feds. \n\nClick to upgrade your engine!",
+        "description": "A high level automated upgrade kit stolen years ago by the Feds. \n\nUse anywhere to upgrade your engine.",
         "worth": 100,
         "components": {
             "consumable": {
@@ -91,14 +91,92 @@
     "book": {
         "name": "book",
         "displayname": "Book",
-        "description": "A Proto-Neptuvian novel worth reading in one sitting.",
-        "worth": 70,
+        "description": "A Proto-Neptuvian novel worth reading in one sitting. Increases your Sanity by 10 when read.",
+        "worth": 30,
         "components": {
             "consumable": {
                 "value": 1
             },
             "flatSanityIncrease": {
-                "value": 20
+                "value": 10
+            }
+        }
+    },
+
+    "andrometine": {
+        "name": "andrometine",
+        "displayname": "Andrometine",
+        "description": "Once an infamous substance which brought down entire galactic civilizations with its entrancing effects, the recent varieties only seem to mildly soothe the body.\n\n +30 Sanity increase when consumed.",
+        "worth": 110,
+        "components": {
+            "consumable": {
+                "value": 1
+            },
+            "flatSanityIncrease": {
+                "value": 30
+            }
+        }
+    },
+
+    "mystiviancharm": {
+        "name": "mystiviancharm",
+        "displayname": "Mystivian Good Luck Charm",
+        "description": "A strange, beautiful pendant which exudes a steadfast and ethereal aura.\n\nPermanently increases engine efficiency by 3 when consumed.",
+        "worth": 180,
+        "components": {
+            "consumable": {
+                "value": 1
+            },
+            "flatEngineEfficiencyIncrease": {
+                "value": 3
+            }
+        }
+    },
+    
+    "tomfruit": {
+        "name": "tomfruit",
+        "displayname": "Tomfruit",
+        "description": "A juicy and delectable fruit, somehow common throughout planets in the local supergalaxy for mysterious reasons.",
+        "worth": 25,
+        "components": {
+            "temperateitem": {
+
+            }
+        }
+    },
+    
+    "furs": {
+        "name": "furs",
+        "displayname": "Furs",
+        "description": "The warm and versatile skin of an animal well-adapted to the cold.",
+        "worth": 40,
+        "components": {
+            "icyitem": {
+
+            }
+        }
+    },
+
+    "coal": {
+        "name": "coal",
+        "displayname": "Coalite",
+        "description": "A crude, yet highly efficient and exothermic material, used mainly for heating applications.",
+        "worth": 40,
+        "components": {
+            "humiditem": {
+                
+            }
+        }
+    },
+
+    "rawgems": {
+        "name": "rawgems",
+        "displayname": "Raw Gems",
+        "description": "Unprocessed stones of various colors collected from ancient river and liquid deposits, dried up millions of years ago.",
+        "worth": 40,
+        "components": {
+            "desertitem": {
+
             }
         }
     }

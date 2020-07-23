@@ -46,10 +46,10 @@ class CivilianTalkScene extends Phaser.Scene {
     }
 
     checkTooLate() {
-        if (this.ship.hoursLeftInDay < 2) {
+        if (this.ship.hoursLeftInDay < 1) {
             // too late to talk
             this.tooLate = true;
-        } else if (this.ship.hoursLeftInDay > 1) {
+        } else if (this.ship.hoursLeftInDay > 0) {
             this.tooLate = false;
         }
     }
@@ -69,9 +69,9 @@ class CivilianTalkScene extends Phaser.Scene {
 
         
 
+        this.add.text(80, 50, this.civilian.name, HEADER_TEXT_STYLE)
 
-
-        this.add.text(80, 80, this.dialogueObject.title, HEADER_TEXT_STYLE);
+        this.add.text(80, 120, this.dialogueObject.titles, SUBHEADER_TEXT_STYLE);
         
         this.scene.bringToTop('inventoryui');
         if (this.tooLate) {
@@ -84,7 +84,7 @@ class CivilianTalkScene extends Phaser.Scene {
     }
 
     loadTooLateDialogue() {
-        this.add.text(80, 140, this.dialogueObject.tooLateString, DEFAULT_TEXT_STYLE);
+        this.add.text(80, 180, this.dialogueObject.tooLateString, DEFAULT_TEXT_STYLE);
         this.civilian.hasVisited = true;
     }
 
@@ -103,7 +103,7 @@ class CivilianTalkScene extends Phaser.Scene {
             }
         }
 
-        this.add.text(80, 140, this.dialogueObject.greetingString, DEFAULT_TEXT_STYLE);
+        this.add.text(80, 180, this.dialogueObject.greetingString, DEFAULT_TEXT_STYLE);
         
         
 
@@ -143,7 +143,7 @@ class CivilianTalkScene extends Phaser.Scene {
 
     returnToSettlement() {
         if (!this.tooLate) {
-            this.ship.spendTime(2);
+            this.ship.spendTime(1);
         }
         this.scene.switch('settlementmenu');
         this.scene.stop('civiliantalkscene');

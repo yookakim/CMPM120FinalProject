@@ -32,18 +32,27 @@ let config = {
     scene: [ 
         Preloader ,
         TitleScreen , IntroductionScene , PlanetSelection , PlanetSelectionUI , PlanetScene , 
-        EcosystemMenu, InventoryScene , InventoryUI , SettlementMenu , CivilianTalkScene , 
-        TradeScene , EndGameScene
+        EcosystemMenu , ScavengeSummary , InventoryScene , InventoryUI , SettlementMenu ,
+        CivilianTalkScene , TradeScene , EndGameScene
     ],
 }
 
 let HEADER_TEXT_STYLE = {
-    font: '40px Tahoma',
+    font: '44px Tahoma',
     fontStyle: 'strong',
+}
+
+let SUBHEADER_TEXT_STYLE = {
+    font: '28px Tahoma',
 }
 
 let DEFAULT_TEXT_STYLE = {
     fontFamily: 'Tahoma',
+}
+
+let INTRO_TEXT_STYLE = {
+    fontFamily: 'Tahoma',
+    lineSpacing: 10
 }
 
 let DEFAULT_TOOLTIP_STYLE = {
@@ -74,9 +83,9 @@ let game = new Phaser.Game(config);
 // insert static globals into the game's freebie data registry
 game.registry.set({
     
-    INITIAL_PLANET_OBJECT: new Planet('Home'),
+    INITIAL_PLANET_OBJECT: new Planet('Space'),
     
-    GAME_PLAYTHROUGH_TOTAL_DAYS: 50,
+    GAME_PLAYTHROUGH_TOTAL_DAYS: 150,
 
     // arbitrary engine start strength
     INITIAL_ENGINE_OUTPUT: 60,

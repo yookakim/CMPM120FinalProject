@@ -14,7 +14,7 @@ class TitleScreen extends Phaser.Scene {
 
         this.startButton = new ButtonTemplate(this, game.config.width / 2, (3 * game.config.height) / 4, 'titlestartbutton');
 
-        this.startButton.on('pointerdown', this.loadPlanetSelection, this);
+        this.startButton.on('pointerdown', this.loadIntroduction, this);
 
         // initialize the ship inventory with starter items
         
@@ -25,9 +25,10 @@ class TitleScreen extends Phaser.Scene {
         this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('piratebadge', ITEMLIST));
         this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('xorenergydrink', ITEMLIST));
         
+        
     }
 
-    loadPlanetSelection() {
-        this.scene.start('planetselection');
+    loadIntroduction() {
+        this.scene.start('introductionscene');
     }
 }

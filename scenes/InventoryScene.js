@@ -32,8 +32,8 @@ class InventoryScene extends Phaser.Scene {
 
         console.log(this.inventory);
         this.add.text(68, 50, 'Ship Inventory', HEADER_TEXT_STYLE);
-        this.add.text(68, 100, 'Certain items can be used by clicking on them.', DEFAULT_TEXT_STYLE);
-        this.add.text(68, 120, 'Hover over each item for a description.', DEFAULT_TEXT_STYLE);
+        this.add.text(68, 120, 'Certain items can be used by clicking on them.', DEFAULT_TEXT_STYLE);
+        this.add.text(68, 140, 'Hover over each item for a description.', DEFAULT_TEXT_STYLE);
 
         this.loadUI();
 

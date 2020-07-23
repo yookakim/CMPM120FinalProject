@@ -58,7 +58,8 @@ class PlanetScene extends Phaser.Scene {
         // welcome player and get planet name 
         this.add.text(50, 50, 'After ' + this.ship.lastTravelTime + ' lonely days in warp, you arrive at...', DEFAULT_TEXT_STYLE);
         this.add.text(50, 70, this.planet.name , HEADER_TEXT_STYLE);
-        this.add.text(50, 120, 'What actions will you take on this planet?', DEFAULT_TEXT_STYLE);
+        this.add.text(50, 120, 'Your sanity went down ' + this.ship.lastSanityChange + ' over the trip. (' + this.ship.lastTravelTime + ' days)', DEFAULT_TEXT_STYLE);
+        //this.add.text(50, 120, 'What actions will you take on this planet?', DEFAULT_TEXT_STYLE);
 
         var inventoryUIDataObject = {
             inventory: this.ship.inventory,
@@ -96,10 +97,11 @@ class PlanetScene extends Phaser.Scene {
         this.settlementButton = new ButtonTemplate(this, game.config.width / 9, 4 * game.config.height / 9, 'settlementbutton')
             .on('pointerdown', this.loadSettlement, this);
 
+        this.add.image(game.config.width / 9, game.config.height / 2 + 20, 'threehourslabel');
+        this.add.image(7 * game.config.width / 12, game.config.height / 2 + 65, 'threehourslabel');
+
         this.ecosystemButton = new ButtonTemplate(this,  7 * game.config.width / 12, game.config.height / 2, 'ecosystembutton')
             .on('pointerdown', this.loadEcosystem, this);
-
-
 
         this.nextPlanetButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
             .on('pointerdown', this.loadPlanetSelection, this);

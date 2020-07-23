@@ -23,4 +23,7 @@ class Engine {
         // and then get it with a getter and the registry.get method
         return this._engineEfficiency;
     }
+    set engineEfficiency(value) {
+        this._engineEfficiency = value;
+    }
 }

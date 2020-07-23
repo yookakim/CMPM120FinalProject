@@ -37,8 +37,8 @@ class Settlement {
         this.settlementName = name;
         this.hostPlanet = planet;
 
-        // somewhere from 1 to 4 ppl for now lmao
-        this.population = Phaser.Math.Between(1, 4);
+        // somewhere from 3 to 5 ppl for now lmao
+        this.population = Phaser.Math.Between(3, 5);
 
         this.abandoned = false;
         // array of civilians

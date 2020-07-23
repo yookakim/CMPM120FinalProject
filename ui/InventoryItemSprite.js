@@ -19,7 +19,13 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
         this.setScale(8, 8);
         scene.add.existing(this);
         this.setInteractive();
-        this.on('pointerdown', this.itemClick);
+
+        this.clickable = true;
+        this.on('pointerdown', () => {
+            if (this.clickable) {
+                this.itemClick();
+            }
+        });
 
         this.on('pointerover', function() {
             // if hovered over, the pointer is on top
@@ -70,7 +76,7 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
 
 
         // set special use cases for certain items (for example, can only use energy drink when on planet)
-        // this is pretty hacky lmao, im figuring out a better way to do stuff like this for other projects lol
+        // this is pretty hacky, i will figure out a better way to do stuff like this for other projects lol
         if (this.item.components.hasOwnProperty('dayTimeIncrease')) {
             if (game.scene.isActive('settlementmenu') ||
                 game.scene.isActive('ecosystemmenu') ||

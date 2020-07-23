@@ -91,7 +91,7 @@ class PlanetButtonObject extends Phaser.GameObjects.Sprite {
         this.planetInfoText = this.scene.add.text(
             this.x - 75,
             this.y + 80,
-            'distance: ' + this.planet.planetDistance + '\n' + 
+            'distance: ' + this.planet.planetDistance + ' light years\n' + 
             'time: ' + this.travelTime + '\n',
             this.textConfig
         );        
