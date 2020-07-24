@@ -1,6 +1,8 @@
 /* 
     Base planet class that holds objects such as settlements and data such 
     as planet name and distance
+
+    Yooha Kim
 */
 
 'use strict';

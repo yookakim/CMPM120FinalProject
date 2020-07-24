@@ -21,7 +21,7 @@ class IntroductionScene extends Phaser.Scene {
 
         this.titlemusicintro = this.sound.add('titlemusicintro', DEFAULT_SFX_CONFIG);
         this.titlemusic = this.sound.add('titlemusic', {
-            volume: .8,
+            volume: .0,
             loop: true
         });
         this.titlemusicintro.on('complete', this.startMusicLoop, this);

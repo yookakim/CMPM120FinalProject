@@ -1,8 +1,14 @@
 /* 
-    Base class for generating items and adding their components
+    Base class for the inventory item objects which holds
+    functionality in its components property and lets itself
+    be inserted and removed from inventory objects
+
+    Also holds a lot of conditionals for handling
+    item functionalities in different scenes/conditions 
 
     Yooha Kim
 */
+
 'use strict';
 
 class InventoryItem {

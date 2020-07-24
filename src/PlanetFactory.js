@@ -1,6 +1,12 @@
+/* 
+    Class with randomization functionalities to generate new
+    planets to travel to
+
+    Yooha Kim
+*/
+
 'use strict';
 
-// create Planet game object, then assign values to properties
 class PlanetFactory {
     constructor (number) {
         // properties to manage planet randomization

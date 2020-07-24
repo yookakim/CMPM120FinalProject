@@ -1,3 +1,10 @@
+/* 
+    Settlement view which gives options on which civilian
+    to talk to
+
+    Yooha Kim
+*/
+
 'use strict';
 
 class SettlementMenu extends Phaser.Scene {
@@ -91,13 +98,14 @@ class SettlementMenu extends Phaser.Scene {
                 // we pass the civilian object through the button parameter, so that the called function knows which
                 // civilian it is dealing with
                 if (element.hasVisited) {
-                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 110 + 60), 'talkbutton', 0, this.settlement.civilians[index]);
+                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 110 + 70), 'talkbutton', 0, this.settlement.civilians[index]);
                 } else if (!element.hasVisited) {
-                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 110 + 60), 'meetbutton', 0, this.settlement.civilians[index]);
+                    this.civilianButton = new TalkButtonObject(this, 155, 180 + (index * 110 + 70), 'meetbutton', 0, this.settlement.civilians[index]);
                 }
                 this.add.text(80, 180 + (index * 110),
-                    'you see ' + 
-                    element.name + ', ' +
+                    element.name,
+                    SUBHEADER_TEXT_STYLE);
+                this.add.text(300, 200 + (index * 110),
                     element.age +
                     ' years old',
                     DEFAULT_TEXT_STYLE);

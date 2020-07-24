@@ -1,3 +1,12 @@
+/* 
+    Summary scene after scavenging planet showing the
+    resources gained
+
+    Yooha Kim
+*/
+
+'use strict';
+
 class ScavengeSummary extends Phaser.Scene {
     constructor() {
         super('scavengesummary');

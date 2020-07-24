@@ -1,5 +1,8 @@
 /* 
-    scene class for the planet view after selecting destination.
+    Scene class for the planet view after selecting destination,
+    allow for visiting settlement or visiting ecosystem
+
+    Yooha Kim
 */
 'use strict';
 class PlanetScene extends Phaser.Scene {

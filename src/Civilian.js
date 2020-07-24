@@ -1,5 +1,12 @@
 'use strict';
 
+/* 
+    Civilian object instantiated at planet generation, holds dialogue
+    and respective behavioral components
+
+    Yooha Kim
+*/
+
 class Civilian {
     constructor(name, age, wealth, hostPlanet) {
         

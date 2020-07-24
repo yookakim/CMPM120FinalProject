@@ -1,6 +1,11 @@
 'use strict';
 
-// scene for checking inventory before ship launch 
+/* 
+    Scene accesible from planet selection which displays the
+    player inventory
+
+    Yooha Kim
+*/
 
 class InventoryScene extends Phaser.Scene {
     constructor() {
@@ -33,7 +38,7 @@ class InventoryScene extends Phaser.Scene {
         console.log(this.inventory);
         this.add.text(68, 50, 'Ship Inventory', HEADER_TEXT_STYLE);
         this.add.text(68, 120, 'Certain items can be used by clicking on them.', DEFAULT_TEXT_STYLE);
-        this.add.text(68, 140, 'Hover over each item for a description.', DEFAULT_TEXT_STYLE);
+        this.add.text(68, 1, 'Hover over each item for a description.', DEFAULT_TEXT_STYLE);
 
         this.loadUI();
 

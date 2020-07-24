@@ -3,6 +3,7 @@
 
     Yooha Kim
 */
+
 'use strict';
 
 class Ship {
@@ -90,8 +91,16 @@ class Ship {
                 }
             }
         }
+
+        // sanity change is travel time * sanity loss, turned into a negative number
         this.lastSanityChange = -(this.lastTravelTime * thisTurnSanityLoss);
-        this.sanity = this.sanity + this.lastSanityChange;
+
+        if (this.sanity + this.lastSanityChange > 0) {            
+            this.sanity = this.sanity + this.lastSanityChange;
+        } else {
+            this.sanity = 0;
+        }
+
     }
 
     // traverseItemEffects() {

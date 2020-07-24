@@ -1,3 +1,11 @@
+/* 
+    Title Screen
+
+    Yooha Kim
+*/
+
+'use strict';
+
 class TitleScreen extends Phaser.Scene {
     constructor() {
         super('titlescreen');

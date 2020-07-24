@@ -1,3 +1,12 @@
+/* 
+    Preload all the assets before game start for ease of use
+    and less cluttered scene code
+
+    Yooha Kim
+*/
+
+'use strict';
+
 class Preloader extends Phaser.Scene {
     constructor () {
         super('preloader');

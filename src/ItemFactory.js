@@ -1,12 +1,16 @@
-'use strict';
-
-// instantiates a new item based on the key given
 /* 
+    instantiates a new item based on the key given
+
     honestly pretty weird how i put this in a new class, I feel like
     this functionality could have just been put in one function
+
     instead of having to instantiate a new item factory to generate items,
-    we could just call the function 
+    we could just call an existing function like we do with the Civilian Factory
+
+    Yooha Kim
 */
+
+'use strict';
 
 class ItemFactory {
     constructor() {

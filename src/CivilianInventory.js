@@ -1,3 +1,10 @@
+/* 
+    Inventory child class (same as Inventory, but
+    without the event emitters)
+
+    Yooha Kim
+*/
+
 'use strict';
 
 class CivilianInventory extends Inventory {

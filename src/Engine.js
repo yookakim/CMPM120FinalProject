@@ -1,3 +1,10 @@
+/* 
+    Object attached to the Ship (player data singleton)
+    upon game instantiation. So basically, another singleton
+
+    Yooha Kim
+*/
+
 'use strict';
 
 class Engine {

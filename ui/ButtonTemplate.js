@@ -1,6 +1,8 @@
 /*
     class to make button making less messy and repeat less code
+
     *****************
+    
     adapted William Clarkson's example for a Button class at 
     https://phasergames.com/how-to-make-buttons-in-phaser-3/
 */

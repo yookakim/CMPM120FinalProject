@@ -1,3 +1,11 @@
+'use strict';
+
+/* 
+    Menu scene for displaying ecosystem and giving scavenging options
+
+    Yooha Kim
+*/
+
 class EcosystemMenu extends Phaser.Scene {
     constructor() {
         super('ecosystemmenu');

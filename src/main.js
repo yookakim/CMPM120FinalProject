@@ -1,5 +1,3 @@
-'use strict';
-
 /* 
     CMPM 120 Project
 
@@ -9,6 +7,8 @@
     Oliver Berggren
     Jonathan Palafox
 */
+
+'use strict';
 
 // define game config
 let config = {
@@ -67,7 +67,7 @@ let DEFAULT_TOOLTIP_STYLE = {
 }
 
 let DEFAULT_SFX_CONFIG = {
-    volume: .8,
+    volume: .0,
 }
 
 // global "uninteractable" tint value

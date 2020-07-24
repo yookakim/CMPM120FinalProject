@@ -1,8 +1,15 @@
 /* 
-    functions with data and functionality to attach to objects at runtime
+    functions to attach to objects such as civilians,
+    ecosystems, items, etc. at runtime
+
+    A huge chunk of the functionality is found here
+    inside these components. Reusability from this style
+    of adding functionality made it easy to conceptualize
+    and implement new items, biomes, etc.
 
     Yooha Kim
 */
+
 'use strict';
 
 this.GameComponents = {
@@ -171,6 +178,10 @@ this.GameComponents = {
                 var andrometine = itemFactory.generateItem('andrometine', ITEMLIST);
 
                 civilian.inventory.inventoryAdd(andrometine);
+
+                var book = itemFactory.generateItem('book', ITEMLIST);
+                
+                civilian.inventory.inventoryAdd(book);
 
             } else if (OUT_CHILD_MERC) {
 

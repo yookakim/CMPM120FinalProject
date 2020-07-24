@@ -2,6 +2,8 @@
 
 /* 
     Scene for selecting the destination planet
+
+    Yooha Kim
 */
 
 class PlanetSelection extends Phaser.Scene {

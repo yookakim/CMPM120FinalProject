@@ -1,3 +1,12 @@
+/* 
+    Scene which runs on game end and displays summary, statistics, achievements,
+    and ending flavor text
+
+    Yooha Kim
+*/
+
+'use strict';
+
 class EndGameScene extends Phaser.Scene {
     constructor() {
         super('endgamescene');

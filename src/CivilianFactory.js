@@ -1,5 +1,10 @@
-'use strict';
+/* 
+    Factory function to generate and return a new civilian
 
+    Yooha Kim
+*/
+
+'use strict';
 
 this.CivilianFactory = function(planet) {
     let civilianNames = ['Jack', 'Beck', 'Carl', 'Ashley', 'Sarah', 'Phil', 'June', 'Karen', 

@@ -1,3 +1,12 @@
+/* 
+    Ecosystem object class which holds the respective
+    biome component
+
+    Yooha Kim
+*/
+
+'use strict';
+
 class Ecosystem {
     constructor(planet) {
         // generate Temperate, Icy, Desert, Humid planets in 40, 20, 20, 20 percent chance respectively

@@ -1,3 +1,12 @@
+/* 
+    Separate UI scene overlayed on PlanetSelection to separate
+    visuals from the scene logic
+
+    Yooha Kim
+*/
+
+'use strict';
+
 class PlanetSelectionUI extends Phaser.Scene {
     constructor() {
         super('planetselectionui');
