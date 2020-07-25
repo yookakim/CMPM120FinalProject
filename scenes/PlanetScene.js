@@ -49,7 +49,7 @@ class PlanetScene extends Phaser.Scene {
             this.ecosystemButton.clickable = true;
         }
         if (this.timeNeedsUpdate) {
-            this.hoursLeftText.setText('Time left: ' + this.ship.hoursLeftInDay);
+            this.hoursLeftText.setText('Hours left in day: ' + this.ship.hoursLeftInDay);
             this.timeNeedsUpdate = false;
         }
     }
@@ -66,7 +66,7 @@ class PlanetScene extends Phaser.Scene {
 
         var inventoryUIDataObject = {
             inventory: this.ship.inventory,
-            positionX: game.config.width - 450,
+            positionX: game.config.width - 570,
             positionY: (7 * game.config.height) / 10
         };
         
@@ -89,7 +89,7 @@ class PlanetScene extends Phaser.Scene {
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
 
-        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
 
         // this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
         //     .setOrigin(0, 0)

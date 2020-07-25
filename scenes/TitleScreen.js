@@ -32,6 +32,7 @@ class TitleScreen extends Phaser.Scene {
         this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('upgradekit', ITEMLIST));
         this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('piratebadge', ITEMLIST));
         this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('xorenergydrink', ITEMLIST));
+        this.ship.inventory.inventoryAdd(this.itemFactory.generateItem('federationinfogoggles', ITEMLIST));
         
         
     }

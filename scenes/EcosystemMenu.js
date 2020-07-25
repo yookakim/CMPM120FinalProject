@@ -29,7 +29,7 @@ class EcosystemMenu extends Phaser.Scene {
     update() {
         this.scavengeButton.checkClickable();
         if (this.timeNeedsUpdate) {
-            this.hoursLeftText.setText('Time left: ' + this.ship.hoursLeftInDay);
+            this.hoursLeftText.setText('Hours left in day: ' + this.ship.hoursLeftInDay);
             this.timeNeedsUpdate = false;
         }
         if (this.ship.hoursLeftInDay < 2 && this.scavengeButton.clickable) {
@@ -64,11 +64,11 @@ class EcosystemMenu extends Phaser.Scene {
 
         this.add.image(155, 250, 'twohourslabel');
         
-        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
 
         var inventoryUIDataObject = {
             inventory: this.ship.inventory,
-            positionX: game.config.width - 450,
+            positionX: game.config.width - 570,
             positionY: (7 * game.config.height) / 10
         };
         

@@ -132,6 +132,18 @@
             }
         }
     },
+
+    "federationinfogoggles": {
+        "name": "federationinfogoggles",
+        "displayname": "Federation Information Goggles",
+        "description": "An ancient piece of puzzling technology, designed to give soldiers unit locations, orders, and descriptions, all during the heat of battle.\n\nGives a complete description of each target's attributes while in your inventory.",
+        "worth": 200,
+        "components": {
+            "npcAttributeShow": {
+                
+            }
+        }
+    },
     
     "tomfruit": {
         "name": "tomfruit",

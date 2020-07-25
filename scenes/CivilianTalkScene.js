@@ -60,7 +60,7 @@ class CivilianTalkScene extends Phaser.Scene {
         
 
 
-        this.add.text(game.config.width - 280, 100, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        this.add.text(game.config.width - 280, 100, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
         
         this.returnButton = this.add.sprite(game.config.width - 200, game.config.height - 125, 'return')
             .setInteractive()
@@ -69,7 +69,7 @@ class CivilianTalkScene extends Phaser.Scene {
 
         
 
-        this.add.text(80, 50, this.civilian.name, HEADER_TEXT_STYLE)
+        this.add.text(80, 50, this.civilian.name, HEADER_TEXT_STYLE);
 
         this.add.text(80, 120, this.dialogueObject.titles, SUBHEADER_TEXT_STYLE);
         
@@ -90,7 +90,7 @@ class CivilianTalkScene extends Phaser.Scene {
 
     loadDialogue() {
         // if (!this.civilian.hasVisited) {
-        //     this.add.text(80, 140, this.dialogueObject.greetingString, DEFAULT_TEXT_STYLE);
+        //     this.add.text(80, 140, this.dialogueObject.normalGreetingString, DEFAULT_TEXT_STYLE);
         // } else if (this.civilian.hasVisited) {
         //     this.add.text(80, 140, this.dialogueObject.alreadyVisitedString, DEFAULT_TEXT_STYLE);
         // }
@@ -103,8 +103,26 @@ class CivilianTalkScene extends Phaser.Scene {
             }
         }
 
-        this.add.text(80, 180, this.dialogueObject.greetingString, DEFAULT_TEXT_STYLE);
-        
+        if (this.ship.sanity < 30) {
+            this.add.text(80, 180, this.dialogueObject.lowGreetingString, DEFAULT_TEXT_STYLE);
+            
+            if (this.civilian.npcType === "CIV") {
+                // decrease sanity because you were yelled at by a civilian
+                this.add.text(80, 320, 'Your sanity has gone down by 4.', DEFAULT_TEXT_STYLE);
+                this.ship.changeSanity(-4);
+            }
+            if (this.civilian.npcType === "CIV_CHILD") {
+                // increase sanity because a child gave u innocent hope
+                this.add.text(80, 320, 'Your sanity has increased by 4.', DEFAULT_TEXT_STYLE);
+                this.ship.changeSanity(4);
+            }
+
+        } else if (this.ship.sanity >= 30 && this.ship.sanity < 70) {
+            this.add.text(80, 180, this.dialogueObject.normalGreetingString, DEFAULT_TEXT_STYLE);
+
+        } else if (this.ship.sanity >= 70) {
+            this.add.text(80, 180, this.dialogueObject.highGreetingString, DEFAULT_TEXT_STYLE);
+        }
         
 
         this.civilian.hasVisited = true;

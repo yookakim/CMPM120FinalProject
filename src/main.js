@@ -48,6 +48,7 @@ let SUBHEADER_TEXT_STYLE = {
 
 let DEFAULT_TEXT_STYLE = {
     fontFamily: 'Tahoma',
+    lineSpacing: 10
 }
 
 let INTRO_TEXT_STYLE = {
@@ -90,7 +91,7 @@ game.registry.set({
     // arbitrary engine start strength
     INITIAL_ENGINE_OUTPUT: 60,
     INITIAL_ENGINE_EFFICIENCY: 11,
-    INITIAL_MAX_SANITY: 100,
+    INITIAL_MAX_SANITY: 400,
     
     // arbitrary placeholder initial planet distance
     PLACEHOLDER_PLANET_DISTANCE: 1000,

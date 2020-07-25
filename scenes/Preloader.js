@@ -37,6 +37,9 @@ class Preloader extends Phaser.Scene {
         this.load.image('return', './assets/UI/buttons/return_to_settlement_button.png');
         this.load.image('cancelbutton', './assets/UI/buttons/cancel_button.png');
         this.load.image('confirmtradebutton', './assets/UI/buttons/confirm_trade_button.png');
+        this.load.image('gogglesinfofield_civilian', './assets/UI/gogglesinfofield_civilian.png');
+        this.load.image('gogglesinfofield_outcast', './assets/UI/gogglesinfofield_outcast.png');
+        this.load.image('gogglesinfofield_merchant', './assets/UI/gogglesinfofield_merchant.png');
         
         // planet selection
         this.load.image('planetbutton', './assets/temp_planet.png');
@@ -79,6 +82,7 @@ class Preloader extends Phaser.Scene {
         this.load.image('fedcursingdoll', './assets/items/fedcursingdollicon.png');
         this.load.image('mystiviancharm', './assets/items/mystiviancharmicon.png');
         this.load.image('andrometine', './assets/items/andrometineicon.png');
+        this.load.image('federationinfogoggles', './assets/items/federationinfogogglesicon.png');
 
         // planet resource items
         this.load.image('tomfruit', './assets/items/tomfruiticon.png');

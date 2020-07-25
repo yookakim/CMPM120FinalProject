@@ -1,11 +1,16 @@
-'use strict';
-
 /* 
     Civilian object instantiated at planet generation, holds dialogue
     and respective behavioral components
 
+    tbh I feel like I messed up the dialogue implementation. Cuz why would
+    any random civilian object have to hold the string data for every other civilian 
+    in the universe? there might be a smarter way to manage this with external
+    files or dedicated dialogue objects 
+
     Yooha Kim
 */
+
+'use strict';
 
 class Civilian {
     constructor(name, age, wealth, hostPlanet) {
@@ -15,6 +20,7 @@ class Civilian {
         this.name = name;
         this.age = age;
         this.wealth = wealth;
+        this.npcType;
         this.ship = ship;
 
         this.hasVisited = false;
@@ -26,198 +32,162 @@ class Civilian {
 
         this.components = {};
 
-
+        
         
 
         // this.addComponents(civilianType);
     }
 
 
+
     getGreeting() {
 
-        this.CIV = 
-                    (this.components.hasOwnProperty('civilian') && 
-                    !this.components.hasOwnProperty('merchant') &&
-                    !this.components.hasOwnProperty('child') &&
-                    !this.components.hasOwnProperty('outcast'));
-        this.CIV_CHILD = 
-                    (this.components.hasOwnProperty('civilian') && 
-                    !this.components.hasOwnProperty('merchant') &&
-                    this.components.hasOwnProperty('child') &&
-                    !this.components.hasOwnProperty('outcast'));
-        this.CIV_MERC_CHILD = 
-                    (this.components.hasOwnProperty('civilian') && 
-                    this.components.hasOwnProperty('merchant') &&
-                    this.components.hasOwnProperty('child') &&
-                    !this.components.hasOwnProperty('outcast'));
-        this.CIV_MERC = 
-                    (this.components.hasOwnProperty('civilian') && 
-                    this.components.hasOwnProperty('merchant') &&
-                    !this.components.hasOwnProperty('child') &&
-                    !this.components.hasOwnProperty('outcast'));
-
-        // outcast types:
-        this.OUT = 
-                    (!this.components.hasOwnProperty('civilian') && 
-                    !this.components.hasOwnProperty('merchant') &&
-                    !this.components.hasOwnProperty('child') &&
-                    this.components.hasOwnProperty('outcast'));
-        this.OUT_CHILD = 
-                    (!this.components.hasOwnProperty('civilian') && 
-                    !this.components.hasOwnProperty('merchant') &&
-                    this.components.hasOwnProperty('child') &&
-                    this.components.hasOwnProperty('outcast'));
-        this.OUT_MERC_CHILD = 
-                    (!this.components.hasOwnProperty('civilian') && 
-                    this.components.hasOwnProperty('merchant') &&
-                    this.components.hasOwnProperty('child') &&
-                    this.components.hasOwnProperty('outcast'));
-        this.OUT_MERC = 
-                    (!this.components.hasOwnProperty('civilian') && 
-                    this.components.hasOwnProperty('merchant') &&
-                    !this.components.hasOwnProperty('child') &&
-                    this.components.hasOwnProperty('outcast'));    
+ 
                         
+
+        // Set greeting string for each level of sanity
         var dialogueObject = {
-            greetingString: '',
+            lowGreetingString: '',
+            normalGreetingString: '',
+            highGreetingString: '',
             tooLateString: '',
             titles: ''
         }
         
-        
-        // if (!this.hasVisited) {
-        //     if (this.components.hasOwnProperty('child')) {
-        //         greetingString += this.components.child.greetings[Phaser.Math.Between(0, this.components.child.greetings.length - 1)];
-        //     }
-        //     greetingString += '\nMy name is ' + this.name + '!';
-            
-          
-        // } else if (this.hasVisited) {
-        //     greetingString += 'Nice to see you again!';
-        // }
-        
-        // if (this.ship.hoursLeftInDay < 1) {
 
-        //     greetingString += ' Don\'t you think it\'s getting a little too late to talk? I\'m tired.';   
-
-        // } else if (this.ship.hoursLeftInDay > 0) {
-            
-        //     greetingString += ' I have ' + this.wealth + ' gold pieces in my wallet! Just felt like letting you know.';
-        //     this.ship.spendTime(1);
-        //     if (this.components.hasOwnProperty('merchant')) {
-        //         // if civilian is merchant:
-        //         greetingString += '\n \nCare to look at some of my wares?';
-        //         if (this.components.hasOwnProperty('child')) {
-        //             // if merchant AND child
-        //             greetingString += '\nBelieve it or not, I\'m growing up to become the richest merchant all throughout the stars!';
-        //         }
-        //     }
-            
-
-        // }
-
-        // eight conditions
-
-        // civilian types:
-
-        dialogueObject
-
-        if (this.CIV) {
+        if (this.npcType === "CIV") {
             if (this.hasVisited) {
-                dialogueObject.greetingString = 'Hi, nice to see you again!';
+                dialogueObject.lowGreetingString = '...stay away from me... I see nothing of good in you.'
+                dialogueObject.normalGreetingString = 'Hi, nice to see you again!';
+                dialogueObject.highGreetingString = 'Hello! Happy to see you again!'
             } else {
-                dialogueObject.greetingString = 'How are you doing, my name is ' + this.name + '.';
+                dialogueObject.lowGreetingString = 'You... stay away. The malice in your eyes reminds me of those Federation dogs.'
+                dialogueObject.normalGreetingString = 'How are you doing, my name is ' + this.name + '.';
+                dialogueObject.highGreetingString = ['Hello! Are you a traveller? My name is ' + this.name + '! Seldom do we get such saintly looking travellers such as you!',
+                                                     'We could use a strong-looking man like you!'];
             }
-            dialogueObject.tooLateString = 'I\'m afraid it\'s getting a little too late... good night, and good luck!';
+            dialogueObject.tooLateString = 'It\'s too late for us to talk.';
             dialogueObject.titles = '- Civilian -';
         }
         // 2
-        if (this.CIV_CHILD) {
+        if (this.npcType === "CIV_CHILD") {
             if (this.hasVisited) {
-                dialogueObject.greetingString = 'You again old man? Hi!';
+                dialogueObject.lowGreetingString = 'Hi again!';
+                dialogueObject.normalGreetingString = 'Hey mister, nice to see you again! Hi!!';
+                dialogueObject.highGreetingString = 'Hey, will you stay in our village? Please? Pretty please?';
             } else {
-                dialogueObject.greetingString = 'Hi! I want somebody to play with!';
+                dialogueObject.lowGreetingString = ['Wow, what happened to you? You look terrible! Haha!',
+                                                    'If you wanna look and feel better, my pops says all spacepeople should exercise more.'];
+                dialogueObject.normalGreetingString = 'Hi! Wanna play some throw and catch?';
+                dialogueObject.highGreetingString = 'Wow... wow! What do you do to look all shiny like that?';
             }
             dialogueObject.tooLateString = 'It\'s bedtime soon. I\'m going home, see you later!';
             dialogueObject.titles = '- Civilian - Child -';
         }
         //3
-        if (this.CIV_MERC_CHILD) {            
+        if (this.npcType === "CIV_CHILD_MERC") {            
             if (this.hasVisited && !this.components.merchant.justTraded) {
-                dialogueObject.greetingString = 'Hi, welcome back! Weeeelcome back!';
+                dialogueObject.lowGreetingString = 'Hi again! Wanna buy more? It\'ll fix your look for sure.';
+                dialogueObject.normalGreetingString = 'Hi, welcome back! Weeeelcome back!';
+                dialogueObject.highGreetingString = 'Welcome back sir! Any more goods you would like to purchase, sir?';
             } else if (this.components.merchant.justTraded) {
-                dialogueObject.greetingString = 'Aha, thank you thank you, come again old man!';
+                dialogueObject.lowGreetingString = 'Thanks for the business!'
+                dialogueObject.normalGreetingString = 'Aha, thank you thank you, come again old man!';
+                dialogueObject.highGreetingString = 
                 this.components.merchant.justTraded = false;
             } else {
-                dialogueObject.greetingString = 'I\'m going to become the richest of the rich, old man! Buy my things!';
+                dialogueObject.lowGreetingString = 'You look funny. Gramp-dad says funny people pay lots!!';
+                dialogueObject.normalGreetingString = 'I\'m going to become the richest of the rich, old man! Buy my things!';
             }            
-            dialogueObject.tooLateString = 'It\'s getting dark mister, I\'m heading home with my things soon. Good night!';
+            dialogueObject.tooLateString = 'It\'s getting dark mister, I\'m heading home with my things soon.';
             dialogueObject.titles = '- Civilian - Merchant - Child -';
         }
         //4
-        if (this.CIV_MERC) {
+        if (this.npcType === "CIV_MERC") {
             if (this.hasVisited && !this.components.merchant.justTraded) {
-                dialogueObject.greetingString = 'Nice to see you again.';
+                dialogueObject.lowGreetingString = 'You again?';
+                dialogueObject.normalGreetingString = 'Nice to see you again.';
+                dialogueObject.highGreetingString = 'Welcome back, welcome back! Any other goods you would be interested in?'
             } else if (this.components.merchant.justTraded) {
-                dialogueObject.greetingString = 'Thank you for your business.';
+                dialogueObject.lowGreetingString = 'You\'ve got your stuff... now leave.';
+                dialogueObject.normalGreetingString = 'Thank you for your business.';
+                dialogueObject.highGreetingString = 'Thank you very much! Please do come again!';
                 this.components.merchant.justTraded = false;
             } else {
-                dialogueObject.greetingString = 'Hello, how are you? I\'m ' + this.name + ', take a look at some of my wares!';
+                dialogueObject.lowGreetingString = 'Ugh... tell me what you want, quick.'
+                dialogueObject.normalGreetingString = 'Hello, how are you? I\'m ' + this.name + ', take a look at some of my wares!';
+                dialogueObject.highGreetingString = 'Hello sir! We are offering some special discounts today, would you be interested?'
             }   
             dialogueObject.tooLateString = 'It\'s getting a little late, and I\'m afraid I must pack my goods for the day.';
             dialogueObject.titles = '- Civilian - Merchant -';
         }
         //5
-        if (this.OUT) {
+        if (this.npcType === "OUT") {
             if (this.hasVisited) {
-                dialogueObject.greetingString = 'You again...';
+                dialogueObject.lowGreetingString = 'Kekeke... greetings again.'
+                dialogueObject.normalGreetingString = '...';
+                dialogueObject.highGreetingString = 'Back again to show me how much of a goddamn saint you are?';
             } else {
-                dialogueObject.greetingString = 'What do you want?';
+                dialogueObject.lowGreetingString = 'Aha... I see the hate in your eyes... I know, I know... because I am like you, along with the rest of our kind.'
+                dialogueObject.normalGreetingString = 'What do you want?';
+                dialogueObject.highGreetingString = '...and what would such a gentleman like you be doing here, wasting time on a mongrel such as I?';
             }
             dialogueObject.tooLateString = 'You wishing a death sentence for yourself, being out this late around somebody like me?';
             dialogueObject.titles = '- Outcast -';
         }
         //6
-        if (this.OUT_CHILD) {
+        if (this.npcType === "OUT_CHILD") {
             if (this.hasVisited) {
-                dialogueObject.greetingString = 'Back again? Clingy grownup.';
+                dialogueObject.lowGreetingString = 'Did the Feddies hurt you? I can\'t say ' + this.name + ' has dealt with the same... but I think I know how you feel, mister.';
+                dialogueObject.normalGreetingString = 'Back again? Clingy grownups...';
+                dialogueObject.highGreetingString = '...'
             } else {
-                dialogueObject.greetingString = 'When I grow up... I\'m not turning out like everybody else.';
+                dialogueObject.lowGreetingString = 'Did the Federation hurt you?';
+                dialogueObject.normalGreetingString = 'When I grow up... I\'m not turning out like everybody else.';
+                dialogueObject.highGreetingString = '...what do you want from me? Go away.';
             }
-            dialogueObject.tooLateString = 'I need sleep. Now shoo, gramps.'
+            dialogueObject.tooLateString = 'I don\'t talk with others after dark.'
             dialogueObject.titles = '- Child - Outcast -';
         }
         //7
-        if (this.OUT_MERC_CHILD) {
+        if (this.npcType === "OUT_CHILD_MERC") {
             if (this.hasVisited && !this.components.merchant.justTraded) {
-                dialogueObject.greetingString = 'Back for some dangerous grownup goodies?';                
+                dialogueObject.lowGreetingString = 'I knew you\'d be back... one of us.';
+                dialogueObject.normalGreetingString = 'Hehe... Back for some dangerous grownup goodies?';
+                dialogueObject.highGreetingString = 'I don\'t think I have anything to sell to snotty saints like you.';
             } else if (this.components.merchant.justTraded) {
-                dialogueObject.greetingString = 'Come again gramps, come again...';
+                dialogueObject.lowGreetingString = 'Thank you for your patronage, friend...';
+                dialogueObject.normalGreetingString = 'Come again gramps, come again...';
+                dialogueObject.highGreetingString = '...'
                 this.components.merchant.justTraded = false;
             } else {
-                dialogueObject.greetingString = 'I\'m ' + this.name + '. None of the older ones like what I\'m getting myself into... but you\'ll look at what I\'m selling, right?';
+                dialogueObject.lowGreetingString = '... I have something special for you. But only for you.';
+                dialogueObject.normalGreetingString = 'I\'m ' + this.name + '. None of the older ones like what I\'m getting myself into... but you\'ll look at what I\'m selling, right?';
+                dialogueObject.highGreetingString = 'I don\'t think I have anything to sell to snotty saints like you. But I suppose I can show you what I have.';
             }            
             dialogueObject.tooLateString = 'A kid like me with no place to go home needs the time to find shelter... oh, you\'re not coming back tomorrow, old man?';
             dialogueObject.titles = '- Child - Merchant - Outcast -';
         }
         //8
-        if (this.OUT_MERC) {
+        if (this.npcType === "OUT_MERC") {
             if (this.hasVisited && !this.components.merchant.justTraded) {
-                dialogueObject.greetingString = 'Heh... knew an old sucker like you would be back again.';
+                dialogueObject.lowGreetingString = 'Crazies come, crazies go. Hello again friend.';
+                dialogueObject.normalGreetingString = 'Suckers like you come back for anything.';
+                dialogueObject.highGreetingString = '...'
             } else if (this.components.merchant.justTraded) {
-                dialogueObject.greetingString = 'Thanks... keep yourself safe out there, brother.';
+                dialogueObject.normalGreetingString = 'Appreciate the business, friend. Keep yourself safe out there.';
+                dialogueObject.normalGreetingString = '...thank you. Goodbye.';
+                dialogueObject.highGreetingString = '...';
                 this.components.merchant.justTraded = false;
-            } else {    
-                dialogueObject.greetingString = 'The name\'s ' + this.name + '...take a look at my stuff... you won\'t regret it.';
+            } else {
+                dialogueObject.lowGreetingString = 'Oh? You\'ve got a familiar look in your eyes... \nHo ho... I have got something special for you. I know you\'d use it well, I can just tell...';
+                dialogueObject.normalGreetingString = 'The name\'s ' + this.name + '...take a look at my stuff... you won\'t regret it.';
+                dialogueObject.highGreetingString = 'Don\'t think somebody like you would enjoy buying from me. Did you get that happy-go-lucky attitude by kissing up to Feddies?';
             }
             dialogueObject.tooLateString = 'It\'s too late for me to be out here selling this kind of stuff.';
             dialogueObject.titles = '- Merchant - Outcast -';
         }
-         
-        else if (this.ship.hoursLeftInDay < 1) {
-            dialogueObject.greetingString = ' Don\'t you think it\'s getting a little too late to talk? I\'m tired.';   
-
-        }
+        
 
         return dialogueObject;
     }

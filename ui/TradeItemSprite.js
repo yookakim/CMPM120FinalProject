@@ -22,6 +22,7 @@ class TradeItemSprite extends Phaser.GameObjects.Sprite {
         this.scene = scene;
         this.item = item;
         this.inventory = inventory;
+        this.ship = ship;
 
         // store the index position that the item is in the inventory
         this.index = index;
@@ -37,6 +38,7 @@ class TradeItemSprite extends Phaser.GameObjects.Sprite {
         this.setScale(8, 8);
         this.scene.add.existing(this);
         this.setInteractive();
+        this.checkExclusiveItem();
         this.on('pointerdown', this.itemClick);
 
         // properties for controlling tooltip
@@ -86,6 +88,12 @@ class TradeItemSprite extends Phaser.GameObjects.Sprite {
             this.scene.add.existing(this.tooltip);
         }
         this.tooltipTimer += delta;
+    }
+
+    checkExclusiveItem() {
+        // if (this.item.name === 'federationinfogoggles' && ship.sanity > 30 && this.isPlayerItem === false) {
+        //     this.setVisible(false);
+        // }
     }
 
     itemClick() {

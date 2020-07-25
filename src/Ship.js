@@ -18,7 +18,7 @@ class Ship {
         this.engine = new Engine();
 
         // storing items
-        this.inventory = new Inventory(7, this);
+        this.inventory = new Inventory(8, this);
         
         
 
@@ -44,7 +44,7 @@ class Ship {
         this.lastSanityChange = 0;
 
         // default .5, check bonuses every turn and subtract if passive item in inventory
-        this.sanityLossFactor = .5;
+        this.sanityLossFactor = -.5;
         
         // set initial max travel distance
         this._maxTravelDistance = this.engine.engineOutput * this.engine.engineEfficiency;
@@ -62,7 +62,19 @@ class Ship {
 
         // the Ceil method rounds up so that we dont have decimal number days
         this.lastTravelTime = planet.travelTime;
-        this.changeSanity();
+
+        var thisTurnSanityLoss = this.sanityLossFactor;
+
+        for (var i = 0; i < this.inventory.contents.length; i++) {
+            if (this.inventory.contents[i] != null) {
+                if (this.inventory.contents[i].components.hasOwnProperty('passiveSanityIncrease')) {
+                    thisTurnSanityLoss = this.sanityLossFactor + this.inventory.contents[i].components.passiveSanityIncrease.amount;
+                }
+            }
+        }
+        this.lastSanityChange = thisTurnSanityLoss * this.lastTravelTime;
+        this.changeSanity(this.lastSanityChange);
+
         // +1 because once you arrive on destination you don't leave until the next day
         this.totalDaysTravelled = this.totalDaysTravelled + this.lastTravelTime + 1;
         this.totalTravelDistance = this.totalTravelDistance + planet.planetDistance;
@@ -78,26 +90,20 @@ class Ship {
     }
 
     // decrease sanity; might be other factors changing how this works later
-    changeSanity() {
+    changeSanity(value) {
         // lose one sanity every two days by default
         console.log(this.inventory);
 
-        var thisTurnSanityLoss = this.sanityLossFactor;
 
-        for (var i = 0; i < this.inventory.contents.length; i++) {
-            if (this.inventory.contents[i] != null) {
-                if (this.inventory.contents[i].components.hasOwnProperty('passiveSanityIncrease')) {
-                    thisTurnSanityLoss = this.sanityLossFactor - this.inventory.contents[i].components.passiveSanityIncrease.amount;
-                }
-            }
-        }
 
         // sanity change is travel time * sanity loss, turned into a negative number
-        this.lastSanityChange = -(this.lastTravelTime * thisTurnSanityLoss);
+        
 
-        if (this.sanity + this.lastSanityChange > 0) {            
-            this.sanity = this.sanity + this.lastSanityChange;
-        } else {
+        if (this.sanity + value > 0 && this.sanity + value < 100) {
+            this.sanity = this.sanity + value;
+        } else if (this.sanity + value > this.maxSanity) {
+            this.sanity = 99;
+        } else if (this.sanity + value < 0) {
             this.sanity = 0;
         }
 

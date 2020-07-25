@@ -37,6 +37,8 @@ this.CivilianFactory = function(planet) {
         newcivilian.components.merchant.randomizeWares(newcivilian);
     }
 
+    newcivilian.npcType = setType(newcivilian);
+
     return newcivilian;
 
     /* ************ */
@@ -64,7 +66,7 @@ this.CivilianFactory = function(planet) {
         var civilianChance = 50;
         
         // percentage of time the NPC is a trader:
-        var merchantChance = 70;
+        var merchantChance = 50;
 
         if (Phaser.Math.Between(0,100) < civilianChance) {
             addComponent("civilian", civilian);
@@ -72,6 +74,7 @@ this.CivilianFactory = function(planet) {
             // if not normal civilian, is an outcast
             addComponent("outcast", civilian)
         }
+
         if (Phaser.Math.Between(0, 100) < merchantChance) {
             addComponent("merchant", civilian);
             
@@ -83,11 +86,106 @@ this.CivilianFactory = function(planet) {
     }
     
     function randomizeAge() {
-        return Phaser.Math.Between(3, 70);
+        return Phaser.Math.Between(3, 55);
     }
     
     function randomizeWealth() {
         return Phaser.Math.Between(0, 100);
+    }
+
+    function setType(civilian) {
+
+        if ((civilian.components.hasOwnProperty('civilian') && 
+            !civilian.components.hasOwnProperty('merchant') &&
+            !civilian.components.hasOwnProperty('child') &&
+            !civilian.components.hasOwnProperty('outcast'))) {
+            return "CIV";
+        }
+        if ((civilian.components.hasOwnProperty('civilian') && 
+            !civilian.components.hasOwnProperty('merchant') &&
+            civilian.components.hasOwnProperty('child') &&
+            !civilian.components.hasOwnProperty('outcast'))) {
+            return "CIV_CHILD";
+        }
+        if ((civilian.components.hasOwnProperty('civilian') && 
+            civilian.components.hasOwnProperty('merchant') &&
+            civilian.components.hasOwnProperty('child') &&
+            !civilian.components.hasOwnProperty('outcast'))) {
+            return "CIV_CHILD_MERC";
+        }
+        if ((civilian.components.hasOwnProperty('civilian') && 
+            civilian.components.hasOwnProperty('merchant') &&
+            !civilian.components.hasOwnProperty('child') &&
+            !civilian.components.hasOwnProperty('outcast'))) {
+            return "CIV_MERC";
+        }
+        if ((!civilian.components.hasOwnProperty('civilian') && 
+            !civilian.components.hasOwnProperty('merchant') &&
+            !civilian.components.hasOwnProperty('child') &&
+            civilian.components.hasOwnProperty('outcast'))) {
+            return "OUT"
+        }
+        if ((!civilian.components.hasOwnProperty('civilian') && 
+            !civilian.components.hasOwnProperty('merchant') &&
+            civilian.components.hasOwnProperty('child') &&
+            civilian.components.hasOwnProperty('outcast'))) {
+            return "OUT_CHILD"
+        }
+        if ((!civilian.components.hasOwnProperty('civilian') && 
+            civilian.components.hasOwnProperty('merchant') &&
+            civilian.components.hasOwnProperty('child') &&
+            civilian.components.hasOwnProperty('outcast'))) {
+            return "OUT_CHILD_MERC"
+        }
+        if ((!civilian.components.hasOwnProperty('civilian') && 
+            civilian.components.hasOwnProperty('merchant') &&
+            !civilian.components.hasOwnProperty('child') &&
+            civilian.components.hasOwnProperty('outcast'))) {
+            return "OUT_MERC";
+        }
+
+        // this.CIV = 
+                    // (this.components.hasOwnProperty('civilian') && 
+                    // !this.components.hasOwnProperty('merchant') &&
+                    // !this.components.hasOwnProperty('child') &&
+                    // !this.components.hasOwnProperty('outcast'));
+        // this.CIV_CHILD = 
+        //             (this.components.hasOwnProperty('civilian') && 
+        //             !this.components.hasOwnProperty('merchant') &&
+        //             this.components.hasOwnProperty('child') &&
+        //             !this.components.hasOwnProperty('outcast'));
+        // this.CIV_MERC_CHILD = 
+        //             (this.components.hasOwnProperty('civilian') && 
+        //             this.components.hasOwnProperty('merchant') &&
+        //             this.components.hasOwnProperty('child') &&
+        //             !this.components.hasOwnProperty('outcast'));
+        // this.CIV_MERC = 
+        //             (this.components.hasOwnProperty('civilian') && 
+        //             this.components.hasOwnProperty('merchant') &&
+        //             !this.components.hasOwnProperty('child') &&
+        //             !this.components.hasOwnProperty('outcast'));
+
+        // // outcast types:
+        // this.OUT = 
+        //             (!this.components.hasOwnProperty('civilian') && 
+        //             !this.components.hasOwnProperty('merchant') &&
+        //             !this.components.hasOwnProperty('child') &&
+        //             this.components.hasOwnProperty('outcast'));
+        // this.OUT_CHILD = 
+        //             (!this.components.hasOwnProperty('civilian') && 
+        //             !this.components.hasOwnProperty('merchant') &&
+        //             this.components.hasOwnProperty('child') &&
+        //             this.components.hasOwnProperty('outcast'));
+        // this.OUT_MERC_CHILD = 
+        //             (!this.components.hasOwnProperty('civilian') && 
+        //             this.components.hasOwnProperty('merchant') &&
+        //             this.components.hasOwnProperty('child') &&
+        //             this.components.hasOwnProperty('outcast'));
+        // this.OUT_MERC = 
+        //             (!this.components.hasOwnProperty('civilian') && 
+        //             this.components.hasOwnProperty('merchant') &&
+        //             !this.components.hasOwnProperty('child') &&
+        //             this.components.hasOwnProperty('outcast'));   
     }
 }
 

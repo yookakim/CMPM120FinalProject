@@ -51,6 +51,8 @@ class TradeScene extends Phaser.Scene {
     }
 
     loadUI() {
+        this.add.text(80, 60, 'Trade with:', DEFAULT_TEXT_STYLE);
+        this.add.text(80, 80, this.civilian.name, SUBHEADER_TEXT_STYLE);
 
         this.cancelButton = new ButtonTemplate(this, 150, 600, 'cancelbutton');
         this.cancelButton.on('pointerdown', this.cancelTrade, this);

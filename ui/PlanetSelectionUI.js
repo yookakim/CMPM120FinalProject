@@ -11,6 +11,7 @@ class PlanetSelectionUI extends Phaser.Scene {
     constructor() {
         super('planetselectionui');
         this.planetsData;
+        this.ship = ship;
     }
     
     preload() {
@@ -25,15 +26,6 @@ class PlanetSelectionUI extends Phaser.Scene {
         // get the array of planets from the data we passed in 
         this.planetsData = this.scene.settings.data.planets;
         this.planetSelectionScene = this.scene.settings.data.containerScene;
-        /*
-            probably should find some way to remove hard coded UI sprite/text position values later. 
-            if there are variable number of planets to choose from later, it would be difficult 
-            to get coordinates for each button position. 
-
-            iterate along however many planets were generated (unless we are settling on fixed planets per turn)
-            inside the array of planets we defined in create()
-
-            */
 
         this.add.image(0, 0, 'planetselectionbackground').setOrigin(0, 0);
         this.add.sprite(game.config.width / 2, game.config.height / 8, 'selectdestinationbanner');
@@ -45,12 +37,18 @@ class PlanetSelectionUI extends Phaser.Scene {
         
 
 
-        this.add.text(game.config.width / 9.4, 2.2 * game.config.height / 8, 'Day ' + (ship.totalDaysTravelled + 1) + ': ' + ship.currentPlanet.name, DEFAULT_TEXT_STYLE);
-        this.add.text(game.config.width / 9.4, 2.4 * game.config.height / 8, 'Engine Power: ' + ship.engine.engineOutput, DEFAULT_TEXT_STYLE);
-        this.add.text(game.config.width / 9.4, 2.6 * game.config.height / 8, 'Engine Efficiency: ' + ship.engine.engineEfficiency, DEFAULT_TEXT_STYLE);
-        this.add.text(game.config.width / 9.4, 2.8 * game.config.height / 8, 'Max Travel Distance: ' + ship.maxTravelDistance, DEFAULT_TEXT_STYLE);
-        this.add.text(game.config.width / 9.4, 3.0 * game.config.height / 8, 'sanity: ' + ship.sanity, DEFAULT_TEXT_STYLE);
-        // this.add.text(game.config.width / 9.4, 3.2 * game.config.height / 8, 'treasury: ' + ship.treasury + " gold", DEFAULT_TEXT_STYLE);
+        this.add.text(game.config.width / 9.4, 2.2 * game.config.height / 8, 'Day ' + (this.ship.totalDaysTravelled + 1) + ': ' + this.ship.currentPlanet.name, DEFAULT_TEXT_STYLE);
+        this.add.text(game.config.width / 9.4, 2.4 * game.config.height / 8, 'Engine Power: ' + this.ship.engine.engineOutput, DEFAULT_TEXT_STYLE);
+        this.add.text(game.config.width / 9.4, 2.6 * game.config.height / 8, 'Engine Efficiency: ' + this.ship.engine.engineEfficiency, DEFAULT_TEXT_STYLE);
+        this.add.text(game.config.width / 9.4, 2.8 * game.config.height / 8, 'Max Travel Distance: ' + this.ship.maxTravelDistance, DEFAULT_TEXT_STYLE);
+        this.sanityText = this.add.text(game.config.width / 9.4, 3.0 * game.config.height / 8, 'Sanity: ' + this.ship.sanity, DEFAULT_TEXT_STYLE);
+
+        if (this.ship.sanity < 30) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Disheveled)');
+        } else if (this.ship.sanity > 69) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Illuminated)');
+        }
+
         this.add.text(370, 2 * game.config.height / 8, 'You may only warp to a planet if your engine is', DEFAULT_TEXT_STYLE);
         this.add.text(370, 2.2 * game.config.height / 8, 'powerful or efficient enough.', DEFAULT_TEXT_STYLE);
         this.add.text(370, 2.8 * game.config.height / 8, 'travel time: distance / engine power', DEFAULT_TEXT_STYLE);

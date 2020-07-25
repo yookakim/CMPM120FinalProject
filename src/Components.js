@@ -48,7 +48,7 @@ this.GameComponents = {
 
         this.name = 'flatSanityIncrease';
         this.onUse = function(ship) {
-            ship.sanity += sanityAmount;
+            ship.changeSanity(sanityAmount);
         }
     },
 
@@ -68,6 +68,12 @@ this.GameComponents = {
             console.log('added ' + timeAmount + ' to hours left');
             EventManager.emit('hoursleftincreased', ship.hoursLeftInDay);
         }
+    },
+
+    npcAttributeShow: function() {
+        
+        this.name = 'npcAttributeShow';
+
     },
 
     giveMoney: function (goldAmount) {
@@ -152,46 +158,41 @@ this.GameComponents = {
             if (CIV_MERC) {
 
                 var xorenergydrink = itemFactory.generateItem('xorenergydrink', ITEMLIST);
-
                 civilian.inventory.inventoryAdd(xorenergydrink);
 
-                var book = itemFactory.generateItem('book', ITEMLIST);
-                
+                var book = itemFactory.generateItem('book', ITEMLIST);                
                 civilian.inventory.inventoryAdd(book);
 
             } else if (CIV_CHILD_MERC) {
 
                 var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
-
                 civilian.inventory.inventoryAdd(childtoy);
 
-                var book = itemFactory.generateItem('book', ITEMLIST);
-                
+                var book = itemFactory.generateItem('book', ITEMLIST);                
                 civilian.inventory.inventoryAdd(book);
 
             } else if (OUT_MERC) {
 
                 var xorenergydrink = itemFactory.generateItem('xorenergydrink', ITEMLIST);
-
                 civilian.inventory.inventoryAdd(xorenergydrink);
 
                 var andrometine = itemFactory.generateItem('andrometine', ITEMLIST);
-
                 civilian.inventory.inventoryAdd(andrometine);
 
-                var book = itemFactory.generateItem('book', ITEMLIST);
-                
+                var book = itemFactory.generateItem('book', ITEMLIST);                
                 civilian.inventory.inventoryAdd(book);
+            
+                var federationgoggles = itemFactory.generateItem('federationinfogoggles', ITEMLIST);
+                civilian.inventory.inventoryAdd(federationgoggles);
 
             } else if (OUT_CHILD_MERC) {
 
                 var fedcursingdoll = itemFactory.generateItem('fedcursingdoll', ITEMLIST);
-
                 civilian.inventory.inventoryAdd(fedcursingdoll);
 
                 var mystiviancharm = itemFactory.generateItem('mystiviancharm', ITEMLIST);
-
                 civilian.inventory.inventoryAdd(mystiviancharm);
+
 
             }
 

@@ -33,7 +33,7 @@ class SettlementMenu extends Phaser.Scene {
 
     update() {
         if (this.timeNeedsUpdate) {
-            this.hoursLeftText.setText('Time left: ' + this.ship.hoursLeftInDay);
+            this.hoursLeftText.setText('Hours left in day: ' + this.ship.hoursLeftInDay);
             this.timeNeedsUpdate = false;
         }
     }
@@ -55,7 +55,7 @@ class SettlementMenu extends Phaser.Scene {
 
         var inventoryUIDataObject = {
             inventory: this.ship.inventory,
-            positionX: game.config.width - 450,
+            positionX: game.config.width - 570,
             positionY: (7 * game.config.height) / 10
         };
         
@@ -76,14 +76,21 @@ class SettlementMenu extends Phaser.Scene {
     updateTimeText(hoursLeft) {
         if (this.hoursLeftText != null) {
             console.log(this.hoursLeftText);
-            this.hoursLeftText.setText('Time left: ' + hoursLeft);
+            this.hoursLeftText.setText('Hours left in day: ' + hoursLeft);
         }        
     }
 
     loadUI() {
 
         // display time left in day
-        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Time left: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        this.sanityText = this.add.text(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity, DEFAULT_TEXT_STYLE);
+        
+        if (this.ship.sanity < 30) {
+            this.sanityText.setText(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity + ' (Disheveled)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity > 69) {
+            this.sanityText.setText(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity + ' (Illuminated)', DEFAULT_TEXT_STYLE);
+        }
 
         // if this settlement DOES have civilians:
         if (!this.settlement.abandoned) {
@@ -105,10 +112,33 @@ class SettlementMenu extends Phaser.Scene {
                 this.add.text(80, 180 + (index * 110),
                     element.name,
                     SUBHEADER_TEXT_STYLE);
-                this.add.text(300, 200 + (index * 110),
+                this.add.text(300, 190 + (index * 110),
                     element.age +
                     ' years old',
                     DEFAULT_TEXT_STYLE);
+
+                // check inventory for attribute showing item (federation information goggles)
+                for (var i = 0; i < this.ship.inventory.contents.length; i++) {
+                    if (this.ship.inventory.contents[i] != null) {
+                        if (this.ship.inventory.contents[i].components.hasOwnProperty('npcAttributeShow')) {
+                            if (element.components.hasOwnProperty('civilian')) {
+                                this.add.image(300, 215 + (index * 110), 'gogglesinfofield_civilian')
+                                    .setOrigin(0, 0)
+                                    .setScale(4, 4);
+                            } else if (element.components.hasOwnProperty('outcast')) {
+                                this.add.image(300, 215 + (index * 110), 'gogglesinfofield_outcast')
+                                    .setOrigin(0, 0)
+                                    .setScale(4, 4);
+                            }
+                            if (element.components.hasOwnProperty('merchant')) {
+                                this.add.image(356, 215 + (index * 110), 'gogglesinfofield_merchant')
+                                    .setOrigin(0, 0)
+                                    .setScale(4, 4);
+                            }
+                        }
+                    }
+                }
+                
                     
             });
         } else {
