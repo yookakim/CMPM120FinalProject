@@ -11,10 +11,14 @@ class PlanetScene extends Phaser.Scene {
         this.ship = ship;
         this.hoursLeftText;
         this.timeNeedsUpdate = false;
+        this.sanityNeedsUpdate = false;
         // initialize planet property so we can add the tempPlanet stored in registry in create()
         this.planet;
         EventManager.on('hoursleftincreased', () => {
             this.timeNeedsUpdate = true;
+        }, this);  
+        EventManager.on('sanitychanged', () => {
+            this.sanityNeedsUpdate = true;
         }, this);  
     }
 
@@ -52,11 +56,16 @@ class PlanetScene extends Phaser.Scene {
             this.hoursLeftText.setText('Hours left in day: ' + this.ship.hoursLeftInDay);
             this.timeNeedsUpdate = false;
         }
+        if (this.sanityNeedsUpdate) {
+            this.refreshSanityText();
+            this.timeNeedsUpdate = false;
+        }
     }
 
     loadUI() {
 
         this.add.sprite(0, 0, 'planetscenebackground').setOrigin(0, 0);
+
 
         // welcome player and get planet name 
         this.add.text(50, 50, 'After ' + this.ship.lastTravelTime + ' lonely days in warp, you arrive at...', DEFAULT_TEXT_STYLE);
@@ -89,7 +98,10 @@ class PlanetScene extends Phaser.Scene {
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
 
+        this.sanityText = this.add.text(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity, DEFAULT_TEXT_STYLE);
+        this.refreshSanityText();
         this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        
 
         
         this.settlementButton = new ButtonTemplate(this, game.config.width / 9, 4 * game.config.height / 9, 'settlementbutton')
@@ -103,6 +115,16 @@ class PlanetScene extends Phaser.Scene {
 
         this.nextPlanetButton = new ButtonTemplate(this, game.config.width - 200, game.config.height - 125, 'nextplanetbutton')
             .on('pointerdown', this.loadPlanetSelection, this);
+    }
+
+    refreshSanityText() {
+        if (this.ship.sanity < 30) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Disheveled)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity >= 30 && this.ship.sanity < 70) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Normal)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity >= 70) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Illuminated)', DEFAULT_TEXT_STYLE);
+        }
     }
 
     loadPlanetSelection() {

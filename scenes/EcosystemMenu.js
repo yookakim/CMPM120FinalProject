@@ -15,6 +15,9 @@ class EcosystemMenu extends Phaser.Scene {
         EventManager.on('hoursleftincreased', () => {
             this.timeNeedsUpdate = true;
         }, this);        
+        EventManager.on('sanitychanged', () => {
+            this.sanityNeedsUpdate = true;
+        }, this);  
     }
 
     // I reuse a buttload of UI code from SettlementMenu, next time around find
@@ -38,6 +41,10 @@ class EcosystemMenu extends Phaser.Scene {
         if (this.ship.hoursLeftInDay >= 2 && !this.scavengeButton.clickable) {
             this.scavengeButton.clickable = true;
         }
+        if (this.sanityNeedsUpdate) {
+            this.refreshSanityText();
+            this.timeNeedsUpdate = false;
+        }
     }
 
     loadUI() {
@@ -59,6 +66,9 @@ class EcosystemMenu extends Phaser.Scene {
 
         this.add.text(50, 50, "You decide to explore the local ecosystem of " + this.hostPlanet.name + '.', DEFAULT_TEXT_STYLE);
         
+        this.sanityText = this.add.text(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity, DEFAULT_TEXT_STYLE);
+        this.refreshSanityText();
+
         this.scavengeButton = new ButtonTemplate(this, 155, 180, 'scavengebutton');
         this.scavengeButton.on('pointerdown', this.loadScavengeSummary, this);
 
@@ -79,6 +89,16 @@ class EcosystemMenu extends Phaser.Scene {
         this.add.sprite(game.config.width - 200, game.config.height - 125, 'returnshipbutton')
             .setInteractive()
             .on('pointerdown', this.returnToShip, this);
+    }
+    
+    refreshSanityText() {
+        if (this.ship.sanity < 30) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Disheveled)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity >= 30 && this.ship.sanity < 70) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Normal)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity >= 70) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Illuminated)', DEFAULT_TEXT_STYLE);
+        }
     }
 
     loadScavengeSummary() {

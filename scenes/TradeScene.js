@@ -16,6 +16,10 @@ class TradeScene extends Phaser.Scene {
     
     create() {
         this.civilian = this.scene.settings.data;
+        this.isDiscounted = false;
+        if (this.ship.sanity >= 70 && this.civilian.npcType === 'CIV_MERC') {
+            this.isDiscounted = true;
+        }
         // this.scene.launch('inventoryui', this.ship.inventory);
         this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
 
@@ -59,6 +63,9 @@ class TradeScene extends Phaser.Scene {
 
         this.add.text(800, 220, 'Total value of their offer:', DEFAULT_TEXT_STYLE);
         this.receiveValueText = this.add.text(900, 260, '0', DEFAULT_TEXT_STYLE);
+        if (this.isDiscounted) {
+            this.receiveValueText.setTint(0x66fc03);
+        }
         this.add.text(100, 220, 'Total value of your offer:', DEFAULT_TEXT_STYLE);
         this.offerValueText = this.add.text(200, 260, '0', DEFAULT_TEXT_STYLE);
 
@@ -134,10 +141,18 @@ class TradeScene extends Phaser.Scene {
 
         if (tradeSpriteObject.isSelectedForTrade === false) {
             tradeSpriteObject.isSelectedForTrade = true;
-            this.merchantOfferValue += tradeSpriteObject.item.worth;
+            if (this.isDiscounted) {
+                this.merchantOfferValue += tradeSpriteObject.item.worth - 10;
+            } else {
+                this.merchantOfferValue += tradeSpriteObject.item.worth;
+            }
         } else if (tradeSpriteObject.isSelectedForTrade === true) {
             tradeSpriteObject.isSelectedForTrade = false;
-            this.merchantOfferValue -= tradeSpriteObject.item.worth;
+            if (this.isDiscounted) {
+                this.merchantOfferValue -= tradeSpriteObject.item.worth - 10
+            } else {
+                this.merchantOfferValue -= tradeSpriteObject.item.worth;
+            }
         }   
         
         this.receiveValueText.text = this.merchantOfferValue;

@@ -63,7 +63,7 @@ class Civilian {
             } else {
                 dialogueObject.lowGreetingString = 'You... stay away. The malice in your eyes reminds me of those Federation dogs.'
                 dialogueObject.normalGreetingString = 'How are you doing, my name is ' + this.name + '.';
-                dialogueObject.highGreetingString = ['Hello! Are you a traveller? My name is ' + this.name + '! Seldom do we get such saintly looking travellers such as you!',
+                dialogueObject.highGreetingString = ['Hello! Are you a traveller? My name is ' + this.name + '! Seldom do we get such saintly looking travellers!',
                                                      'We could use a strong-looking man like you!'];
             }
             dialogueObject.tooLateString = 'It\'s too late for us to talk.';

@@ -13,6 +13,7 @@ class SettlementMenu extends Phaser.Scene {
         this.ship = ship;
         this.hoursLeftText;
         this.timeNeedsUpdate = false;
+        this.sanityNeedsUpdate = false;
 
         /* 
             before, I had the txt update immediately on the event call
@@ -24,7 +25,10 @@ class SettlementMenu extends Phaser.Scene {
         */
         EventManager.on('hoursleftincreased', () => {
             this.timeNeedsUpdate = true;
-        }, this);   
+        }, this);
+        EventManager.on('sanitychanged', () => {
+            this.sanityNeedsUpdate = true;
+        }, this);  
     }
     
     preload() {
@@ -34,6 +38,10 @@ class SettlementMenu extends Phaser.Scene {
     update() {
         if (this.timeNeedsUpdate) {
             this.hoursLeftText.setText('Hours left in day: ' + this.ship.hoursLeftInDay);
+            this.timeNeedsUpdate = false;
+        }
+        if (this.sanityNeedsUpdate) {
+            this.refreshSanityText();
             this.timeNeedsUpdate = false;
         }
     }
@@ -49,6 +57,8 @@ class SettlementMenu extends Phaser.Scene {
 
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
             .setOrigin(0, 0);
+
+        
 
         // this.inventoryButton = new ButtonTemplate(this, game.config.width - 300, (5 * game.config.height) / 10, 'inventorybutton');
         // this.inventoryButton.setOrigin(0, 0);
@@ -80,12 +90,7 @@ class SettlementMenu extends Phaser.Scene {
         }        
     }
 
-    loadUI() {
-
-        // display time left in day
-        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
-        this.sanityText = this.add.text(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity, DEFAULT_TEXT_STYLE);
-        
+    refreshSanityText() {
         if (this.ship.sanity < 30) {
             this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Disheveled)', DEFAULT_TEXT_STYLE);
         } else if (this.ship.sanity >= 30 && this.ship.sanity < 70) {
@@ -93,7 +98,17 @@ class SettlementMenu extends Phaser.Scene {
         } else if (this.ship.sanity >= 70) {
             this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Illuminated)', DEFAULT_TEXT_STYLE);
         }
+    }
 
+    loadUI() {
+
+        // display time left in day
+        this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
+        
+        
+
+        this.sanityText = this.add.text(game.config.width - 280, 160, '' + this.ship.sanity, DEFAULT_TEXT_STYLE);
+        this.refreshSanityText();
         // if this settlement DOES have civilians:
         if (!this.settlement.abandoned) {
             this.add.text(80, 140, this.settlement.population + ' beings live here.', DEFAULT_TEXT_STYLE);
@@ -153,6 +168,16 @@ class SettlementMenu extends Phaser.Scene {
             .on('pointerdown', this.returnToShip, this);
 
         
+    }
+
+    refreshSanityText() {
+        if (this.ship.sanity < 30) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Disheveled)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity >= 30 && this.ship.sanity < 70) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Normal)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity >= 70) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Illuminated)', DEFAULT_TEXT_STYLE);
+        }
     }
 
     loadCivilianTalkScene(civilian) {

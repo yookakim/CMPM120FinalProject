@@ -49,6 +49,7 @@ this.GameComponents = {
         this.name = 'flatSanityIncrease';
         this.onUse = function(ship) {
             ship.changeSanity(sanityAmount);
+            EventManager.emit('sanitychanged', ship.sanity);
         }
     },
 

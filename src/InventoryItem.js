@@ -47,7 +47,10 @@ class InventoryItem {
                         break;
 
                     case "flatSanityIncrease":
-                        if (game.scene.isActive('inventoryscene')) {
+                        if (game.scene.isActive('inventoryscene') ||
+                            game.scene.isActive('settlementmenu') ||
+                            game.scene.isActive('ecosystemmenu') ||
+                            game.scene.isActive('planetscene')) {
                             this.components.flatSanityIncrease.onUse(ship);
                         }
                         break;
