@@ -91,11 +91,6 @@ class PlanetScene extends Phaser.Scene {
 
         this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
 
-        // this.settlementButton = this.add.sprite(game.config.width - 200, game.config.height - 250, 'settlementbutton')
-        //     .setOrigin(0, 0)
-        //     .setInteractive()
-        //     .on('pointerdown', this.loadTradingMenu, this);
-
         
         this.settlementButton = new ButtonTemplate(this, game.config.width / 9, 4 * game.config.height / 9, 'settlementbutton')
             .on('pointerdown', this.loadSettlement, this);

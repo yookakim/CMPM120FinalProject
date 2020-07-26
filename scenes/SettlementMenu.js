@@ -87,9 +87,11 @@ class SettlementMenu extends Phaser.Scene {
         this.sanityText = this.add.text(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity, DEFAULT_TEXT_STYLE);
         
         if (this.ship.sanity < 30) {
-            this.sanityText.setText(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity + ' (Disheveled)', DEFAULT_TEXT_STYLE);
-        } else if (this.ship.sanity > 69) {
-            this.sanityText.setText(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity + ' (Illuminated)', DEFAULT_TEXT_STYLE);
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Disheveled)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity >= 30 && this.ship.sanity < 70) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Normal)', DEFAULT_TEXT_STYLE);
+        } else if (this.ship.sanity >= 70) {
+            this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Illuminated)', DEFAULT_TEXT_STYLE);
         }
 
         // if this settlement DOES have civilians:

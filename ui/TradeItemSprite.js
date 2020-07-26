@@ -91,9 +91,9 @@ class TradeItemSprite extends Phaser.GameObjects.Sprite {
     }
 
     checkExclusiveItem() {
-        // if (this.item.name === 'federationinfogoggles' && ship.sanity > 30 && this.isPlayerItem === false) {
-        //     this.setVisible(false);
-        // }
+        if (this.item.name === 'federationinfogoggles' && ship.sanity > 30 && this.isPlayerItem === false) {
+            this.setVisible(false);
+        }
     }
 
     itemClick() {

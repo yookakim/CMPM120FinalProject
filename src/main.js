@@ -68,7 +68,7 @@ let DEFAULT_TOOLTIP_STYLE = {
 }
 
 let DEFAULT_SFX_CONFIG = {
-    volume: .0,
+    volume: .8,
 }
 
 // global "uninteractable" tint value
@@ -91,7 +91,7 @@ game.registry.set({
     // arbitrary engine start strength
     INITIAL_ENGINE_OUTPUT: 60,
     INITIAL_ENGINE_EFFICIENCY: 11,
-    INITIAL_MAX_SANITY: 400,
+    INITIAL_MAX_SANITY: 100,
     
     // arbitrary placeholder initial planet distance
     PLACEHOLDER_PLANET_DISTANCE: 1000,
