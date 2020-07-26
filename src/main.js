@@ -31,7 +31,7 @@ let config = {
     },
     scene: [ 
         Preloader ,
-        TitleScreen , IntroductionScene , PlanetSelection , PlanetSelectionUI , PlanetScene , 
+        TitleScreen , IntroductionScene , HelpScene , PlanetSelection , PlanetSelectionUI , PlanetScene , 
         EcosystemMenu , ScavengeSummary , InventoryScene , InventoryUI , SettlementMenu ,
         CivilianTalkScene , TradeScene , EndGameScene
     ],

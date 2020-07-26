@@ -74,6 +74,13 @@ class PlanetSelection extends Phaser.Scene {
         this.scene.start('inventoryscene');
     }
 
+    loadHelpScene() {
+        this.scene.stop('planetselectionui');
+        this.scene.sleep('planetselection');
+
+        this.scene.start('helpscene');
+    }
+
     loadPlanetMenu(planet) {
         
         // the callback function for the 'pointerdown' listener on the planet button

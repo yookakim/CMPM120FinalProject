@@ -33,6 +33,8 @@ class PlanetSelectionUI extends Phaser.Scene {
             
         this.inventoryButton = new ButtonTemplate(this, game.config.width / 5, game.config.height / 2, 'inventorybutton')
             .on('pointerdown', this.planetSelectionScene.loadInventoryMenu, this.planetSelectionScene);
+        this.helpButton = new ButtonTemplate(this, game.config.width / 5, 3 * game.config.height / 4, 'helpbutton')
+            .on('pointerdown', this.planetSelectionScene.loadHelpScene  , this.planetSelectionScene);
     
         
 
@@ -51,13 +53,7 @@ class PlanetSelectionUI extends Phaser.Scene {
             this.sanityText.setText('Sanity: ' + this.ship.sanity + ' (Illuminated)');
         } 
 
-        this.add.text(370, 2 * game.config.height / 8, 'You may only warp to a planet if your engine is', DEFAULT_TEXT_STYLE);
-        this.add.text(370, 2.2 * game.config.height / 8, 'powerful or efficient enough.', DEFAULT_TEXT_STYLE);
-        this.add.text(370, 2.8 * game.config.height / 8, 'travel time: distance / engine power', DEFAULT_TEXT_STYLE);
-        this.add.text(370, 3 * game.config.height / 8, 'max travel distance: engine power * engine efficiency', DEFAULT_TEXT_STYLE);
-        this.add.text(370, 3.2 * game.config.height / 8, '(TODO: we probably put this information in a help/info scene, or use some tooltips/labels)', DEFAULT_TEXT_STYLE);
-        this.add.text(370, 3.6 * game.config.height / 8, 'Three tiers to sanity: 0-29, 30 - 69, 70 - 99; each tier brings different interactions with\n planet inhabitants', DEFAULT_TEXT_STYLE);
-        this.add.text(370, 4.2 * game.config.height / 8, '(also put this in separate help/tips scene, probably big button under the Inventory button)', DEFAULT_TEXT_STYLE);
+
 
         /*
             i made a separate class for a button object, so that we can apply graphical

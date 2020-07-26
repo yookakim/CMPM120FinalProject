@@ -183,6 +183,7 @@ this.GameComponents = {
                 var book = itemFactory.generateItem('book', ITEMLIST);                
                 civilian.inventory.inventoryAdd(book);
             
+                // visible with low sanity only
                 var federationgoggles = itemFactory.generateItem('federationinfogoggles', ITEMLIST);
                 civilian.inventory.inventoryAdd(federationgoggles);
 

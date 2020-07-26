@@ -91,7 +91,7 @@ class PlanetFactory {
     generateDistance() {
         // for now returns something between these hard-coded numbers 
         // for generating distance, 
-        return Phaser.Math.Between(400, 1000);
+        return Phaser.Math.Between(250, 1000);
     }
 
     generateEcosystem(planet) {
