@@ -83,6 +83,7 @@ class Preloader extends Phaser.Scene {
         this.load.image('fedcursingdoll', './assets/items/fedcursingdollicon.png');
         this.load.image('mystiviancharm', './assets/items/mystiviancharmicon.png');
         this.load.image('andrometine', './assets/items/andrometineicon.png');
+        this.load.image('centauriteclaws', './assets/items/centauriteclawsicon.png');
         this.load.image('federationinfogoggles', './assets/items/federationinfogogglesicon.png');
 
         // planet resource items
@@ -90,6 +91,10 @@ class Preloader extends Phaser.Scene {
         this.load.image('furs', './assets/items/fursicon.png');
         this.load.image('rawgems', './assets/items/rawgemsicon.png');
         this.load.image('coal', './assets/items/coalicon.png');
+        this.load.image('goldenfigure', './assets/items/goldenfigureicon.png');
+        this.load.image('frostcutlass', './assets/items/frostcutlassicon.png');
+        this.load.image('panaceneplant', './assets/items/panaceneplanticon.png');
+        this.load.image('duocornfossil', './assets/items/duocornfossilicon.png');
         
 
         // audio

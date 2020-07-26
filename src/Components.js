@@ -94,6 +94,12 @@ this.GameComponents = {
         this.amount = sanityPerTurnIncrease;
     },
 
+    passiveDiggingClaws: function() {
+        
+        this.name = 'passiveDiggingClaws';
+        
+    },
+
     // civilian components
     civilian: function() {
         this.name = 'civilian';
@@ -164,6 +170,9 @@ this.GameComponents = {
                 var book = itemFactory.generateItem('book', ITEMLIST);                
                 civilian.inventory.inventoryAdd(book);
 
+                var diggingclaws = itemFactory.generateItem('centauriteclaws', ITEMLIST);                
+                civilian.inventory.inventoryAdd(diggingclaws);
+
             } else if (CIV_CHILD_MERC) {
 
                 var childtoy = itemFactory.generateItem('childtoy', ITEMLIST);
@@ -195,7 +204,6 @@ this.GameComponents = {
                 var mystiviancharm = itemFactory.generateItem('mystiviancharm', ITEMLIST);
                 civilian.inventory.inventoryAdd(mystiviancharm);
 
-
             }
 
             var items = [];
@@ -223,8 +231,15 @@ this.GameComponents = {
         // random question, i wonder if i can use/utilize factories without making new instances of them.
         this.factory = new ItemFactory();
 
-        this.generateResource = function() {
-            // return ONE random resource for this type of biome
+        this.generateResource = function(hasDigging) {
+            if (hasDigging) {
+                if (Phaser.Math.Between(1, 100) <= 25) {
+                    return this.factory.generateItem('goldenfigure', ITEMLIST);
+                } else {
+                    return this.factory.generateItem('tomfruit', ITEMLIST);
+                }
+            }
+            // if no claws, just return base item
             return this.factory.generateItem('tomfruit', ITEMLIST);
         }
 
@@ -240,8 +255,15 @@ this.GameComponents = {
 
         this.factory = new ItemFactory();
 
-        this.generateResource = function() {
-            // return ONE random resource for this type of biome
+        this.generateResource = function(hasDigging) {
+            if (hasDigging) {
+                if (Phaser.Math.Between(1, 100) <= 25) {
+                    return this.factory.generateItem('frostcutlass', ITEMLIST);
+                } else {
+                    return this.factory.generateItem('furs', ITEMLIST);
+                }
+            }
+            // if no claws, just return base item
             return this.factory.generateItem('furs', ITEMLIST);
         }
     },
@@ -256,8 +278,15 @@ this.GameComponents = {
 
         this.factory = new ItemFactory();
 
-        this.generateResource = function() {
-            // return ONE random resource for this type of biome
+        this.generateResource = function(hasDigging) {
+            if (hasDigging) {
+                if (Phaser.Math.Between(1, 100) <= 25) {
+                    return this.factory.generateItem('duocornfossil', ITEMLIST);
+                } else {
+                    return this.factory.generateItem('rawgems', ITEMLIST);
+                }
+            }
+            // if no claws, just return base item
             return this.factory.generateItem('rawgems', ITEMLIST);
         }
     },
@@ -272,8 +301,15 @@ this.GameComponents = {
 
         this.factory = new ItemFactory();
 
-        this.generateResource = function() {
-            // return ONE random resource for this type of biome
+        this.generateResource = function(hasDigging) {
+            if (hasDigging) {
+                if (Phaser.Math.Between(1, 100) <= 25) {
+                    return this.factory.generateItem('panaceneplant', ITEMLIST);
+                } else {
+                    return this.factory.generateItem('coal', ITEMLIST);
+                }
+            }
+            // if no claws, just return base item
             return this.factory.generateItem('coal', ITEMLIST);
         }
     },

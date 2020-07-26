@@ -65,6 +65,9 @@ class Ship {
 
         var thisTurnSanityLoss = this.sanityLossFactor;
 
+        // every time i want to check if something is in the inventory i do a for loop all over the code in different classes
+        // from next time, i should think about making one big system that checks for all "passive" items
+        // and apply those states in the same chunk of code
         for (var i = 0; i < this.inventory.contents.length; i++) {
             if (this.inventory.contents[i] != null) {
                 if (this.inventory.contents[i].components.hasOwnProperty('passiveSanityIncrease')) {

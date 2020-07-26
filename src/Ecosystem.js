@@ -52,25 +52,33 @@ class Ecosystem {
         }
     }
 
-    generateItem() {
+    generateItem(inventory) {
         // pop the farmable resources into this ecosystem based on the type of biome
 
+        var hasDigging = false;
+        for (var i = 0; i < inventory.contents.length; i++) {
+            if (inventory.contents[i] != null) {
+                if (inventory.contents[i].components.hasOwnProperty('passiveDiggingClaws')) {
+                    hasDigging = true;
+                }
+            }
+        }
         if (this.ecosystemType.hasOwnProperty('temperate')) {
             // generate temperate planet items
             console.log('generating temperate resources');            
-            return this.ecosystemType.temperate.generateResource();
+            return this.ecosystemType.temperate.generateResource(hasDigging);
 
         } if (this.ecosystemType.hasOwnProperty('icy')) {
             console.log('generating icy resources');
-            return this.ecosystemType.icy.generateResource();
+            return this.ecosystemType.icy.generateResource(hasDigging);
 
         } if (this.ecosystemType.hasOwnProperty('desert')) {
             console.log('generating desert resources');
-            return this.ecosystemType.desert.generateResource();
+            return this.ecosystemType.desert.generateResource(hasDigging);
 
         } if (this.ecosystemType.hasOwnProperty('humid')){
             console.log('generating humid resources');
-            return this.ecosystemType.humid.generateResource();
+            return this.ecosystemType.humid.generateResource(hasDigging);
 
         }
     }

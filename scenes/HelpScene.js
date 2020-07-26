@@ -41,8 +41,8 @@ class HelpScene extends Phaser.Scene {
         this.sanityText = [
             'Afflicted by your own loneliness and isolation, you will lose a certain amount of',
             'Sanity points for every day you spend in warp-time. Depending on your sanity, you',
-            'will experience different reactions from local inhabitants.',
-            'Try to manage your Sanity through items and careful destination choices.',
+            'will experience different reactions from local inhabitants, and certain merchants',
+            'may sell different wares depending on your sanity level.',
         ]
         this.add.text(100, 400, this.sanityText, DEFAULT_TEXT_STYLE);
 

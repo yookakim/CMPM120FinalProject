@@ -76,7 +76,7 @@ class ScavengeSummary extends Phaser.Scene {
         if (this.ship.inventory.numberOpenSpaces < 1) {
             this.enoughSpace = false;
         } else if (this.ship.inventory.numberOpenSpaces() > 0) {
-            var item = this.ecosystem.generateItem();
+            var item = this.ecosystem.generateItem(this.ship.inventory);
             this.enoughSpace = true;
             this.ship.inventory.inventoryAdd(item);
             this.ship.spendTime(2);
