@@ -14,13 +14,17 @@ class Preloader extends Phaser.Scene {
 
     preload() {
 
-        this.load.image('titlezone', './assets/UI/title_zone.png');
+        this.load.image('titlezone', './assets/title_banner.png');
         
         
         // backgrounds
+        this.load.image('introbackground', './assets/intro_background.png');
         this.load.image('settlementbackground', './assets/settlement_background.png');
+        this.load.image('settlementbackground2', './assets/settlement_background_2.png');
+        this.load.image('settlementbackground4', './assets/settlement_background_4.png');
         this.load.image('inventoryscenebackground', './assets/spaceship_inventory_background.png');
         this.load.image('planetselectionbackground', './assets/cockpitview_planetselection_background.png');
+        this.load.image('endbackground', './assets/end_planet_background.png');
 
         // buttons/UI
         this.load.image('titlestartbutton', './assets/UI/buttons/title_start_button.png');
@@ -38,6 +42,7 @@ class Preloader extends Phaser.Scene {
         this.load.image('return', './assets/UI/buttons/return_to_settlement_button.png');
         this.load.image('cancelbutton', './assets/UI/buttons/cancel_button.png');
         this.load.image('confirmtradebutton', './assets/UI/buttons/confirm_trade_button.png');
+        this.load.image('restartbutton', './assets/UI/buttons/restart_button.png');
         this.load.image('gogglesinfofield_civilian', './assets/UI/gogglesinfofield_civilian.png');
         this.load.image('gogglesinfofield_outcast', './assets/UI/gogglesinfofield_outcast.png');
         this.load.image('gogglesinfofield_merchant', './assets/UI/gogglesinfofield_merchant.png');

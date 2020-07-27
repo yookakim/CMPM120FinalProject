@@ -21,7 +21,7 @@ class TradeScene extends Phaser.Scene {
             this.isDiscounted = true;
         }
         // this.scene.launch('inventoryui', this.ship.inventory);
-        this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
+        this.add.image(0, 0, 'settlementbackground2').setOrigin(0, 0);
 
         // UI array acts as container to hold items sprites
         this.merchantItemContainer = [];
@@ -61,18 +61,18 @@ class TradeScene extends Phaser.Scene {
         this.cancelButton = new ButtonTemplate(this, 150, 600, 'cancelbutton');
         this.cancelButton.on('pointerdown', this.cancelTrade, this);
 
-        this.add.text(800, 220, 'Total value of their offer:', DEFAULT_TEXT_STYLE);
-        this.receiveValueText = this.add.text(900, 260, '0', DEFAULT_TEXT_STYLE);
+        this.add.text(800, 120, 'Total value of their offer:', DEFAULT_TEXT_STYLE);
+        this.receiveValueText = this.add.text(900, 160, '0', DEFAULT_TEXT_STYLE);
         if (this.isDiscounted) {
             this.receiveValueText.setTint(0x66fc03);
         }
-        this.add.text(100, 220, 'Total value of your offer:', DEFAULT_TEXT_STYLE);
-        this.offerValueText = this.add.text(200, 260, '0', DEFAULT_TEXT_STYLE);
+        this.add.text(100, 120, 'Total value of your offer:', DEFAULT_TEXT_STYLE);
+        this.offerValueText = this.add.text(200, 160, '0', DEFAULT_TEXT_STYLE);
 
         // set up merchant inventory and cells
 
         for (let i = 0; i < this.civilian.inventory.contents.length; i++) {
-            this.merchantItemContainer[i] = new InventoryCell(this, 800, 300 + (i * 64), 'inventorytile', this.civilian.inventory);
+            this.merchantItemContainer[i] = new InventoryCell(this, 800, 200 + (i * 64), 'inventorytile', this.civilian.inventory);
         }
 
         for (var i = 0; i < this.merchantItemContainer.length; i++) {
@@ -82,7 +82,7 @@ class TradeScene extends Phaser.Scene {
                 currentCell.representative = new TradeItemSprite(
                     this,
                     800,
-                    300 + (i * 64),
+                    200 + (i * 64),
                     currentCell.occupant,
                     this.civilian.inventory,
                     i,
@@ -94,7 +94,7 @@ class TradeScene extends Phaser.Scene {
         // set up player inventory and cells
 
         for (let i = 0; i < this.ship.inventory.contents.length; i++) {
-            this.playerItemContainer[i] = new InventoryCell(this, 300, 300 + (i * 64), 'inventorytile', this.civilian.inventory);
+            this.playerItemContainer[i] = new InventoryCell(this, 300, 200 + (i * 64), 'inventorytile', this.civilian.inventory);
         }
         for (var i = 0; i < this.playerItemContainer.length; i++) {
             var currentCell = this.playerItemContainer[i];
@@ -103,7 +103,7 @@ class TradeScene extends Phaser.Scene {
                 currentCell.representative = new TradeItemSprite(
                     this,
                     300,
-                    300 + (i * 64),
+                    200 + (i * 64),
                     currentCell.occupant,
                     this.ship.inventory,
                     i,
@@ -167,14 +167,14 @@ class TradeScene extends Phaser.Scene {
             let currentCell = this.merchantItemContainer[i];
             if (currentCell.representative && currentCell.representative.isSelectedForTrade) {
                 this.merchantOfferItems.push(currentCell.occupant);
-                // this.civilian.inventory.inventoryRemove(currentCell.representative.index)
+                
             }
         }
         for (let i = 0; i < this.playerItemContainer.length; i++) {
             let currentCell = this.playerItemContainer[i];
             if (currentCell.representative && currentCell.representative.isSelectedForTrade) {
                 this.playerOfferItems.push(currentCell.occupant);
-                // this.ship.inventory.inventoryRemove(currentCell.representative.index);
+                
             }
         }
 
@@ -220,6 +220,7 @@ class TradeScene extends Phaser.Scene {
         console.log(this.ship.inventory.contents);
         console.log(this.civilian.inventory.contents);
 
+        this.ship.totalValueSold += this.playerOfferValue;
         this.civilian.components.merchant.justTraded = true;
 
         console.log(this.civilian);

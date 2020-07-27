@@ -24,7 +24,7 @@ class CivilianTalkScene extends Phaser.Scene {
 
     create() {
         
-        this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
+        this.add.image(0, 0, 'settlementbackground2').setOrigin(0, 0);
         this.civilian = this.scene.settings.data;
         
         this.tooLate = false;
@@ -32,16 +32,8 @@ class CivilianTalkScene extends Phaser.Scene {
         this.checkTooLate();
 
         this.dialogueObject = this.civilian.getGreeting();
-        
-        
-        // spend two hours for each convo
-        
-        
-        
 
         this.loadUI();
-        
-
 
     }
 
@@ -66,9 +58,6 @@ class CivilianTalkScene extends Phaser.Scene {
             .setInteractive()
             .on('pointerdown', this.returnToSettlement, this);
 
-
-        
-
         this.add.text(80, 50, this.civilian.name, HEADER_TEXT_STYLE);
 
         this.add.text(80, 120, this.dialogueObject.titles, SUBHEADER_TEXT_STYLE);
@@ -89,12 +78,7 @@ class CivilianTalkScene extends Phaser.Scene {
     }
 
     loadDialogue() {
-        // if (!this.civilian.hasVisited) {
-        //     this.add.text(80, 140, this.dialogueObject.normalGreetingString, DEFAULT_TEXT_STYLE);
-        // } else if (this.civilian.hasVisited) {
-        //     this.add.text(80, 140, this.dialogueObject.alreadyVisitedString, DEFAULT_TEXT_STYLE);
-        // }
-        // add trade panel if character is trader
+
         if (this.civilian.components.hasOwnProperty('merchant')) {            
 
             if (!this.tooLate) {
@@ -129,31 +113,6 @@ class CivilianTalkScene extends Phaser.Scene {
     }
 
     openTradeMenu() {
-        /* 
-            what happens when a trade is initiated with merchant?
-            
-            start separate trading scene
-
-            display own inventory
-            display merchant wares as items/item sprites
-            display own treasury
-
-            display four cells in the middle, two on our side, two on theirs
-                when item is clicked on our side, insert item into this cell and 
-                update total worth of our offer, and receive a counteroffer in return
-
-            merchant makes initial trade offer?
-                make simple AI that says "yes" or "no" to
-                trades depending on internal item worth calculations
-                give asking price variable that must be less or match 
-                the player offer for trade to finalize
-
-
-
-
-
-        */
-       
         // launch trade scene with the civilian we pass in here
         this.scene.stop('civiliantalkscene');
         this.scene.start('tradescene', this.civilian);

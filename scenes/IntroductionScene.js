@@ -17,11 +17,12 @@ class IntroductionScene extends Phaser.Scene {
     }
 
     loadUI() {
+        this.add.image(0, 0, 'introbackground').setOrigin(0, 0);
         this.add.text(50, 50, 'The year unknown, known history lost in the depths of time...', SUBHEADER_TEXT_STYLE);
 
         this.titlemusicintro = this.sound.add('titlemusicintro', DEFAULT_SFX_CONFIG);
         this.titlemusic = this.sound.add('titlemusic', {
-            volume: .8,
+            volume: .7,
             loop: true
         });
         this.titlemusicintro.on('complete', this.startMusicLoop, this);
@@ -37,15 +38,10 @@ class IntroductionScene extends Phaser.Scene {
             'silence, but soon realize its short-lived nature as the vastness of space slowly seeps through',
             'mind and soul. Only now do you truly realize you are alone, and perhaps alone forever, your friends',
             'and allies more gone than dead.\n\n',
-            'You start your journey with your old squadron insignia, an old can of Xor, and a shabby engine',
-            'upgrade kit stolen from the Federation, your last spoils of war as a Sol Pyrate.'
         ]
         this.add.text(50, 120, text, INTRO_TEXT_STYLE);
 
         this.startButton = new ButtonTemplate(this, game.config.width / 2, (3 * game.config.height) / 4, 'introstartbutton');
-
-        this.add.text(50, 650, '(game will end after 150 days, planned different/clearer end condition by due date sunday)');
-        this.add.text(50, 670, '(most/all settlement, planet, civilian names temporary)');
 
         this.startButton.on('pointerdown', this.loadPlanetSelection, this);
     }

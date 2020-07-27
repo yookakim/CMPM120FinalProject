@@ -51,7 +51,7 @@ class SettlementMenu extends Phaser.Scene {
         /* 
         
         */
-        this.add.image(0, 0, 'settlementbackground').setOrigin(0, 0);
+        this.add.image(0, 0, 'settlementbackground4').setOrigin(0, 0);
         this.hostPlanet = this.scene.settings.data;
         this.settlement = this.hostPlanet.inhabitants;
 
@@ -105,10 +105,20 @@ class SettlementMenu extends Phaser.Scene {
         // display time left in day
         this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
         
-        
+        if (this.ship.currentPlanet.ecosystem.ecosystemType.hasOwnProperty('temperate')) {
+            this.planetTypeText = 'Temperate';
+        } else if (this.ship.currentPlanet.ecosystem.ecosystemType.hasOwnProperty('icy')) {
+            this.planetTypeText = 'Icy';
+        } else if (this.ship.currentPlanet.ecosystem.ecosystemType.hasOwnProperty('desert')) {
+            this.planetTypeText = 'Desert';
+        } else if (this.ship.currentPlanet.ecosystem.ecosystemType.hasOwnProperty('humid')) {
+            this.planetTypeText = 'Humid';
+        }        
 
         this.sanityText = this.add.text(game.config.width - 280, 160, '' + this.ship.sanity, DEFAULT_TEXT_STYLE);
         this.refreshSanityText();
+        this.planetTypeTextBox = this.add.text(game.config.width - 280, 120, 'Planet type: ' + this.planetTypeText, DEFAULT_TEXT_STYLE);
+
         // if this settlement DOES have civilians:
         if (!this.settlement.abandoned) {
             this.add.text(80, 140, this.settlement.population + ' beings live here.', DEFAULT_TEXT_STYLE);
@@ -166,6 +176,7 @@ class SettlementMenu extends Phaser.Scene {
         this.add.sprite(game.config.width - 200, game.config.height - 125, 'returnshipbutton')
             .setInteractive()
             .on('pointerdown', this.returnToShip, this);
+
 
         
     }

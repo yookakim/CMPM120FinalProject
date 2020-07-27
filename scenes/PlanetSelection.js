@@ -19,13 +19,10 @@ class PlanetSelection extends Phaser.Scene {
     }
 
     preload() {
-        
 
     }
 
     create() {
-        // this.scene.launch('sceneui');
-
         
         // just travelled, so reset the hours left in the day
         this.ship.resetTime();
@@ -51,7 +48,7 @@ class PlanetSelection extends Phaser.Scene {
             planets: this.planetGroup,
             containerScene: this,
         });
-        // this.scene.wake('planetselectionui');
+
         this.inputSetup();        
     }
 

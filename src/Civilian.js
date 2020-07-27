@@ -32,18 +32,11 @@ class Civilian {
 
         this.components = {};
 
-        
-        
-
-        // this.addComponents(civilianType);
     }
 
 
 
     getGreeting() {
-
- 
-                        
 
         // Set greeting string for each level of sanity
         var dialogueObject = {
@@ -194,7 +187,6 @@ class Civilian {
 
     addComponents(type) {
     
-        // let value = this.itemObject.components[componentList[i]]["value"];
         let component = new GameComponents[type]();
         this.components[type] = component;
     }

@@ -36,10 +36,6 @@ class Inventory {
         for (var i = 0; i < this.maxSize; i++) {
             this.contents[i] = null;
         }
-
-        // new instance of phaser event system
-        // this.inventoryEvents = new Phaser.Events.EventEmitter();
-        
     }
 
     numberOpenSpaces() {

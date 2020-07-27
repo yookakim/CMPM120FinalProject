@@ -53,12 +53,16 @@ class EcosystemMenu extends Phaser.Scene {
 
         if (this.ecosystem.ecosystemType.hasOwnProperty('temperate')) {
             this.add.image(0, 0, 'ecosystem_temperate').setOrigin(0, 0);
+            this.planetTypeText = 'Temperate';
         } else if (this.ecosystem.ecosystemType.hasOwnProperty('icy')) {
             this.add.image(0, 0, 'ecosystem_icy').setOrigin(0, 0);
+            this.planetTypeText = 'Icy';
         } else if (this.ecosystem.ecosystemType.hasOwnProperty('desert')) {
             this.add.image(0, 0, 'ecosystem_desert').setOrigin(0, 0);
+            this.planetTypeText = 'Desert';
         } else if (this.ecosystem.ecosystemType.hasOwnProperty('humid')) {
             this.add.image(0, 0, 'ecosystem_humid').setOrigin(0, 0);
+            this.planetTypeText = 'Humid';
         }
 
         this.planetStatsPanel = this.add.sprite(game.config.width - 300, 50, 'planetstats')
@@ -68,6 +72,8 @@ class EcosystemMenu extends Phaser.Scene {
         
         this.sanityText = this.add.text(game.config.width - 280, 160, 'Sanity: ' + this.ship.sanity, DEFAULT_TEXT_STYLE);
         this.refreshSanityText();
+        
+        this.planetTypeTextBox = this.add.text(game.config.width - 280, 120, 'Planet type: ' + this.planetTypeText, DEFAULT_TEXT_STYLE);
 
         this.scavengeButton = new ButtonTemplate(this, 155, 180, 'scavengebutton');
         this.scavengeButton.on('pointerdown', this.loadScavengeSummary, this);

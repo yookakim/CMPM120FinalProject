@@ -86,8 +86,4 @@ class InventoryItem {
             }
         }
     }
-
-    onTrade() {
-        // sends the item to the trade offer cells
-    }
 }

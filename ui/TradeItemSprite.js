@@ -97,16 +97,6 @@ class TradeItemSprite extends Phaser.GameObjects.Sprite {
     }
 
     itemClick() {
-        // player wants to buy this item
-            
-        
-
-            
-        // propogate some event to move this item from here
-        // into the bargaining table (middle)?
-
-        // or if no bargaining table, just highlight the item and 
-        // put into tentative receiveGoods array
         if(this.isPlayerItem) {
             EventManager.emit('playeritemclick', this);
         }else if(!this.isPlayerItem) {

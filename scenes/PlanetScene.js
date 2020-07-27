@@ -85,12 +85,16 @@ class PlanetScene extends Phaser.Scene {
 
         if (this.planet.ecosystem.ecosystemType.hasOwnProperty('temperate')) {
             this.add.sprite(360, 400, 'temperateplanet');
+            this.planetTypeText = 'Temperate';
         } else if (this.planet.ecosystem.ecosystemType.hasOwnProperty('icy')) {
             this.add.sprite(360, 400, 'icyplanet');
+            this.planetTypeText = 'Icy';
         } else if (this.planet.ecosystem.ecosystemType.hasOwnProperty('desert')) {
             this.add.sprite(360, 400, 'desertplanet');
+            this.planetTypeText = 'Desert';
         } else if (this.planet.ecosystem.ecosystemType.hasOwnProperty('humid')) {
             this.add.sprite(360, 400, 'humidplanet');
+            this.planetTypeText = 'Humid';
         }
 
         
@@ -102,6 +106,8 @@ class PlanetScene extends Phaser.Scene {
         this.refreshSanityText();
         this.hoursLeftText = this.add.text(game.config.width - 280, 140, 'Hours left in day: ' + this.ship.hoursLeftInDay, DEFAULT_TEXT_STYLE);
         
+
+        this.planetTypeTextBox = this.add.text(game.config.width - 280, 120, 'Planet type: ' + this.planetTypeText, DEFAULT_TEXT_STYLE);
 
         
         this.settlementButton = new ButtonTemplate(this, game.config.width / 9, 4 * game.config.height / 9, 'settlementbutton')

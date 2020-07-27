@@ -32,6 +32,10 @@ class Ship {
         // distance units in this game: light years
         this.totalTravelDistance = 0;
 
+        this.totalValueSold = 0;
+
+        this.totalItemsScavenged = 0;
+
         // player money:
         this.treasury = 0;
 
@@ -112,9 +116,38 @@ class Ship {
 
     }
 
-    // traverseItemEffects() {
-    //     for(var i = 0; i < this.inventory.inventoryArray.length; i++) {
-    //         this.inventory.inventoryArray[index].
-    //     }
-    // }
+    resetGame() {
+        // create a new Engine component and attach
+        this.engine = new Engine();
+
+        // storing items
+        this.inventory = new Inventory(8, this);
+        
+        
+
+
+        // ship stats
+        this.currentPlanet = this.game.registry.get('INITIAL_PLANET_OBJECT');
+
+        this.totalDaysTravelled = 0;
+        this.lastTravelTime = 0;
+
+        // distance units in this game: light years
+        this.totalTravelDistance = 0;
+
+        this.totalValueSold = 0;
+
+        this.totalItemsScavenged = 0;
+
+        // player money:
+        this.treasury = 0;
+
+        // initally set max time in day to 12 chunks
+        this.totalTimeInDay = 12;
+        this.hoursLeftInDay;
+
+        this.maxSanity = this.game.registry.get('INITIAL_MAX_SANITY');
+        this.sanity = this.maxSanity / 2;
+        this.lastSanityChange = 0;        
+    }
 }

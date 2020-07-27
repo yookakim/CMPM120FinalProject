@@ -20,28 +20,15 @@ class PlanetFactory {
 
         // honestly we could put this sort of stuff in one big data file?
         // consider doing weighted randomizations later
-        this.planetNameList = [ 'Earth', 'Moocury', 'LittleBig', 'Tatooine', 'RFX-240', 'Goopiter', 'Slimeworld' , 
+        this.planetNameList = [ 'Earth', 'Moocury', 'LittleBig', 'Patooine', 'RFX-240', 'Goopiter', 'Slimeworld' , 
                                 'Sleptune', 'Blockturn', 'Plutonio', 'Planet One' , 'Muun' , 'Ew-Ropa' ];
-        this.settlementNameList = [ 'Los Angeles', 'Goola-Goon', 'Euysee-Esscee', 'Whale Island', 'Village McVillageface' ,
-                                    'Hidden Twig', 'Oh-Saka' , 'Smithtown' , 'Creative Name' ];
+        this.settlementNameList = [ 'Los Angeles', 'Goola-Goon', 'Euysee-Esscee', 'Whale Island', 'Totem Vyllage' ,
+                                    'Hidden Twig', 'Oh-Saka' , 'Smithtown' , 'Morn' , 'Bulltown' , 'Birdtown' ,
+                                    'Fishtown' , 'Bosstown' ,
+                                ];
     }
 
     generatePlanets() {
-        
-        /* 
-            planet stuff is hard coded for easy testing for now, but
-            ideally in the future we would be given to us a bunch of random planets
-            with random settlements and things and sizes and atmosphers to choose from
-         */
-
-        // this.planetArray = [
-        //     new Planet('earth'),
-        //     new Planet('moocury'),
-        // ]
-
-        // this.planetArray.forEach((element, index) => {
-
-        // });
 
         // for every generateNumber:
         for (var i = 0; i < this.generateNumber; i++) {
@@ -105,12 +92,6 @@ class PlanetFactory {
             this.settlementNameList[Phaser.Math.Between(0, this.settlementNameList.length - 1)],
             planet
         );
-        // random population, but we could later add things that affect population size
-        // if it's a ghost town, it could have 0 living ppl
-        // depending on planet attributes, there could be more people livign there, less, different kinds of people, etc
-        // but doing all of that would be pretty complicated
-        
-
         return tempSettlement;
     }
 }

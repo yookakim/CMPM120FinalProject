@@ -16,9 +16,10 @@ class TitleScreen extends Phaser.Scene {
     }
 
     create() {
-        
+        this.sound.stopAll();
 
-        this.add.sprite(game.config.width / 2, game.config.height / 3, 'titlezone');
+        this.add.sprite(game.config.width / 2, game.config.height / 3, 'titlezone')
+            .setScale(.6, .6);
 
         this.startButton = new ButtonTemplate(this, game.config.width / 2, (3 * game.config.height) / 4, 'titlestartbutton');
 

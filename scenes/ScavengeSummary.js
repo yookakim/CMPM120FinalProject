@@ -80,6 +80,7 @@ class ScavengeSummary extends Phaser.Scene {
             this.enoughSpace = true;
             this.ship.inventory.inventoryAdd(item);
             this.ship.spendTime(2);
+            this.ship.totalItemsScavenged++;
             return item;
         }
     }

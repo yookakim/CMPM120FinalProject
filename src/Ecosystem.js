@@ -15,13 +15,8 @@ class Ecosystem {
         this.inventory = new Inventory(5, this);
         this.ecosystemType = {};
 
-        // for debug purposes only temperate planets spawn if this value set to 40
-        
-
         this.randomizeType();
 
-
-        // this.generateItems();
     }
 
     addComponent(key) {

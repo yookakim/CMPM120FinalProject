@@ -7,19 +7,16 @@
 'use strict';
 
 this.CivilianFactory = function(planet) {
+
+    // list of random names
     let civilianNames = ['Jack', 'Beck', 'Carl', 'Ashley', 'Sarah', 'Phil', 'June', 'Karen', 
-        'Steve' , 'Julia' , 'David' , 'Amy' , 'Thomas' , 'Suzy' , 'Aidan' , 'Sophia' , 'Wai-Chun' ,
-        'Obama', 'DiCaprio' , 'Prince' , 'Tolkien' , 'MJ' , 'Madeon' , 'Ice Cube' , 'Mozart',
-        'Naruto', 'Levi' , 'Oreki' , 'Chitanda' , 'Goku' , 'Asuna' , 'Kazuma' , 'Killua' , 'Riko' , 'Reg' ,
-        'Morty', 'Grey', 'Skywalker' , 'Han Solo' , 'ikuratunesonsoundcloud' , 'Squidward' ,
-        'Kar-wayza' , 'Mor-Karken' , 'Quay-Gonne' , 'Wew-matzo', 'Rar-Eggsdee' , 'Pon-Pippo'
+        'Julia' , 'Dayvid' , 'Amy' , 'Suzy' , 'Aydan' , 'Sophya' , 'Wai-Chun' ,
+        'Jesse', 'Albert' , 'Prince' , 'Tolkien' , 'MJ' , 'Madeon' , 'Ice Cube' , 'Icelobber',
+        'Tor-Natto', 'Levi' , 'Oreki' , 'Chitanda' , 'Goku' , 'Asuna' , 'Kazuma' , 'Killua' , 'Riko' , 'Reg' ,
+        'Morty', 'Grey', 'Cloudtreader' , 'Lan Holo' , 'Ikura' , 'Rockwalker' , 'Icethrower' , 'Fay' ,
+        'Kar-wayza' , 'Mor-Karken' , 'Quay-Gonne' , 'Wew-matzo', 'Rar-Eggsdee' , 'Pon-Pippo' ,
+        'Gar-Natzo' , 'Ji' , 'Moe' , 'Thaumus' , 'Suteeve' , 'Pi' , 'Tor' , 'Starseer' , 'Pon-Karkin'
     ];
-    
-    let civilianGreetings = {
-        normal: [
-            'Hi, nice to meet you!'
-        ]
-    }
 
     // reference to host planet to read data from
     let hostPlanet = planet;
@@ -142,50 +139,7 @@ this.CivilianFactory = function(planet) {
             !civilian.components.hasOwnProperty('child') &&
             civilian.components.hasOwnProperty('outcast'))) {
             return "OUT_MERC";
-        }
-
-        // this.CIV = 
-                    // (this.components.hasOwnProperty('civilian') && 
-                    // !this.components.hasOwnProperty('merchant') &&
-                    // !this.components.hasOwnProperty('child') &&
-                    // !this.components.hasOwnProperty('outcast'));
-        // this.CIV_CHILD = 
-        //             (this.components.hasOwnProperty('civilian') && 
-        //             !this.components.hasOwnProperty('merchant') &&
-        //             this.components.hasOwnProperty('child') &&
-        //             !this.components.hasOwnProperty('outcast'));
-        // this.CIV_MERC_CHILD = 
-        //             (this.components.hasOwnProperty('civilian') && 
-        //             this.components.hasOwnProperty('merchant') &&
-        //             this.components.hasOwnProperty('child') &&
-        //             !this.components.hasOwnProperty('outcast'));
-        // this.CIV_MERC = 
-        //             (this.components.hasOwnProperty('civilian') && 
-        //             this.components.hasOwnProperty('merchant') &&
-        //             !this.components.hasOwnProperty('child') &&
-        //             !this.components.hasOwnProperty('outcast'));
-
-        // // outcast types:
-        // this.OUT = 
-        //             (!this.components.hasOwnProperty('civilian') && 
-        //             !this.components.hasOwnProperty('merchant') &&
-        //             !this.components.hasOwnProperty('child') &&
-        //             this.components.hasOwnProperty('outcast'));
-        // this.OUT_CHILD = 
-        //             (!this.components.hasOwnProperty('civilian') && 
-        //             !this.components.hasOwnProperty('merchant') &&
-        //             this.components.hasOwnProperty('child') &&
-        //             this.components.hasOwnProperty('outcast'));
-        // this.OUT_MERC_CHILD = 
-        //             (!this.components.hasOwnProperty('civilian') && 
-        //             this.components.hasOwnProperty('merchant') &&
-        //             this.components.hasOwnProperty('child') &&
-        //             this.components.hasOwnProperty('outcast'));
-        // this.OUT_MERC = 
-        //             (!this.components.hasOwnProperty('civilian') && 
-        //             this.components.hasOwnProperty('merchant') &&
-        //             !this.components.hasOwnProperty('child') &&
-        //             this.components.hasOwnProperty('outcast'));   
+        } 
     }
 }
 

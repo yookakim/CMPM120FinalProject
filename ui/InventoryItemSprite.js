@@ -69,11 +69,9 @@ class InventoryItemSprite extends Phaser.GameObjects.Sprite {
 
         // these if statements feel a little dirty but i will use them lol
 
-        console.log('clicked');
         if (!this.scene.scene.isActive('tradescene')) {
             // if not clicked in trade scene:
         }
-
 
         // set special use cases for certain items (for example, can only use energy drink when on planet)
         // this is pretty hacky, i will figure out a better way to do stuff like this for other projects lol
