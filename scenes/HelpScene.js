@@ -49,6 +49,7 @@ class HelpScene extends Phaser.Scene {
             .setInteractive()
             .on('pointerdown', this.returnToShip, this);    
     }
+    
     returnToShip() {
         this.scene.wake('planetselection');
         this.scene.start('planetselectionui');

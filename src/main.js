@@ -33,7 +33,7 @@ let config = {
         Preloader ,
         TitleScreen , IntroductionScene , HelpScene , PlanetSelection , PlanetSelectionUI , PlanetScene , 
         EcosystemMenu , ScavengeSummary , InventoryScene , InventoryUI , SettlementMenu ,
-        CivilianTalkScene , TradeScene , EndGameScene
+        CivilianTalkScene , TradeScene , EndGameScene , CreditsScene
     ],
 }
 
@@ -86,7 +86,7 @@ game.registry.set({
     
     INITIAL_PLANET_OBJECT: new Planet('Space'),
     
-    GAME_PLAYTHROUGH_TOTAL_DAYS: 150,
+    GAME_PLAYTHROUGH_TOTAL_DAYS: 10,
 
     // arbitrary engine start strength
     INITIAL_ENGINE_OUTPUT: 60,

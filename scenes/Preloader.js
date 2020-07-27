@@ -43,6 +43,7 @@ class Preloader extends Phaser.Scene {
         this.load.image('cancelbutton', './assets/UI/buttons/cancel_button.png');
         this.load.image('confirmtradebutton', './assets/UI/buttons/confirm_trade_button.png');
         this.load.image('restartbutton', './assets/UI/buttons/restart_button.png');
+        this.load.image('creditsbutton', './assets/UI/buttons/credits_button.png');
         this.load.image('gogglesinfofield_civilian', './assets/UI/gogglesinfofield_civilian.png');
         this.load.image('gogglesinfofield_outcast', './assets/UI/gogglesinfofield_outcast.png');
         this.load.image('gogglesinfofield_merchant', './assets/UI/gogglesinfofield_merchant.png');

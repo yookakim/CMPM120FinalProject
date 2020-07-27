@@ -26,6 +26,12 @@ class EndGameScene extends Phaser.Scene {
         this.restartButton.on('pointerdown', () => {
             ship.resetGame();
             this.scene.start('titlescreen');
-        }, window)
+        }, window);
+
+        this.creditsButton = new ButtonTemplate(this, game.config.width / 2, 500, 'creditsbutton');
+        
+        this.creditsButton.on('pointerdown', () => {
+            this.scene.start('creditsscene');
+        }, this)
     }
 }
