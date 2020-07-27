@@ -86,7 +86,7 @@ game.registry.set({
     
     INITIAL_PLANET_OBJECT: new Planet('Space'),
     
-    GAME_PLAYTHROUGH_TOTAL_DAYS: 10,
+    GAME_PLAYTHROUGH_TOTAL_DAYS: 150,
 
     // arbitrary engine start strength
     INITIAL_ENGINE_OUTPUT: 60,

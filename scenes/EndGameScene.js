@@ -28,8 +28,8 @@ class EndGameScene extends Phaser.Scene {
             this.scene.start('titlescreen');
         }, window);
 
-        this.creditsButton = new ButtonTemplate(this, game.config.width / 2, 500, 'creditsbutton');
-        
+        this.creditsButton = new ButtonTemplate(this, game.config.width / 2, 600, 'creditsbutton');
+
         this.creditsButton.on('pointerdown', () => {
             this.scene.start('creditsscene');
         }, this)
